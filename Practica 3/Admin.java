@@ -1,10 +1,12 @@
-
+import java.util.*;
+// faltan coses
 public class Admin {
 	
 	private String name;
 	private String surname;
 	private String password;
 	private int id;
+	private List<Offer> offers;
 	
 	public Admin(String name, String surname, String password, int id) {
 		super();
@@ -12,6 +14,7 @@ public class Admin {
 		this.surname = surname;
 		this.password = password;
 		this.id = id;
+		offers = new ArrayList<>();
 	}
 
 	public String getName() {

@@ -5,7 +5,7 @@ public class Text extends Comment {
 	private List<Comment> comments;
 
 	public Text(String text,Guest guest) {
-		super();
+		super(guest);
 		this.text = text;
 		this.guest = guest;
 		comments = new ArrayList<Comment>;
