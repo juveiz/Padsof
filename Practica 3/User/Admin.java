@@ -1,4 +1,7 @@
+package user;
 import java.util.*;
+
+import offer.Offer;
 // faltan coses
 public class Admin {
 	
