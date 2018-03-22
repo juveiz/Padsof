@@ -7,7 +7,6 @@ public class House {
 	private String description;
 	
 	public House(String city, int zip, String description) {
-		super();
 		this.city = city;
 		this.zip = zip;
 		this.description = description;

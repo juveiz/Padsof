@@ -1,8 +1,8 @@
-package user;
+package User;
 import java.util.*;
 
 import offer.Offer;
-// faltan coses
+
 public class Admin {
 	
 	private String name;
@@ -51,7 +51,12 @@ public class Admin {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+	public void addOffer(Offer o) {
+		offers.add(o);
+	}
+	public List<Offer> getOffer(){
+		return offers;
+	}
 	
 
 }

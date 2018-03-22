@@ -29,7 +29,7 @@ public class Text extends Comment {
 		comments.add(c);
 	}
 	
-	public void rateComment(Double rate,Guest g) {
+	public void rateComment(double rate,Guest g) {
 		Comment r = new Rate(rate,g);
 		comments.add(r);
 	}
