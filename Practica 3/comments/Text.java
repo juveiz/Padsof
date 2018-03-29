@@ -1,36 +1,35 @@
 package comments;
+
 import java.util.*;
+import User.*;
+import Exception.*;
+
 public class Text extends Comment {
 
 	private String text;
 	private List<Comment> comments;
 
-	public Text(String text,Guest guest) {
+	public Text(String text,RegisteredUser guest) throws GuestException {
 		super(guest);
 		this.text = text;
-		this.guest = guest;
-		comments = new ArrayList<Comment>;
+		comments = new ArrayList<Comment>();
 	}
 	
 	public String getText() {
 		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
 	}
 	
 	public List<Comment> getComments() {
 		return comments;
 	}
 
-	public void commentComments(String comment, Guest g) {
+	public void commentComments(String comment, RegisteredUser g) throws GuestException {
 		Comment c = new Text(comment,g);
 		comments.add(c);
 	}
 	
-	public void rateComment(double rate,Guest g) {
-		Comment r = new Rate(rate,g);
+	public void rateComment(double rate,RegisteredUser g) throws GuestException {
+		Comment r = new Numerical(rate,g);
 		comments.add(r);
 	}
 

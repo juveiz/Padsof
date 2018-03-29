@@ -1,17 +1,19 @@
 package comments;
-
+import User.*;
+import Exception.*;
 public abstract class Comment {
-	private Guest guest;
+	private RegisteredUser guest;
 	
-	public Comment(Guest guest) {
+	public Comment(RegisteredUser guest) throws GuestException {
+		if (guest.isGuest() == false) {
+			GuestException g = new GuestException();
+			throw g;
+		}
 		this.guest = guest;
 	}
 
-	public Guest getGuest() {
+	public RegisteredUser getGuest() {
 		return guest;
 	}
 
-	public void setGuest(Guest guest) {
-		this.guest = guest;
-	}
 }

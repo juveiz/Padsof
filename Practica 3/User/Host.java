@@ -19,4 +19,22 @@ public class Host extends Profile {
 	public void addHouse(House h) {
 		houses.add(h);
 	}
+	
+	public boolean removeOffer(Offer o) {
+		if (offers.remove(o)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean removeHouse(House h) {
+		if (houses.remove(h)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isHost() {
+		return true;
+	}
 }

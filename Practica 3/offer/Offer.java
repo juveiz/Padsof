@@ -1,23 +1,27 @@
 package offer;
 import java.util.*;
 
-import comments.Comment;
-import comments.Numerical;
-import comments.Text;
-import user.Admin;
+import comments.*;
+import User.*;
+import Exception.*;
+
 public abstract class Offer {
 
 	private Date startingDate;
 	private double deposit;
 	private int state;
 	private Date modifyDate;
-	private Host host;
+	private RegisteredUser host;
 	private House house;
 	private List<Comment> comments;
 	private Reserve reserve;
 	
 	
-	public Offer(Date startingDate, double deposit, Host host, House house) {
+	public Offer(Date startingDate, double deposit, RegisteredUser host, House house) throws HostException {
+		if(host.isHost() == false) {
+			HostException h = new HostException();
+			throw h;
+		}
 		this.startingDate = startingDate;
 		this.deposit = deposit;
 		this.host = host;
@@ -52,17 +56,11 @@ public abstract class Offer {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-	public Host getHost() {
+	public RegisteredUser getHost() {
 		return host;
-	}
-	public void setHost(Host host) {
-		this.host = host;
 	}
 	public House getHouse() {
 		return house;
-	}
-	public void setHouse(House house) {
-		this.house = house;
 	}
 	public List<Comment> getComments() {
 		return comments;
@@ -83,10 +81,15 @@ public abstract class Offer {
 		modifyDate = new Date();
 	}
 	
-	public void denyOffer(Admin a) {
+	public boolean denyOffer(Admin a) throws HostException {
 		this.setState(-1);
-		a.getOffers().remove(this);
-		host.getOffers().remove(this);
+		if (a.getOffer().remove(this) == false) {
+			return false;
+		}
+		if (host.getHost().removeOffer(this) == false) {
+			return false;
+		}
+		return true;
 	}
 	
 	public void askForChanges() {
@@ -94,10 +97,9 @@ public abstract class Offer {
 		modifyDate = new Date();
 	}
 	
-	public void cancelOfer() {
+	public void cancelOfer() throws HostException {
 		this.setState(-1);
-		host.getOffers().remove(this);
-		//ojo en admin
+		host.getHost().removeOffer(this);
 	}
 	
 	public void modifyOffer(House h, Date s, double d) {
@@ -109,7 +111,11 @@ public abstract class Offer {
 		//ojo 5 dias
 	}
 	
-	public boolean reserveOffer(Guest g) {
+	public boolean reserveOffer(RegisteredUser g) throws GuestException {
+		if (g.isGuest() == false) {
+			GuestException gu = new GuestException();
+			throw gu;
+		}
 		if (state != 1) {
 			return false;
 		}
@@ -150,13 +156,21 @@ public abstract class Offer {
 		
 	}
 	
-	public void commentOffer(Guest g,String c) {
+	public void commentOffer(RegisteredUser g,String c) throws GuestException {
+		if (g.isGuest() == false) {
+			GuestException gu = new GuestException();
+			throw gu;
+		}
 		Comment comment;
 		comment = new Text(c,g);
 		comments.add(comment);
 	}
 	
-	public void rateOffer(Guest g, double r) {
+	public void rateOffer(RegisteredUser g, double r) throws GuestException{
+		if (g.isGuest() == false) {
+			GuestException gu = new GuestException();
+			throw gu;
+		}
 		Comment comment;
 		comment = new Numerical(r,g);
 		comments.add(comment);

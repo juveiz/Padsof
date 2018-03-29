@@ -16,4 +16,15 @@ public class Guest extends Profile {
 	public void addOffer(Offer o) {
 		offers.add(o);
 	}
+	
+	public boolean removeOffer(Offer o) {
+		if (offers.remove(o)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isGuest() {
+		return true;
+	}
 }

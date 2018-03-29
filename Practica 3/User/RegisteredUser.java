@@ -1,6 +1,8 @@
 package User;
-import offer.*;
+
 import java.util.*;
+import Exception.*;
+
 public class RegisteredUser {
 	private String name;
 	private String surename;
@@ -52,6 +54,45 @@ public class RegisteredUser {
 	public void setState(int state) {
 		this.state = state;
 	}
+	
+	public boolean isGuest() {
+		for (Profile p: profile) {
+			if (p.isGuest()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean isHost() {
+		for (Profile p: profile) {
+			if (p.isHost()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Profile getGuest() throws GuestException {
+		for(Profile p: profile) {
+			if (p.isGuest()) {
+				return p;
+			}
+		}
+		GuestException g = new GuestException();
+		throw g;
+	}
+	
+	public Profile getHost() throws HostException {
+		for(Profile p: profile) {
+			if (p.isHost()) {
+				return p;
+			}
+		}
+		HostException h = new HostException();
+		throw h;
+	}
+	
 	public void banUser() {
 		state = -1;
 	}
