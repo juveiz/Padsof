@@ -18,6 +18,7 @@ public class RegisteredUser {
 		this.id = id;
 		this.password = password;
 		this.creditCard = creditCard;
+		profile = new ArrayList<>();
 		if (guest) {
 			profile.add(new Guest());
 		}

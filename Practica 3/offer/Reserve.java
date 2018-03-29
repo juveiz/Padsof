@@ -1,15 +1,14 @@
 package offer;
-import java.util.*;
 
 import Exception.*;
 import User.*;
 
 public class Reserve {
-	private Date dateFin;
+	private ModifiableDate dateFin;
 	private RegisteredUser guest;
 	private Offer offer;
 	
-	public Reserve(Date dateFin, RegisteredUser guest, Offer offer) throws GuestException{
+	public Reserve(ModifiableDate dateFin, RegisteredUser guest, Offer offer) throws GuestException{
 		if (guest.isGuest() == false) {
 			GuestException g = new GuestException();
 			throw g;
@@ -19,7 +18,7 @@ public class Reserve {
 		this.offer = offer;
 	}
 	
-	public Date getDateFin() {
+	public ModifiableDate getDateFin() {
 		return dateFin;
 	}
 	

@@ -7,17 +7,17 @@ import Exception.*;
 
 public abstract class Offer {
 
-	private Date startingDate;
+	private ModifiableDate startingDate;
 	private double deposit;
 	private int state;
-	private Date modifyDate;
+	private ModifiableDate modifyDate;
 	private RegisteredUser host;
 	private House house;
 	private List<Comment> comments;
 	private Reserve reserve;
 	
 	
-	public Offer(Date startingDate, double deposit, RegisteredUser host, House house) throws HostException {
+	public Offer(ModifiableDate startingDate, double deposit, RegisteredUser host, House house) throws HostException {
 		if(host.isHost() == false) {
 			HostException h = new HostException();
 			throw h;
@@ -26,7 +26,7 @@ public abstract class Offer {
 		this.deposit = deposit;
 		this.host = host;
 		this.house = house;
-		modifyDate = new Date() ;
+		modifyDate.setToday();
 		state = 0;
 		comments = new ArrayList<>();
 		reserve = null;
