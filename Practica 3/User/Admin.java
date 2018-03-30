@@ -63,7 +63,7 @@ public class Admin {
 	public void addOffer(Offer o) {
 		offers.add(o);
 	}
-	public List<Offer> getOffer(){
+	public List<Offer> getOffers(){
 		return offers;
 	}
 

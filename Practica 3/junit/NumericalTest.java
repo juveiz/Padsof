@@ -55,5 +55,18 @@ public class NumericalTest {
 			fail("Don't work");
 		}
 	}
+	
+	@Test
+	public void testIsNumerical() {
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		Numerical n;
+		try {
+			n = new Numerical(2.0,u);
+			assertNotNull(n);
+			assertTrue(n.isNumerical());
+		} catch (GuestException e) {
+			fail("Don't work");
+		}
+	}
 
 }

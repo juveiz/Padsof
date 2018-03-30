@@ -33,10 +33,6 @@ public class Text extends Comment {
 		comments.add(r);
 	}
 
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-	
 	public boolean isText() {
 		return true;
 	}

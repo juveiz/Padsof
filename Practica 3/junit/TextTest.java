@@ -44,27 +44,70 @@ public class TextTest {
 
 	@Test
 	public void testGetComments() {
-		fail("Not yet implemented");
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		Text n;
+		try {
+			n = new Text("Hello im doing things",u);
+			assertNotNull(n);
+			n.commentComments("They are robots!",u);
+			assertTrue(n.getComments().size() == 1);
+		} catch (GuestException e) {
+			fail("Don't work");
+		}
 	}
-
+	//No se como hacerlo distinto
 	@Test
 	public void testCommentComments() {
-		fail("Not yet implemented");
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		Text n;
+		try {
+			n = new Text("Hello im doing things",u);
+			assertNotNull(n);
+			n.commentComments("They are robots!",u);
+			assertTrue(n.getComments().size() == 1);
+		} catch (GuestException e) {
+			fail("Don't work");
+		}
 	}
 
 	@Test
 	public void testRateComment() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetComments() {
-		fail("Not yet implemented");
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		Text n;
+		try {
+			n = new Text("Hello im doing things",u);
+			assertNotNull(n);
+			n.rateComment(2,u);
+			assertTrue(n.getComments().size() == 1);
+		} catch (GuestException e) {
+			fail("Don't work");
+		}
 	}
 
 	@Test
 	public void testGetGuest() {
-		fail("Not yet implemented");
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		Text n;
+		try {
+			n = new Text("Hello im doing things",u);
+			assertNotNull(n);
+			assertEquals(n.getGuest(),u);
+		} catch (GuestException e) {
+			fail("Don't work");
+		}
+	}
+	
+	@Test
+	public void testIsText() {
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		Text n;
+		try {
+			n = new Text("Hello im doing things",u);
+			assertNotNull(n);
+			assertTrue(n.isText());
+		} catch (GuestException e) {
+			fail("Don't work");
+		}
 	}
 
 }
