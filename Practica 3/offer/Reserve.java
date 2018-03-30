@@ -1,14 +1,16 @@
 package offer;
 
+import java.time.*;
+
 import Exception.*;
 import User.*;
 
 public class Reserve {
-	private ModifiableDate dateFin;
+	private LocalDate dateFin;
 	private RegisteredUser guest;
 	private Offer offer;
 	
-	public Reserve(ModifiableDate dateFin, RegisteredUser guest, Offer offer) throws GuestException{
+	public Reserve(LocalDate dateFin, RegisteredUser guest, Offer offer) throws GuestException{
 		if (guest.isGuest() == false) {
 			GuestException g = new GuestException();
 			throw g;
@@ -18,7 +20,7 @@ public class Reserve {
 		this.offer = offer;
 	}
 	
-	public ModifiableDate getDateFin() {
+	public LocalDate getDateFin() {
 		return dateFin;
 	}
 	

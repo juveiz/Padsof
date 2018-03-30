@@ -1,5 +1,6 @@
 package system;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import Exception.*;
@@ -114,6 +115,28 @@ public class System {
 		return null;
 	}
 	
+	public boolean addUser(String name, String surename, int id, String password, String creditCard,boolean guest,boolean host) {
+		for(RegisteredUser u: users) {
+			if(u.getId() == id) {
+				return false;
+			}
+		}
+		if (guest == host == false) {
+			return false;
+		}
+		users.add(new RegisteredUser(name,surename,id,password,creditCard,guest,host));
+		return true;
+	}
+	
+	public boolean addAdmin(String name, String surname, String password, int id) {
+		for(Admin a: admins) {
+			if(a.getId() == id) {
+				return false;
+			}
+		}
+		admins.add(new Admin(name,surname,password,id));
+		return true;
+	}
 	public void addHouse(String city, int zip, String description) throws HostException {
 		RegisteredUser u = this.getLoggedUser();
 		if(u == null) {
@@ -137,17 +160,21 @@ public class System {
 		List<Offer> l = new ArrayList<>();
 		if(type.equals("Living")) {
 			for (Offer o: offers) {
-				if(o.isLiving()) {
-					l.add(o);
+				if(o.getState() == 1) {	
+					if(o.isLiving()) {
+						l.add(o);
+					}
 				}
 			}
 		}else if(type.equals("Vacational")) {
 			for (Offer o: offers) {
-				if(o.isVacational()) {
-					l.add(o);
-				}
-		}
+				if(o.getState() == 1) {
+					if(o.isVacational()) {
+						l.add(o);
+					}
 		
+				}
+			}
 		}
 		return l;
 	}
@@ -155,17 +182,25 @@ public class System {
 	public List<Offer> searchOfferZip(int z){
 		List<Offer> l = new ArrayList<>();
 		for(Offer o: offers) {
-			if(o.getHouse().getZip() == z) {
-				l.add(o);
+			if(o.getState() == 1) {
+				if(o.getHouse().getZip() == z) {
+					l.add(o);
+				}
 			}
 		}
 		return l;
 	}
-	/*
-	 * queda ver la fecha
-	 */
-	public List<Offer> searchOfferDate(){
-		
+	
+	public List<Offer> searchOfferDate(LocalDate d1,LocalDate d2){
+		List<Offer> l = new ArrayList<>();
+		for(Offer o: offers) {
+			if(o.getState() == 1) {
+				if(o.getStartingDate().compareTo(d1) >= 0 && o.getStartingDate().compareTo(d2) <= 0 ) {
+					l.add(o);
+				}
+			}
+		}
+		return l;
 	}
 	
 	public List<Offer> searchOfferRate(int min) throws NonRegisteredException{

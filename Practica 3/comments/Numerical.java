@@ -14,4 +14,7 @@ public class Numerical extends Comment {
 		return rate;
 	}
 	
+	public boolean isNumerical() {
+		return true;
+	}
 }

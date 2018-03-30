@@ -1,48 +1,52 @@
 package offer;
+import java.time.*;
 import java.util.*;
 
+import es.uam.eps.padsof.telecard.*;
 import comments.*;
 import User.*;
 import Exception.*;
 
 public abstract class Offer {
 
-	private ModifiableDate startingDate;
+	private LocalDate startingDate;
+	private double price;
 	private double deposit;
 	private int state;
-	private ModifiableDate modifyDate;
+	private LocalDate modifyDate;
 	private RegisteredUser host;
 	private House house;
 	private List<Comment> comments;
 	private Reserve reserve;
 	
 	
-	public Offer(ModifiableDate startingDate, double deposit, RegisteredUser host, House house) throws HostException {
+	public Offer(LocalDate startingDate, double price, RegisteredUser host, House house) throws HostException {
 		if(host.isHost() == false) {
 			HostException h = new HostException();
 			throw h;
 		}
 		this.startingDate = startingDate;
-		this.deposit = deposit;
+		this.price = price;
 		this.host = host;
 		this.house = house;
-		modifyDate.setToday();
+		modifyDate = LocalDate.now();
 		state = 0;
 		comments = new ArrayList<>();
+		deposit = 0;
 		reserve = null;
 	}
 	
-	public Date getStartingDate() {
+	public LocalDate getStartingDate() {
 		return startingDate;
 	}
-	public void setStartingDate(Date startingDate) {
+	public void setStartingDate(LocalDate startingDate) {
 		this.startingDate = startingDate;
 	}
-	public double getDeposit() {
-		return deposit;
+	public double getprice() {
+		return price;
 	}
-	public void setDeposit(double deposit) {
-		this.deposit = deposit;
+	public void setprice(double price) {
+		this.price = price;
 	}
 	public int getState() {
 		return state;
@@ -50,10 +54,10 @@ public abstract class Offer {
 	public void setState(int state) {
 		this.state = state;
 	}
-	public Date getModifyDate() {
+	public LocalDate getModifyDate() {
 		return modifyDate;
 	}
-	public void setModifyDate(Date modifyDate) {
+	public void setModifyDate(LocalDate modifyDate) {
 		this.modifyDate = modifyDate;
 	}
 	public RegisteredUser getHost() {
@@ -79,29 +83,32 @@ public abstract class Offer {
 	 * a implementar (easy)
 	 * @return
 	 */
-	public int getRate() {
-		
+	public double getRate() {
+		double res = 0;
+		double cont = 0;
+		for(Comment c: comments) {
+			if(c.isNumerical()) {
+				res = res + ((Numerical)c).getRate();
+				cont = cont + 1;
+			}
+		}
+		res = res/cont;
+		return res;
 	}
 	
 	public void approveOffer(Admin a) {
 		this.setState(1);
-		modifyDate = new Date();
+		modifyDate = LocalDate.now();
 	}
 	
 	public boolean denyOffer(Admin a) throws HostException {
 		this.setState(-1);
-		if (a.getOffer().remove(this) == false) {
-			return false;
-		}
-		if (host.getHost().removeOffer(this) == false) {
-			return false;
-		}
 		return true;
 	}
 	
 	public void askForChanges() {
 		this.setState(2);
-		modifyDate = new Date();
+		modifyDate = LocalDate.now();
 	}
 	
 	public void cancelOfer() throws HostException {
@@ -109,13 +116,17 @@ public abstract class Offer {
 		host.getHost().removeOffer(this);
 	}
 	
-	public void modifyOffer(House h, Date s, double d) {
+	public boolean modifyOffer(House h, LocalDate s, double d) {
+		if(modifyDate.plusDays(5).compareTo(LocalDate.now()) >= 0) {
+			this.setState(-1);
+			return false;
+		}
 		house = h;
 		startingDate = s;
-		deposit = d;
-		modifyDate = new Date();
+		price = d;
+		modifyDate = LocalDate.now();
 		this.setState(0);
-		//ojo 5 dias
+		return true;
 	}
 	
 	public boolean reserveOffer(RegisteredUser g) throws GuestException {
@@ -126,38 +137,65 @@ public abstract class Offer {
 		if (state != 1) {
 			return false;
 		}
-		reserve = new Reserve(g,this,dateFin);//ver como se hace 
+		reserve = new Reserve(LocalDate.now().plusDays(5),g,this);//ver como se hace 
 		this.setState(3);
 		return true;
 	}
 	
-	public int buyOffer(Guest g) {
+	public int buyOffer(RegisteredUser g,String subject,boolean trace) throws GuestException {
 		String creditCard;
-		boolean paymenOk;
+		if(g.isGuest() == false) {
+			GuestException e = new GuestException();
+			throw e;
+		}
 		if (reserve == null) {
 			creditCard = g.getCreditCard();
-			//aqui hacer el pago
-			if (paymentOK) {
-				this.setState(4);
-				return 0;
-			}else{
+			try {
+				if(trace) {
+					TeleChargeAndPaySystem.charge(creditCard,subject,price + deposit,trace);
+				}else {
+					TeleChargeAndPaySystem.charge(creditCard,subject,price + deposit);
+					
+				}
+			}catch(InvalidCardNumberException e) {
 				g.banUser();
 				return -1;
-			}
-		}else {
-			if (reserve.getGuest().equals(g)) {//hacer en guest
-				creditCard = g.getCreditCard();
-				//aqui hacer el pago
-				if (paymentOK) {
-					this.setState(4);
-					return 0;
-				}else{
-					g.banUser();
-					reserve = null;
-					return -1;
-				}
-			}else {
+				//usuario baneado
+			}catch(FailedInternetConnectionException e) {
 				return -2;
+				//caca de internete
+			}catch(OrderRejectedException e) {
+				return -3;
+				//esto no se que es
+			}
+			this.setState(4);
+			return 0;
+		}else {
+			creditCard = g.getCreditCard();
+			if (reserve.getGuest().getId() == g.getId() ) {//hacer en guest
+				try {
+					if(trace) {
+						TeleChargeAndPaySystem.charge(creditCard,subject,price + deposit,trace);
+					}else {
+						TeleChargeAndPaySystem.charge(creditCard,subject,price + deposit);
+						
+					}
+				}catch(InvalidCardNumberException e) {
+					g.banUser();
+					return -1;
+					//usuario baneado
+				}catch(FailedInternetConnectionException e) {
+					return -2;
+					//caca de internete
+				}catch(OrderRejectedException e) {
+					return -3;
+					//esto no se que es
+				}
+				this.setState(4);
+				return 0;
+			}else {
+				return -4;
+				//Usuario distinto de reserrva
 			}
 		}
 		
@@ -189,5 +227,13 @@ public abstract class Offer {
 	
 	public boolean isVacational() {
 		return false;
+	}
+
+	public double getDeposit() {
+		return deposit;
+	}
+
+	public void setDeposit(double deposit) {
+		this.deposit = deposit;
 	}
 }

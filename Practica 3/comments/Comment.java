@@ -15,5 +15,13 @@ public abstract class Comment {
 	public RegisteredUser getGuest() {
 		return guest;
 	}
+	
+	public boolean isText() {
+		return false;
+	}
+	
+	public boolean isNumerical() {
+		return false;
+	}
 
 }
