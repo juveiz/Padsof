@@ -75,6 +75,13 @@ public abstract class Offer {
 		this.reserve = reserve;
 	}
 	
+	/**
+	 * a implementar (easy)
+	 * @return
+	 */
+	public int getRate() {
+		
+	}
 	
 	public void approveOffer(Admin a) {
 		this.setState(1);
@@ -174,5 +181,13 @@ public abstract class Offer {
 		Comment comment;
 		comment = new Numerical(r,g);
 		comments.add(comment);
+	}
+	
+	public boolean isLiving() {
+		return false;
+	}
+	
+	public boolean isVacational() {
+		return false;
 	}
 }

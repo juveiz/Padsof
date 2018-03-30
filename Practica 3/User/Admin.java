@@ -9,6 +9,7 @@ public class Admin {
 	private String surname;
 	private String password;
 	private int id;
+	private int state;
 	private List<Offer> offers;
 	
 	public Admin(String name, String surname, String password, int id) {
@@ -17,6 +18,7 @@ public class Admin {
 		this.surname = surname;
 		this.password = password;
 		this.id = id;
+		state = 0;
 		offers = new ArrayList<>();
 	}
 
@@ -51,12 +53,21 @@ public class Admin {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
 	public void addOffer(Offer o) {
 		offers.add(o);
 	}
 	public List<Offer> getOffer(){
 		return offers;
 	}
+
+	
 	
 
 }
