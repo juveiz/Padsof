@@ -117,7 +117,7 @@ public abstract class Offer {
 	}
 	
 	public boolean modifyOffer(House h, LocalDate s, double d) {
-		if(modifyDate.plusDays(5).compareTo(LocalDate.now()) >= 0) {
+		if(modifyDate.plusDays(5).compareTo(LocalDate.now()) <= 0) {
 			this.setState(-1);
 			return false;
 		}

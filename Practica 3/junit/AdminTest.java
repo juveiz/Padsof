@@ -77,11 +77,13 @@ public class AdminTest {
 		a.setState(1);
 		assertTrue(a.getState() == 1);
 	}
-
+	/**
+	 * preguntar estos dos al profo
+	 */
 	@Test
 	public void testAddOffer() {
 		Admin a = new Admin("Pedro","Balodis","youaregoingtofail",2);
-		a.addOffer(new );
+		fail("Not yet implemented");
 	}
 
 	@Test
