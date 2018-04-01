@@ -5,6 +5,11 @@ import java.time.LocalDate;
 import Exception.HostException;
 import User.RegisteredUser;
 
+/**
+ * 
+ * @author juvei
+ *
+ */
 public class Living extends Offer {
 	
 	private double months;
