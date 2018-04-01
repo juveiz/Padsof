@@ -82,7 +82,6 @@ public class AdminTest {
 	 */
 	@Test
 	public void testAddOffer() {
-		Admin a = new Admin("Pedro","Balodis","youaregoingtofail",2);
 		fail("Not yet implemented");
 	}
 
