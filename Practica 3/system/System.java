@@ -209,7 +209,9 @@ public class System {
 				List<Offer> l = new ArrayList<>();
 				for (Offer o: offers) {
 					if(o.getRate() > min) {
-						l.add(o);
+						if(o.getState() != -1) {
+							l.add(o);
+						}
 					}
 				}
 				return l;
