@@ -1,5 +1,8 @@
 package User;
 
+import java.io.Serializable;
+import java.util.List;
+
 import offer.House;
 import offer.Offer;
 /**
@@ -7,7 +10,9 @@ import offer.Offer;
  * @author Miguel Angel Sanchez y Juan Velasco
  *
  */
-public abstract class Profile {
+public abstract class Profile implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Add an offer to the profile. It will be used in its sons.
 	 * @param o House to add
@@ -34,6 +39,8 @@ public abstract class Profile {
 	public boolean removeHouse(House h) {
 		return false;
 	}
+	
+	public abstract List<Offer> getOffers();
 	/**
 	 * Says if the profile is Guest
 	 * @return false

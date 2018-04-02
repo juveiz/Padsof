@@ -1,4 +1,5 @@
 package offer;
+import java.io.Serializable;
 import java.time.*;
 import java.util.*;
 
@@ -7,8 +8,9 @@ import comments.*;
 import User.*;
 import Exception.*;
 
-public abstract class Offer {
-
+public abstract class Offer implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private LocalDate startingDate;
 	private double price;
 	private double deposit;

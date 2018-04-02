@@ -1,16 +1,19 @@
 package offer;
 
+import java.io.Serializable;
+
 /**
  * House class. It represents the houses of our system
  * @author Miguel Angel Sanchez y Juan Velasco
  *
  */
-public class House {
+public class House implements Serializable{
 	/**
 	 * City: city of the house
 	 * Zip: zip code of the house
 	 * Description: Features about the house
 	 */
+	private static final long serialVersionUID = 1L;
 	private String city;
 	private int zip;
 	private String description;

@@ -1,12 +1,14 @@
 package offer;
 
+import java.io.Serializable;
 import java.time.*;
 
 import Exception.HostException;
 import User.RegisteredUser;
 
-public class Vacational extends Offer {
+public class Vacational extends Offer implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private LocalDate endingDate;
 	
 	public Vacational(LocalDate startingDate, double price, RegisteredUser host, House house,LocalDate endingDate) throws HostException{

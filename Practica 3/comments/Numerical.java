@@ -1,6 +1,9 @@
 package comments;
 
 import User.*;
+
+import java.io.Serializable;
+
 import Exception.*;
 
 /**
@@ -8,10 +11,11 @@ import Exception.*;
  * @author Miguel Angel Sanchez y Juan Velasco
  *
  */
-public class Numerical extends Comment {
+public class Numerical extends Comment implements Serializable{
 	/**
 	 * Rate: rate of the offer (or comment).
 	 */
+	private static final long serialVersionUID = 1L;
 	private double rate;
 	/**
 	 * Creates a new numerical comment

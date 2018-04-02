@@ -1,5 +1,6 @@
 package system;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -7,7 +8,9 @@ import Exception.*;
 import User.*;
 import offer.*;
 
-public class System {
+public class System implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private List<Admin> admins;
 	private List<House> houses;
 	private List<RegisteredUser> users;
@@ -103,6 +106,7 @@ public class System {
 				return false;
 			}
 		}
+		backup();
 		return true;
 	}
 	
@@ -251,5 +255,46 @@ public class System {
 		}
 		NonRegisteredException e = new NonRegisteredException();
 		throw e;
+	}
+	
+	private void backup() {
+		List<Offer> noffers;
+		for(Admin a: admins) {
+			noffers = a.getOffers();
+			for(Offer o: noffers) {
+				if(o.getState() == -1) {
+					a.getOffers().remove(o);
+				}
+			}
+		}
+		
+		for(RegisteredUser r: users) {
+			for(Profile p: r.getProfile()) {
+				noffers = p.getOffers();
+				for(Offer o: noffers) {
+					if(o.getState() == -1) {
+						p.removeOffer(o);
+					}
+				}
+			}
+		}
+		
+		noffers = this.offers;
+		for(Offer o: noffers) {
+			if(o.getState() == -1) {
+				offers.remove(o);
+			}
+		}
+		
+		ObjectOutputStream oos;
+		try {
+			oos = new ObjectOutputStream( new FileOutputStream("SystemBackup"));
+			oos.writeObject(this);
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		}
+		
 	}
 }

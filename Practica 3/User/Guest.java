@@ -1,5 +1,6 @@
 package User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,10 +12,11 @@ import offer.Offer;
  * @author Miguel Angel Sanchez y Juan Velasco
  *
  */
-public class Guest extends Profile {
+public class Guest extends Profile implements Serializable{
 	/**
 	 * Offers: List of reserved offers
 	 */
+	private static final long serialVersionUID = 1L;
 	private List<Offer> offers;
 	/**
 	 * Creates a new Guest profile
@@ -45,5 +47,8 @@ public class Guest extends Profile {
 	 */
 	public boolean isGuest() {
 		return true;
+	}
+	public List<Offer> getOffers() {
+		return offers;
 	}
 }

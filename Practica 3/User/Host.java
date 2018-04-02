@@ -1,5 +1,6 @@
 package User;
 
+import java.io.Serializable;
 import java.util.*;
 import offer.*;
 
@@ -8,11 +9,12 @@ import offer.*;
  * @author Miguel Angel Sanchez y Juan Velasco
  *
  */
-public class Host extends Profile {
+public class Host extends Profile implements Serializable{
 	/**
 	 * Offers: List of created offers
 	 * Houses: List of created houses
 	 */
+	private static final long serialVersionUID = 1L;
 	private List<Offer> offers;
 	private List<House> houses;
 	/**
@@ -64,5 +66,9 @@ public class Host extends Profile {
 	 */
 	public boolean isHost() {
 		return true;
+	}
+	
+	public List<Offer> getOffers() {
+		return offers;
 	}
 }

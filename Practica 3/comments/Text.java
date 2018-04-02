@@ -1,5 +1,6 @@
 package comments;
 
+import java.io.Serializable;
 import java.util.*;
 import User.*;
 import Exception.*;
@@ -9,11 +10,12 @@ import Exception.*;
  * @author Miguel Angel Sanchez y Juan Velasco
  *
  */
-public class Text extends Comment {
+public class Text extends Comment implements Serializable{
 	/**
 	 * Text: Text of the comment
 	 * Comments: Comments to the comment
 	 */
+	private static final long serialVersionUID = 1L;
 	private String text;
 	private List<Comment> comments;
 	

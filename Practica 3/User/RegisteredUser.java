@@ -1,9 +1,12 @@
 package User;
 
+import java.io.Serializable;
 import java.util.*;
 import Exception.*;
 
-public class RegisteredUser {
+public class RegisteredUser implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String surename;
 	private int id;
@@ -101,6 +104,10 @@ public class RegisteredUser {
 	public void unbanUser(String creditCard) {
 		state = 0;
 		this.creditCard = creditCard;
+	}
+
+	public List<Profile> getProfile() {
+		return profile;
 	}
 	
 }

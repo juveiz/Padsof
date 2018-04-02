@@ -1,10 +1,12 @@
 package User;
+import java.io.Serializable;
 import java.util.*;
 
 import offer.Offer;
 
-public class Admin {
+public class Admin implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String surname;
 	private String password;

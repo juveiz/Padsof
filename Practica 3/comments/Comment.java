@@ -1,5 +1,8 @@
 package comments;
 import User.*;
+
+import java.io.Serializable;
+
 import Exception.*;
 
 /**
@@ -7,10 +10,11 @@ import Exception.*;
  * @author Miguel Angel Sanchez y Juan Velasco
  *
  */
-public abstract class Comment {
+public abstract class Comment implements Serializable{
 	/**
 	 * Guest: guest user who makes the comment.
 	 */
+	private static final long serialVersionUID = 1L;
 	private RegisteredUser guest;
 	/**
 	 * Creates a new Comment
