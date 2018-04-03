@@ -11,23 +11,21 @@ import user.*;
 public class Application implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	private List<Admin> admins;
+	private final Admin admin;
 	private List<House> houses;
 	private List<RegisteredUser> users;
 	private List<Offer> offers;
 	
-	public Application() {
-		admins = new ArrayList<>();
+	public Application(Admin a) {
+		admin = a;
 		houses = new ArrayList<>();
 		users = new ArrayList<>();
 		offers = new ArrayList<>();
 	}
 	
 	private boolean loginUser(int id,String pswrd) {
-		for(Admin u: admins) {
-			if(u.getState() == 1) {
-				return false;
-			}
+		if(admin.getState() == 1) {
+			return false;
 		}
 		for(RegisteredUser u: users) {
 			if(u.getState() == 1) {
@@ -58,35 +56,29 @@ public class Application implements Serializable{
 	}
 	
 	private boolean loginAdmin(int id,String pswrd) {
-		for(Admin u: admins) {
-			if(u.getState() == 1) {
-				return false;
-			}
+		if(admin.getState() == 1) {
+			return false;
 		}
 		for(RegisteredUser u: users) {
 			if(u.getState() == 1) {
 				return false;
 			}
 		}
-		for(Admin u: admins) {
-			if(u.getId() == id) {
-				if(u.getPassword().equals(pswrd)) {
-					u.setState(1);
-					return true;
-				}else {
-					return false;
-				}
+		if(admin.getId() == id) {
+			if(admin.getPassword().equals(pswrd)) {
+				admin.setState(1);
+				return true;
+			}else {
+				return false;
 			}
 		}
 		return false;
 	}
 	
 	private boolean logoutAdmin() {
-		for(Admin u: admins) {
-			if(u.getState() == 1) {
-				u.setState(0);
-				return true;
-			}
+		if(admin.getState() == 1) {
+			admin.setState(0);
+			return true;
 		}
 		return false;
 	}
@@ -132,15 +124,6 @@ public class Application implements Serializable{
 		return true;
 	}
 	
-	public boolean addAdmin(String name, String surname, String password, int id) {
-		for(Admin a: admins) {
-			if(a.getId() == id) {
-				return false;
-			}
-		}
-		admins.add(new Admin(name,surname,password,id));
-		return true;
-	}
 	public void addHouse(String city, int zip, String description) throws HostException {
 		RegisteredUser u = this.getLoggedUser();
 		if(u == null) {
@@ -259,15 +242,13 @@ public class Application implements Serializable{
 	
 	private void backup() {
 		List<Offer> noffers;
-		for(Admin a: admins) {
-			noffers = a.getOffers();
-			for(Offer o: noffers) {
-				if(o.getState() == -1) {
-					a.getOffers().remove(o);
-				}
+		noffers = admin.getOffers();
+		for(Offer o: noffers) {
+			if(o.getState() == -1) {
+				admin.getOffers().remove(o);
 			}
 		}
-		
+	
 		for(RegisteredUser r: users) {
 			for(Profile p: r.getProfile()) {
 				noffers = p.getOffers();
