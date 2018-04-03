@@ -16,7 +16,7 @@ public class LivingTest {
 	public void testLiving() {
 		Living o = null;
 		try {
-			o = new Living(LocalDate.of(2022, 3, 31), 200009.9, new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,true),new House("Madrid",28903,"Avenida de la Felicidad nº 23.\n Very wide\nPool"),2);
+			o = new Living(LocalDate.of(2022, 3, 31), 200009.9, new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,true),new House("Madrid",28903,"Avenida de la Felicidad nº 23.\n Very wide\nPool"),2);
 			assertNotNull(o);
 		} catch (HostException e) {
 			fail("Not a host");
@@ -27,7 +27,7 @@ public class LivingTest {
 	public void testGetMonths() {
 		Living o = null;
 		try {
-			o = new Living(LocalDate.of(2022, 3, 31), 200009.9, new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,true),new House("Madrid",28903,"Avenida de la Felicidad nº 23.\n Very wide\nPool"),2);
+			o = new Living(LocalDate.of(2022, 3, 31), 200009.9, new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,true),new House("Madrid",28903,"Avenida de la Felicidad nº 23.\n Very wide\nPool"),2);
 			assertNotNull(o);
 		} catch (HostException e) {
 			fail("Not a host");
@@ -39,7 +39,7 @@ public class LivingTest {
 	public void testModifyOffer() {
 		Living o = null;
 		try {
-			o = new Living(LocalDate.of(2022, 3, 31), 200009.9, new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,true),new House("Madrid",28903,"Avenida de la Felicidad nº 23.\n Very wide\nPool"),2);
+			o = new Living(LocalDate.of(2022, 3, 31), 200009.9, new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,true),new House("Madrid",28903,"Avenida de la Felicidad nº 23.\n Very wide\nPool"),2);
 			assertNotNull(o);
 		} catch (HostException e) {
 			fail("Not a host");

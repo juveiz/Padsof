@@ -10,7 +10,7 @@ public class RegisteredUser implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String name;
 	private String surename;
-	private int id;
+	private String id;
 	private String password;
 	private String creditCard;
 	private List<Profile> profile;
@@ -27,7 +27,7 @@ public class RegisteredUser implements Serializable{
 	 * @param guest If the user is a guest or not
 	 * @param host If the user is a host or not
 	 */
-	public RegisteredUser(String name, String surename, int id, String password, String creditCard,boolean guest,boolean host) {
+	public RegisteredUser(String name, String surename, String id, String password, String creditCard,boolean guest,boolean host) {
 		this.name = name;
 		this.surename = surename;
 		this.id = id;
@@ -63,7 +63,7 @@ public class RegisteredUser implements Serializable{
 	 * Gets the id of the user
 	 * @return Id
 	 */
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 

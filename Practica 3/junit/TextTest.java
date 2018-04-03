@@ -11,7 +11,7 @@ public class TextTest {
 
 	@Test
 	public void testText() {
-		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,false);
 		Text n;
 		try {
 			n = new Text("Hello im doing things",u);
@@ -19,7 +19,7 @@ public class TextTest {
 		} catch (GuestException e) {
 			fail("Don't work");
 		}
-		u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",false,false);
+		u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",false,false);
 		try {
 			n = new Text("Hello im doing things",u);
 			fail("Don't work");
@@ -30,7 +30,7 @@ public class TextTest {
 
 	@Test
 	public void testGetText() {
-		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,false);
 		Text n;
 		try {
 			n = new Text("Hello im doing things",u);
@@ -43,7 +43,7 @@ public class TextTest {
 
 	@Test
 	public void testGetComments() {
-		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,false);
 		Text n;
 		try {
 			n = new Text("Hello im doing things",u);
@@ -57,7 +57,7 @@ public class TextTest {
 	//No se como hacerlo distinto
 	@Test
 	public void testCommentComments() {
-		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,false);
 		Text n;
 		try {
 			n = new Text("Hello im doing things",u);
@@ -71,7 +71,7 @@ public class TextTest {
 
 	@Test
 	public void testRateComment() {
-		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,false);
 		Text n;
 		try {
 			n = new Text("Hello im doing things",u);
@@ -85,7 +85,7 @@ public class TextTest {
 
 	@Test
 	public void testGetGuest() {
-		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,false);
 		Text n;
 		try {
 			n = new Text("Hello im doing things",u);
@@ -98,7 +98,7 @@ public class TextTest {
 	
 	@Test
 	public void testIsText() {
-		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,false);
 		Text n;
 		try {
 			n = new Text("Hello im doing things",u);

@@ -12,7 +12,7 @@ public class NumericalTest {
 
 	@Test
 	public void testNumerical() {
-		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,false);
 		Numerical n;
 		try {
 			n = new Numerical(1.0,u);
@@ -20,7 +20,7 @@ public class NumericalTest {
 		} catch (GuestException e) {
 			fail("Don't work");
 		}
-		u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",false,false);
+		u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",false,false);
 		try {
 			n = new Numerical(1.0,u);
 			fail("Don't work");
@@ -31,7 +31,7 @@ public class NumericalTest {
 
 	@Test
 	public void testGetRate() {
-		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,false);
 		Numerical n;
 		try {
 			n = new Numerical(1.0,u);
@@ -45,7 +45,7 @@ public class NumericalTest {
 	
 	@Test
 	public void testGetGuest() {
-		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,false);
 		Numerical n;
 		try {
 			n = new Numerical(1.0,u);
@@ -58,7 +58,7 @@ public class NumericalTest {
 	
 	@Test
 	public void testIsNumerical() {
-		RegisteredUser u = new RegisteredUser("Paco", "Sanchez",1,"Wololo","1234a1234",true,false);
+		RegisteredUser u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,false);
 		Numerical n;
 		try {
 			n = new Numerical(2.0,u);

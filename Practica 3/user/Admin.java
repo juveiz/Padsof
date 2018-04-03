@@ -10,7 +10,7 @@ public class Admin implements Serializable{
 	private String name;
 	private String surname;
 	private String password;
-	private int id;
+	private String id;
 	private int state;
 	private List<Offer> offers;
 	
@@ -22,7 +22,7 @@ public class Admin implements Serializable{
 	 * @param id Id of the admin
 	 */
 	
-	public Admin(String name, String surname, String password, int id) {
+	public Admin(String name, String surname, String password, String id) {
 		super();
 		this.name = name;
 		this.surname = surname;
@@ -84,7 +84,7 @@ public class Admin implements Serializable{
 	 * Gets the id of the admin
 	 * @return Id
 	 */
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -92,7 +92,7 @@ public class Admin implements Serializable{
 	 * Sets the Id of the admin
 	 * @param id Id of the admin
 	 */
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	

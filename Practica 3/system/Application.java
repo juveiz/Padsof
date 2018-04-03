@@ -17,13 +17,13 @@ public class Application implements Serializable{
 	private List<Offer> offers;
 	
 	public Application(String name, String surname, String password) {
-		admin = new Admin (name,surname,password,-1);
+		admin = new Admin (name,surname,password,"ImTheMdfkAdmin");
 		houses = new ArrayList<>();
 		users = new ArrayList<>();
 		offers = new ArrayList<>();
 	}
 	
-	private boolean loginUser(int id,String pswrd) {
+	private boolean loginUser(String id,String pswrd) {
 		if(admin.getState() == 1) {
 			return false;
 		}
@@ -33,7 +33,7 @@ public class Application implements Serializable{
 			}
 		}
 		for(RegisteredUser u: users) {
-			if(u.getId() == id) {
+			if(u.getId().equals(id)) {
 				if(u.getPassword().equals(pswrd)) {
 					u.setState(1);
 					return true;
@@ -55,7 +55,7 @@ public class Application implements Serializable{
 		return false;
 	}
 	
-	private boolean loginAdmin(int id,String pswrd) {
+	private boolean loginAdmin(String id,String pswrd) {
 		if(admin.getState() == 1) {
 			return false;
 		}
@@ -64,7 +64,7 @@ public class Application implements Serializable{
 				return false;
 			}
 		}
-		if(admin.getId() == id) {
+		if(admin.getId().equals(id)) {
 			if(admin.getPassword().equals(pswrd)) {
 				admin.setState(1);
 				return true;
@@ -83,7 +83,7 @@ public class Application implements Serializable{
 		return false;
 	}
 	
-	public boolean login(int id,String pswrd) {
+	public boolean login(String id,String pswrd) {
 		if(this.loginUser(id, pswrd) == false) {
 			if(this.loginAdmin(id, pswrd) == false) {
 				return false;
@@ -111,9 +111,9 @@ public class Application implements Serializable{
 		return null;
 	}
 	
-	public boolean addUser(String name, String surename, int id, String password, String creditCard,boolean guest,boolean host) {
+	public boolean addUser(String name, String surename, String id, String password, String creditCard,boolean guest,boolean host) {
 		for(RegisteredUser u: users) {
-			if(u.getId() == id) {
+			if(u.getId().equals(id)) {
 				return false;
 			}
 		}
