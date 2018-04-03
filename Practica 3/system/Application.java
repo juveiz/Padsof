@@ -8,7 +8,7 @@ import Exception.*;
 import User.*;
 import offer.*;
 
-public class System implements Serializable{
+public class Application implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private List<Admin> admins;
@@ -16,7 +16,7 @@ public class System implements Serializable{
 	private List<RegisteredUser> users;
 	private List<Offer> offers;
 	
-	public System() {
+	public Application() {
 		admins = new ArrayList<>();
 		houses = new ArrayList<>();
 		users = new ArrayList<>();
