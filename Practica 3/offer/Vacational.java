@@ -6,21 +6,47 @@ import java.time.*;
 import exception.HostException;
 import user.RegisteredUser;
 
+/**
+ * Vacational class. It represents the vacational offers.
+ * @author Miguel Angel Sanchez y Juan Velasco
+ *
+ */
 public class Vacational extends Offer implements Serializable{
 	
+	/**
+	 * endingDate: Final date of the offer
+	 */
 	private static final long serialVersionUID = 1L;
 	private LocalDate endingDate;
-	
+	/**
+	 * Creates a new vacational offer
+	 * @param startingDate Starting date of the offer
+	 * @param price Price of the offer
+	 * @param host User who creates the offer
+	 * @param house House of the offer
+	 * @param endingDate Final date of the offer
+	 * @throws HostException The user is not host
+	 */
 	public Vacational(LocalDate startingDate, double price, RegisteredUser host, House house,LocalDate endingDate) throws HostException{
 		super(startingDate,price,host,house);
 		this.endingDate = endingDate;
-		super.setDeposit(super.getprice()*0.01); //tampoco me acuerdo
+		super.setDeposit(super.getprice()*0.02); //tampoco me acuerdo
 	}
-
+	/**
+	 * Return the final date of the offer
+	 * @return
+	 */
 	public LocalDate getEndingDate() {
 		return endingDate;
 	}
-	
+	/**
+	 * Modify the offer
+	 * @param h User who creates the offer
+	 * @param s Starting date of the offer
+	 * @param d Price of the offer
+	 * @param endingDate Final date of the offer
+	 * @return true if it has been modify correctly or false if not
+	 */
 	public boolean modifyOffer(House h, LocalDate s, double d,LocalDate endingDate) {
 		if(super.modifyOffer(h, s, d)) {
 			this.endingDate = endingDate;

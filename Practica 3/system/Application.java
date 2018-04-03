@@ -16,8 +16,8 @@ public class Application implements Serializable{
 	private List<RegisteredUser> users;
 	private List<Offer> offers;
 	
-	public Application(Admin a) {
-		admin = a;
+	public Application(String name, String surname, String password) {
+		admin = new Admin (name,surname,password,-1);
 		houses = new ArrayList<>();
 		users = new ArrayList<>();
 		offers = new ArrayList<>();

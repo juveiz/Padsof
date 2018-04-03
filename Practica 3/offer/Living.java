@@ -30,7 +30,7 @@ public class Living extends Offer implements Serializable{
 	public Living(LocalDate startingDate, double price, RegisteredUser host, House house,double months) throws HostException{
 		super(startingDate,price,host,house);
 		this.months = months;
-		super.setDeposit(super.getprice()*0.1); //he puesto 10 por ciento no se cuanto es xd
+		super.setDeposit(super.getprice()*0.001); //he puesto 10 por ciento no se cuanto es xd
 	}
 	/**
 	 * Return the number of months of the offer
