@@ -2,8 +2,9 @@ package comments;
 
 import java.io.Serializable;
 import java.util.*;
-import User.*;
-import Exception.*;
+
+import exception.*;
+import user.*;
 
 /**
  * Text class. It represents the text comments

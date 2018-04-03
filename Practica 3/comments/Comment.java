@@ -1,9 +1,8 @@
 package comments;
-import User.*;
+import exception.*;
+import user.*;
 
 import java.io.Serializable;
-
-import Exception.*;
 
 /**
  * Comment class. It represents the offer's comments.

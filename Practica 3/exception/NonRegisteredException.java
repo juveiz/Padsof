@@ -1,4 +1,4 @@
-package Exception;
+package exception;
 
 /**
  * NonRegisteredException. It is thrown when the user is not a registered user

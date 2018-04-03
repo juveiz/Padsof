@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import User.Admin;
+import user.Admin;
 
 public class AdminTest {
 

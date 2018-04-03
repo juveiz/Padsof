@@ -1,4 +1,4 @@
-package Exception;
+package exception;
 /**
  * HostException. It is thrown when the user is not a host
  * @author Miguel Angel Sanchez y Juan Velasco

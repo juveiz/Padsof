@@ -1,10 +1,9 @@
 package comments;
 
-import User.*;
+import exception.*;
+import user.*;
 
 import java.io.Serializable;
-
-import Exception.*;
 
 /**
  * Numerical class. It represents the numerical comments. 

@@ -3,8 +3,8 @@ package offer;
 import java.io.Serializable;
 import java.time.*;
 
-import Exception.*;
-import User.*;
+import exception.*;
+import user.*;
 
 /**
  * Reserve class. It represents the reserve of the offers.

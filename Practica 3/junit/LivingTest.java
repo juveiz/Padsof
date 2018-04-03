@@ -6,9 +6,9 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
-import Exception.HostException;
-import User.RegisteredUser;
+import exception.HostException;
 import offer.*;
+import user.RegisteredUser;
 
 public class LivingTest {
 

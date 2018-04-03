@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import Exception.GuestException;
-import User.*;
 import comments.*;
+import exception.GuestException;
+import user.*;
 
 public class NumericalTest {
 

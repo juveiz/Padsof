@@ -3,8 +3,8 @@ package offer;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import Exception.HostException;
-import User.RegisteredUser;
+import exception.HostException;
+import user.RegisteredUser;
 
 /**
  * Living class. It representes de living offers.

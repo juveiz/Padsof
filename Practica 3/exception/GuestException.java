@@ -1,4 +1,4 @@
-package Exception;
+package exception;
 /**
  * GuestException. It is thrown when a user is not a guest
  * @author Miguel Angel Sanchez y Juan Velasco

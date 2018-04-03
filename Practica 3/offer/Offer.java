@@ -4,9 +4,9 @@ import java.time.*;
 import java.util.*;
 
 import es.uam.eps.padsof.telecard.*;
+import exception.*;
+import user.*;
 import comments.*;
-import User.*;
-import Exception.*;
 
 public abstract class Offer implements Serializable{
 	

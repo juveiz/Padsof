@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import Exception.*;
-import User.RegisteredUser;
+import exception.*;
+import user.RegisteredUser;
 
 public class RegisteredUserTest {
 

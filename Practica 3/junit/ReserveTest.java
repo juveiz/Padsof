@@ -6,10 +6,10 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
-import Exception.GuestException;
-import Exception.HostException;
-import User.RegisteredUser;
+import exception.GuestException;
+import exception.HostException;
 import offer.*;
+import user.RegisteredUser;
 public class ReserveTest {
 
 	@Test

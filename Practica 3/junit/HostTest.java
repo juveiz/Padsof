@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import User.Host;
+import user.Host;
 
 public class HostTest {
 	

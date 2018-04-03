@@ -5,11 +5,11 @@ import static org.junit.Assert.*;
 import java.time.LocalDate;
 
 import offer.*;
+import user.RegisteredUser;
 
 import org.junit.Test;
 
-import Exception.HostException;
-import User.RegisteredUser;
+import exception.HostException;
 
 public class VacationalTest {
 

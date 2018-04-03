@@ -2,11 +2,10 @@ package junit;
 
 import static org.junit.Assert.*;
 import comments.*;
+import exception.GuestException;
+import user.RegisteredUser;
 
 import org.junit.Test;
-
-import Exception.GuestException;
-import User.RegisteredUser;
 
 public class TextTest {
 

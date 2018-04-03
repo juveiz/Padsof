@@ -3,8 +3,8 @@ package offer;
 import java.io.Serializable;
 import java.time.*;
 
-import Exception.HostException;
-import User.RegisteredUser;
+import exception.HostException;
+import user.RegisteredUser;
 
 public class Vacational extends Offer implements Serializable{
 	
