@@ -21,7 +21,14 @@ public abstract class Offer implements Serializable{
 	private List<Comment> comments;
 	private Reserve reserve;
 	
-	
+	/**
+	 * Creates an offer
+	 * @param startingDate StartingDate of the offer
+	 * @param price Price of the offer
+	 * @param host Host that creates the offer
+	 * @param house House of the offer
+	 * @throws HostException The user is not a host
+	 */
 	public Offer(LocalDate startingDate, double price, RegisteredUser host, House house) throws HostException {
 		if(host.isHost() == false) {
 			HostException h = new HostException();
@@ -38,9 +45,18 @@ public abstract class Offer implements Serializable{
 		reserve = null;
 	}
 	
+	/**
+	 * Gets the starting date
+	 * @return startingDate
+	 */
 	public LocalDate getStartingDate() {
 		return startingDate;
 	}
+	
+	/**
+	 * Sets the starting date
+	 * @param startingDate Starting date of the offer
+	 */
 	public void setStartingDate(LocalDate startingDate) {
 		this.startingDate = startingDate;
 	}
