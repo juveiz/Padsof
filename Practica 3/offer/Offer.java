@@ -144,6 +144,14 @@ public abstract class Offer implements Serializable{
 		return true;
 	}
 	
+	/**
+	 * hay que hacer lo de pagar al host
+	 * @param g
+	 * @param subject
+	 * @param trace
+	 * @return
+	 * @throws GuestException
+	 */
 	public int buyOffer(RegisteredUser g,String subject,boolean trace) throws GuestException {
 		String creditCard;
 		if(g.isGuest() == false) {
