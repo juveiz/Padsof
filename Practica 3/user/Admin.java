@@ -14,6 +14,7 @@ public class Admin implements Serializable{
 	private int state;
 	private List<Offer> offers;
 	
+	
 	/**
 	 * Creates a new admin
 	 * @param name Name of the admin
@@ -128,7 +129,9 @@ public class Admin implements Serializable{
 		return offers;
 	}
 
-	
-	
+		
+	public String toString() {
+		return "Admin:\n" + "Name: " + name + " " + surname; 
+	}
 
 }

@@ -69,4 +69,12 @@ public class Text extends Comment implements Serializable{
 	public boolean isText() {
 		return true;
 	}
+	
+	public String toString() {
+		String res = super.toString() +"\n\t" + text;
+		for(Comment c: comments) {
+			res = res + c.toString() + "\n\t";
+		}
+		return res;
+	}
 }

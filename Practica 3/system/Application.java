@@ -16,33 +16,47 @@ public class Application implements Serializable{
 	private List<RegisteredUser> users;
 	private List<Offer> offers;
 	
-	public Application(String name, String surname, String password) {
+	private Application(String name, String surname, String password) {
 		admin = new Admin (name,surname,password,"ImTheMdfkAdmin");
 		houses = new ArrayList<>();
 		users = new ArrayList<>();
 		offers = new ArrayList<>();
 	}
 	
-	private boolean loginUser(String id,String pswrd) {
+	public static Application getApplication(String name, String surname, String password) {
+		Application app = null;
+		try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SystemBackup.objectData"));
+			app = (Application) is.readObject();
+			is.close();
+			return app;
+		}catch(IOException e) {
+			return new Application (name,surname,password);
+		} catch (ClassNotFoundException e) {
+			return new Application (name,surname,password);
+		}
+	}
+	
+	public RegisteredUser loginUser(String id,String pswrd) {
 		if(admin.getState() == 1) {
-			return false;
+			return null;
 		}
 		for(RegisteredUser u: users) {
 			if(u.getState() == 1) {
-				return false;
+				return null;
 			}
 		}
 		for(RegisteredUser u: users) {
 			if(u.getId().equals(id)) {
 				if(u.getPassword().equals(pswrd)) {
 					u.setState(1);
-					return true;
+					return u;
 				}else {
-					return false;
+					return null;
 				}
 			}
 		}
-		return false;
+		return null;
 	}
 	
 	private boolean logoutUser() {
@@ -55,24 +69,24 @@ public class Application implements Serializable{
 		return false;
 	}
 	
-	private boolean loginAdmin(String id,String pswrd) {
+	public Admin loginAdmin(String id,String pswrd) {
 		if(admin.getState() == 1) {
-			return false;
+			return null;
 		}
 		for(RegisteredUser u: users) {
 			if(u.getState() == 1) {
-				return false;
+				return null;
 			}
 		}
 		if(admin.getId().equals(id)) {
 			if(admin.getPassword().equals(pswrd)) {
 				admin.setState(1);
-				return true;
+				return admin;
 			}else {
-				return false;
+				return null;
 			}
 		}
-		return false;
+		return null;
 	}
 	
 	private boolean logoutAdmin() {
@@ -82,7 +96,7 @@ public class Application implements Serializable{
 		}
 		return false;
 	}
-	
+	/*
 	public boolean login(String id,String pswrd) {
 		if(this.loginUser(id, pswrd) == false) {
 			if(this.loginAdmin(id, pswrd) == false) {
@@ -90,7 +104,7 @@ public class Application implements Serializable{
 			}
 		}
 		return true;
-	}
+	}*/
 	
 	public boolean logut() {
 		if(this.logoutUser() == false) {
@@ -139,8 +153,32 @@ public class Application implements Serializable{
 		u.getHost().addHouse(h);
 	}
 	
-	public void addOffer() {
-		
+	public void addOfferLiving(LocalDate startingDate, double price, House house,double months) throws HostException{
+		RegisteredUser u = this.getLoggedUser();
+		if(u == null) {
+			HostException e = new HostException();
+			throw e;
+		}
+		if(u.isHost() == false) {
+			HostException e = new HostException();
+			throw e;
+		}
+		Offer o = new Living(startingDate,price,u,house,months);
+		u.getHost().addOffer(o);
+	}
+	
+	public void addOfferVacational(LocalDate startingDate, double price, RegisteredUser host, House house,LocalDate endingDate) throws HostException{
+		RegisteredUser u = this.getLoggedUser();
+		if(u == null) {
+			HostException e = new HostException();
+			throw e;
+		}
+		if(u.isHost() == false) {
+			HostException e = new HostException();
+			throw e;
+		}
+		Offer o = new Vacational(startingDate,price,u,house,endingDate);
+		u.getHost().addOffer(o);
 	}
 	
 	public List<Offer> searchOfferType(String type){
@@ -269,7 +307,7 @@ public class Application implements Serializable{
 		
 		ObjectOutputStream oos;
 		try {
-			oos = new ObjectOutputStream( new FileOutputStream("SystemBackup"));
+			oos = new ObjectOutputStream( new FileOutputStream("SystemBackup.objectData"));
 			oos.writeObject(this);
 			oos.close();
 		} catch (IOException e) {
@@ -277,5 +315,10 @@ public class Application implements Serializable{
 			return;
 		}
 		
+	}
+	
+	public String toString() {
+		String res = "J&MA: \n";
+		return res + admin;
 	}
 }

@@ -54,4 +54,8 @@ public class Vacational extends Offer implements Serializable{
 		}
 		return false;
 	}
+	
+	public String toString() {
+		return super.toString() + "\nEnding Date: " + endingDate;
+	}
 }

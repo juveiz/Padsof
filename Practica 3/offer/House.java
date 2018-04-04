@@ -72,6 +72,9 @@ public class House implements Serializable{
 		this.description = description;
 	}
 	
-	
+	public String toString() {
+		String res = "House:\n";
+		return res + "City: " + city + "\nZip code: " + zip + "\nDescription: " + description;
+	}
 	
 }

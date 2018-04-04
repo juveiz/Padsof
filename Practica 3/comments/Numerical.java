@@ -41,4 +41,8 @@ public class Numerical extends Comment implements Serializable{
 	public boolean isNumerical() {
 		return true;
 	}
+	
+	public String toString() {
+		return super.toString() +"\n\t" + rate;
+	}
 }

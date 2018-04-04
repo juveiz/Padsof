@@ -59,5 +59,10 @@ public class Reserve implements Serializable{
 	public Offer getOffer() {
 		return offer;
 	}
+	
+	public String toString() {
+		String res = "Reservation: \n";
+		return res + guest.toString() + "\n" + offer.toString() + "\n";
+	}
 
 }

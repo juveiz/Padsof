@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import offer.Offer;
 import user.RegisteredUser;
 
 public class OfferTest {

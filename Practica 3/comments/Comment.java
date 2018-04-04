@@ -48,5 +48,8 @@ public abstract class Comment implements Serializable{
 	public boolean isNumerical() {
 		return false;
 	}
-
+	
+	public String toString() {
+		return "User: " + guest.getName();
+	}
 }

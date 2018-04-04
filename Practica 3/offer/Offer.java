@@ -382,4 +382,9 @@ public abstract class Offer implements Serializable{
 	public void setDeposit(double deposit) {
 		this.deposit = deposit;
 	}
+	
+	public String toString() {
+		String res = "Offer: \n";
+		return res + "Starting Date: " + startingDate + "\nPrice: " + price + "\nDeposit: " + deposit + house;
+	}
 }

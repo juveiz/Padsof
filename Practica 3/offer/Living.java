@@ -55,4 +55,8 @@ public class Living extends Offer implements Serializable{
 		}
 		return false;
 	}
+	
+	public String toString() {
+		return super.toString() + "\nMonths: " + months;
+	}
 }
