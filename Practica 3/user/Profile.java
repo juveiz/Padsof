@@ -40,11 +40,18 @@ public abstract class Profile implements Serializable{
 		return false;
 	}
 	
-	public abstract List<Offer> getOffers();
+	public List<Offer> getOffers(){
+		return null;
+	}
+	
+	public List<House> getHouses() {
+		return null;
+	}
 	/**
 	 * Says if the profile is Guest
 	 * @return false
 	 */
+	
 	public boolean isGuest() {
 		return false;
 	}

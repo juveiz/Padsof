@@ -20,6 +20,7 @@ public abstract class Offer implements Serializable{
 	private House house;
 	private List<Comment> comments;
 	private Reserve reserve;
+	private String changes;
 	
 	/**
 	 * Creates an offer
@@ -182,6 +183,7 @@ public abstract class Offer implements Serializable{
 	public void approveOffer(Admin a) {
 		this.setState(1);
 		modifyDate = LocalDate.now();
+		a.getOffers().remove(this);
 	}
 	
 	/**
@@ -190,14 +192,17 @@ public abstract class Offer implements Serializable{
 	 */
 	public void denyOffer(Admin a){
 		this.setState(-1);
+		a.getOffers().remove(this);
 	}
 	
 	/**
 	 * Ask for changes in the offer
+	 * @param changes Changes to be done 
 	 */
-	public void askForChanges() {
+	public void askForChanges(String changes) {
 		this.setState(2);
 		modifyDate = LocalDate.now();
+		this.changes = changes;
 	}
 	
 	/**
@@ -205,8 +210,8 @@ public abstract class Offer implements Serializable{
 	 * @throws HostException The user is not a host
 	 */
 	public void cancelOfer() throws HostException {
-		this.setState(-1);
 		host.getHost().removeOffer(this);
+		this.setState(-1);
 	}
 	
 	/**
@@ -245,6 +250,11 @@ public abstract class Offer implements Serializable{
 		}
 		reserve = new Reserve(LocalDate.now().plusDays(5),g,this);//ver como se hace 
 		this.setState(3);
+		for(Profile p: g.getProfile()) {
+			if(g.isGuest()) {
+				p.addOffer(this);
+			}
+		}
 		return true;
 	}
 	
@@ -383,8 +393,29 @@ public abstract class Offer implements Serializable{
 		this.deposit = deposit;
 	}
 	
+	public abstract boolean equals(Offer o);
 	public String toString() {
 		String res = "Offer: \n";
-		return res + "Starting Date: " + startingDate + "\nPrice: " + price + "\nDeposit: " + deposit + house;
+		String state;
+		if(this.state == 0) {
+			state = "Pending of aproval";
+		}else if(this.state == 1) {
+			state = "Available";
+		}else if(this.state == -1) {
+			state = "Canceled";
+		}else if(this.state == 2) {
+			state = "Need changes";
+		}else if(this.state == 3) {
+			state = "Reserved";
+		}else if(this.state == 4) {
+			state = "Bought";
+		}else {
+			return "";
+		}
+		return res + "State: " + state + "\nStarting Date: " + startingDate + "\nPrice: " + price + "\nDeposit: " + deposit+"\n" + house;
+	}
+
+	public String getChanges() {
+		return changes;
 	}
 }

@@ -56,7 +56,25 @@ public class Living extends Offer implements Serializable{
 		return false;
 	}
 	
+	public boolean isLiving() {
+		return true;
+	}
+	
+	public boolean equals(Offer o) {
+		if (super.getHouse().equals(o.getHouse()) == false) {
+			return false;
+		}
+		if(o.isLiving() == false) {
+			return false;
+		}
+		if(super.getState() != o.getState()) {
+			return false;
+		}
+		return true;
+	}
 	public String toString() {
 		return super.toString() + "\nMonths: " + months;
 	}
+	
+	
 }

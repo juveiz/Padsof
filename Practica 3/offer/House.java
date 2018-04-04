@@ -72,6 +72,18 @@ public class House implements Serializable{
 		this.description = description;
 	}
 	
+	public boolean equals(House h) {
+		if(this.city.equals(h.city) == false){
+			return false;
+		}
+		if(this.zip != h.zip) {
+			return false;
+		}
+		if(this.description.equals(h.description) == false) {
+			return false;
+		}
+		return true;
+	}
 	public String toString() {
 		String res = "House:\n";
 		return res + "City: " + city + "\nZip code: " + zip + "\nDescription: " + description;

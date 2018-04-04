@@ -1,3 +1,5 @@
 /GuestException.class
 /HostException.class
 /NonRegisteredException.class
+/LoggedException.class
+/BannedUserException.class

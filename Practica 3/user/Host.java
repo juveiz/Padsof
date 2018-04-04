@@ -71,4 +71,7 @@ public class Host extends Profile implements Serializable{
 	public List<Offer> getOffers() {
 		return offers;
 	}
+	public List<House> getHouses() {
+		return houses;
+	}
 }
