@@ -165,8 +165,9 @@ public class RegisteredUser implements Serializable{
 	/**
 	 * Unbans a user changing state and credit card
 	 * @param creditCard New credit card
+	 * @param admin Admin who changes the credit card
 	 */
-	public void unbanUser(String creditCard) {
+	public void unbanUser(String creditCard,Admin admin) {
 		state = 0;
 		this.creditCard = creditCard;
 	}

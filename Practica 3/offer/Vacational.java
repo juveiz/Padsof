@@ -61,17 +61,15 @@ public class Vacational extends Offer implements Serializable{
 	
 	public boolean equals(Offer o) {
 		if (super.getHouse().equals(o.getHouse()) == false) {
-			System.out.println("Wololo\n");
 			return false;
 		}
 		if(o.isVacational() == false) {
-			System.out.println("Wololo2\n");
 			return false;
 		}
-		if(super.getState() != o.getState()) {
-			return false;
+		if(super.getState() >= 0 && o.getState() >= 0) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	public String toString() {

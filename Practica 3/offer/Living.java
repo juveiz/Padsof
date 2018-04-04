@@ -67,10 +67,10 @@ public class Living extends Offer implements Serializable{
 		if(o.isLiving() == false) {
 			return false;
 		}
-		if(super.getState() != o.getState()) {
-			return false;
+		if(super.getState() >= 0 && o.getState() >= 0) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 	public String toString() {
 		return super.toString() + "\nMonths: " + months;

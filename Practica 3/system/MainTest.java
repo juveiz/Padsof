@@ -285,12 +285,12 @@ public class MainTest {
 		}
 		try {
 			house = app.getHostHouses(user).get(0);
-			app.addOfferVacational(LocalDate.of(2018,3,31), 3000, house, LocalDate.of(2018,3,31).plusDays(10));
+			app.addOfferVacational(LocalDate.of(2018, 3, 31), 3000, house, LocalDate.of(2018, 3, 31).plusDays(10));
 		} catch (HostException e) {
 			System.out.println(e);
 			return;
 		}
-		
+
 		app.logut();
 		/**
 		 * Login as an admin
@@ -303,11 +303,35 @@ public class MainTest {
 			return;
 		}
 		System.out.println("We see the admin offers\n");
-		for(Offer o: app.getAdminOffers()) {
+		for (Offer o : app.getAdminOffers()) {
 			System.out.println(o + "\n");
 		}
 
+		System.out.println("We aprove the first offer and see that it doesn't appear in the admin offers\n");
+		app.getAdminOffers().get(0).approveOffer(admin);
+		for (Offer o : app.getAdminOffers()) {
+			System.out.println(o + "\n");
+		}
+
+		System.out.println("We deny the second offer and see the admin offers\n");
+		app.getAdminOffers().get(0).denyOffer(admin);
+		for (Offer o : app.getAdminOffers()) {
+			System.out.println(o + "\n");
+		}
+		System.out.println("We ask for changes the third offer and see the admin offers\n");
+		app.getAdminOffers().get(1).askForChanges("You have to change all", admin);
+		for (Offer o : app.getAdminOffers()) {
+			System.out.println(o + "\n");
+		}
+		System.out.println("We logout as an admin,try to modify the offer and approve the offer (we will add more offers)\n");
 		app.logut();
+		
+		
+		
+		
+		
+		
+		
 		/**
 		 * Login as user again
 		 */
@@ -323,5 +347,6 @@ public class MainTest {
 		for (Offer o : app.searchOfferType("Living")) {
 			System.out.println(o + "\n");
 		}
+		app.logut();
 	}
 }

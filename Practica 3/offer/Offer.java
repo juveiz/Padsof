@@ -192,14 +192,14 @@ public abstract class Offer implements Serializable{
 	 */
 	public void denyOffer(Admin a){
 		this.setState(-1);
-		a.getOffers().remove(this);
 	}
 	
 	/**
 	 * Ask for changes in the offer
 	 * @param changes Changes to be done 
+	 * @param admin Admin who ask for changes
 	 */
-	public void askForChanges(String changes) {
+	public void askForChanges(String changes,Admin admin) {
 		this.setState(2);
 		modifyDate = LocalDate.now();
 		this.changes = changes;
