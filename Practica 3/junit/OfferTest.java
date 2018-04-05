@@ -11,13 +11,12 @@ public class OfferTest {
 
 	@Test
 	public void testOffer() {
-		
-		assertNotNull(new Offer("Paco", "Sanchez","1","Wololo","1234a1234",true,false));
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetStartingDate() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
