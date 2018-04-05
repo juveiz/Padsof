@@ -52,7 +52,7 @@ public class Application implements Serializable {
 			if (u.getId().equals(id)) {
 				if (u.getPassword().equals(pswrd)) {
 					if(u.getState() == -1) {
-						throw new BannedUserException();
+						throw new BannedUserException(u);
 					}
 					if(u.getState() == -2) {
 						System.out.println("Contact the admin to make the pays\n");

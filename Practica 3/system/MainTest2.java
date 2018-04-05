@@ -81,6 +81,113 @@ public class MainTest2 {
 			e.printStackTrace();
 			return;
 		}
+		System.out.println("\nWe try to buy the reserved offer");
+		try {
+			System.out.println(offer);
+			if(offer.buyOffer(user, "Because yes", true) != 0) {
+				System.out.print("Payment failed");
+				return;
+			}
+		} catch (GuestException e) {
+			e.printStackTrace();
+		}
+		System.out.print("\nWe try to buy a non reserved offer\n");
+		offer = app.searchOfferDate(LocalDate.now().minusDays(1000),LocalDate.now().plusDays(10000)).get(0);
+		try {
+			System.out.println(offer);
+			if(offer.buyOffer(user, "10/10 IGN", true) != 0) {
+				System.out.print("Payment failed");
+				return;
+			}
+		} catch (GuestException e) {
+			e.printStackTrace();
+		}
+		System.out.println("\nWe search the bought offers\n");
+		try {
+			for(Offer o: app.searchOfferBought()) {
+				System.out.println(o + "\n");
+				o.setState(1);
+			}
+		} catch (NonRegisteredException e1) {
+			System.out.println(e1);
+			return;
+		}
+		System.out.println("\nWe have made all the offers avialable again\n");
+		System.out.println("Now we are going to change an user credit card, making it false\n");
 		app.logut();
+		
+		try {
+			user = app.loginUser("55555111Z", "NoSeSaBe");
+		} catch (LoggedException | BannedUserException e1) {
+			e1.printStackTrace();
+			return;
+		}
+		System.out.print("\nOld credit card: " + user.getCreditCard());
+		app.logut();
+		try {
+			admin = app.loginAdmin("ImTheMdfkAdmin", "OpenBalls");
+		} catch (LoggedException e) {
+			e.printStackTrace();
+			return;
+		}
+		user.unbanUser("1234a12342", admin);
+		app.logut();
+		try {
+			user = app.loginUser("55555111Z", "NoSeSaBe");
+		} catch (LoggedException | BannedUserException e1) {
+			e1.printStackTrace();
+			return;
+		}
+		if (user != null) {
+			System.out.println("\nWelcome: " + user);
+		} else {
+			System.out.println("Something went wrong");
+			return;
+		}
+		System.out.print("\nNew credit card: " + user.getCreditCard());
+		offer = app.searchOfferDate(LocalDate.now().minusDays(1000),LocalDate.now().plusDays(10000)).get(0);
+		try {
+			System.out.println(offer);
+			if(offer.buyOffer(user, "10/10 IGN 2.0", true) != -1) {
+				System.out.print("This won't happen never LUL\n");
+				return;
+			}
+			System.out.println("\nBanned user. The credit card was false\n");
+		} catch (GuestException e) {
+			e.printStackTrace();
+		}
+		app.logut();
+		System.out.println("We try to login with the same user\n");
+		try {
+			user = app.loginUser("55555111Z", "NoSeSaBe");
+			return;
+		} catch (LoggedException | BannedUserException e1) {
+			System.out.println(e1);
+			user = ((BannedUserException) e1).getUser();
+		}
+		System.out.println("\nWe unban the user with the admin\n");
+		try {
+			admin = app.loginAdmin("ImTheMdfkAdmin", "OpenBalls");
+		} catch (LoggedException e) {
+			e.printStackTrace();
+			return;
+		}
+		user.unbanUser("7777222288885555", admin);
+		app.logut();
+		System.out.println("Unbanned. We try to login again and try to buy an offer\n");
+		try {
+			user = app.loginUser("55555111Z", "NoSeSaBe");
+		} catch (LoggedException | BannedUserException e1) {
+			e1.printStackTrace();
+			return;
+		}
+		if (user != null) {
+			System.out.println("Welcome: " + user);
+		} else {
+			System.out.println("Something went wrong");
+			return;
+		}
+		System.out.print("\nNew credit card: " + user.getCreditCard());
+		
 	}
 }
