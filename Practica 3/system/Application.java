@@ -269,7 +269,7 @@ public class Application implements Serializable {
 	 * @param user
 	 *            User
 	 * @return Houses of the user
-	 * @throws HostException
+	 * @throws HostException The user is not a host
 	 */
 	public List<House> getHostHouses(RegisteredUser user) throws HostException {
 		if (user.getState() != 1) {

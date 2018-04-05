@@ -87,7 +87,7 @@ public class Text extends Comment implements Serializable {
 	/**
 	 * Says is a comment is text
 	 * 
-	 * @retrun True
+	 * @return True
 	 */
 	public boolean isText() {
 		return true;

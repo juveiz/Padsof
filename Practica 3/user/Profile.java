@@ -28,7 +28,7 @@ public abstract class Profile implements Serializable {
 	/**
 	 * Add a house to the profile. It will be used in its sons.
 	 * 
-	 * @param h
+	 * @param h House to be added
 	 */
 	public void addHouse(House h) {
 	};

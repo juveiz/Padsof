@@ -46,7 +46,7 @@ public class Vacational extends Offer implements Serializable {
 	/**
 	 * Return the final date of the offer
 	 * 
-	 * @return
+	 * @return Final date
 	 */
 	public LocalDate getEndingDate() {
 		return endingDate;
