@@ -2,121 +2,143 @@ package junit;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
+
 import org.junit.Test;
 
-import offer.Offer;
-import user.RegisteredUser;
+import exception.GuestException;
+import exception.HostException;
+import offer.*;
+import user.*;
 
 public class OfferTest {
 
 	@Test
 	public void testOffer() {
-		fail("Not yet implemented");
+		RegisteredUser user = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,true);
+		House house = new House("Madrid",28903,"Avenida de la Felicidad nº 23.\n Very wide\nPool");
+		Offer offer = null;
+		ModifiableDate.setToday();
+		try {
+			offer = new Living(LocalDate.of(2022, 3, 31),2020202,user,house,30);
+			assertNotNull(offer);
+		} catch (HostException e) {
+			fail("Not a host");
+		}
 	}
 
-	@Test
-	public void testGetStartingDate() {
-		
-	}
-
-	@Test
-	public void testSetStartingDate() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetprice() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetprice() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetState() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetState() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetModifyDate() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetModifyDate() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetHost() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetHouse() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetComments() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetComments() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetReserve() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetReserve() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetRate() {
-		fail("Not yet implemented");
-	}
-
+	
 	@Test
 	public void testApproveOffer() {
-		fail("Not yet implemented");
+		Admin admin = new Admin("Pedro","Balodis","youaregoingtofail","2");
+		RegisteredUser user = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,true);
+		House house = new House("Madrid",28903,"Avenida de la Felicidad nº 23.\n Very wide\nPool");
+		Offer offer = null;
+		ModifiableDate.setToday();
+		try {
+			offer = new Living(LocalDate.of(2022, 3, 31),2020202,user,house,30);
+			assertNotNull(offer);
+			offer.approveOffer(admin);
+			assertEquals(1, offer.getState());
+		} catch (HostException e) {
+			fail("Not a host");
+		}
 	}
 
 	@Test
 	public void testDenyOffer() {
-		fail("Not yet implemented");
+		Admin admin = new Admin("Pedro","Balodis","youaregoingtofail","2");
+		RegisteredUser user = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,true);
+		House house = new House("Madrid",28903,"Avenida de la Felicidad nº 23.\n Very wide\nPool");
+		Offer offer = null;
+		ModifiableDate.setToday();
+		try {
+			offer = new Living(LocalDate.of(2022, 3, 31),2020202,user,house,30);
+			assertNotNull(offer);
+			offer.denyOffer(admin);
+			assertEquals(-1, offer.getState());
+		} catch (HostException e) {
+			fail("Not a host");
+		}
 	}
 
 	@Test
 	public void testAskForChanges() {
-		fail("Not yet implemented");
+		Admin admin = new Admin("Pedro","Balodis","youaregoingtofail","2");
+		RegisteredUser user = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,true);
+		House house = new House("Madrid",28903,"Avenida de la Felicidad nº 23.\n Very wide\nPool");
+		Offer offer = null;
+		ModifiableDate.setToday();
+		try {
+			offer = new Living(LocalDate.of(2022, 3, 31),2020202,user,house,30);
+			assertNotNull(offer);
+			offer.askForChanges("wolo",admin);
+			assertEquals(2, offer.getState());
+		} catch (HostException e) {
+			fail("Not a host");
+		}
 	}
 
 	@Test
 	public void testCancelOfer() {
-		fail("Not yet implemented");
+		RegisteredUser user = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,true);
+		House house = new House("Madrid",28903,"Avenida de la Felicidad nº 23.\n Very wide\nPool");
+		Offer offer = null;
+		ModifiableDate.setToday();
+		try {
+			offer = new Living(LocalDate.of(2022, 3, 31),2020202,user,house,30);
+			assertNotNull(offer);
+			offer.cancelOfer();
+			assertEquals(-1, offer.getState());
+		} catch (HostException e) {
+			fail("Not a host");
+		}
 	}
 
 	@Test
 	public void testModifyOffer() {
-		fail("Not yet implemented");
+		RegisteredUser user = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,true);
+		House house = new House("Madrid",28903,"Avenida de la Felicidad nº 23.\n Very wide\nPool");
+		Offer offer = null;
+		ModifiableDate.setToday();
+		try {
+			offer = new Living(LocalDate.of(2022, 3, 31),2020202,user,house,30);
+			assertNotNull(offer);
+			offer.setState(2);
+			assertTrue(offer.modifyOffer(house, LocalDate.now(), 10));
+			offer.setState(1);
+			assertFalse(offer.modifyOffer(house, LocalDate.now(), 10));
+			ModifiableDate.plusDays(1000);
+			assertFalse(offer.modifyOffer(house, LocalDate.now(), 10));
+		} catch (HostException e) {
+			fail("Not a host");
+		}
 	}
 
 	@Test
 	public void testReserveOffer() {
-		fail("Not yet implemented");
+		RegisteredUser user = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,true);
+		House house = new House("Madrid",28903,"Avenida de la Felicidad nº 23.\n Very wide\nPool");
+		Offer offer = null;
+		ModifiableDate.setToday();
+		try {
+			offer = new Living(LocalDate.of(2022, 3, 31),2020202,user,house,30);
+			assertNotNull(offer);
+			offer.setState(2);
+			try {
+				assertFalse(offer.reserveOffer(user));
+			} catch (GuestException e) {
+				fail("Not a guest");
+			}
+			offer.setState(1);
+			try {
+				assertTrue(offer.reserveOffer(user));
+			} catch (GuestException e) {
+				fail("Not a guest");
+			}
+		} catch (HostException e) {
+			fail("Not a host");
+		}
 	}
 
 	@Test
@@ -143,15 +165,4 @@ public class OfferTest {
 	public void testIsVacational() {
 		fail("Not yet implemented");
 	}
-
-	@Test
-	public void testGetDeposit() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetDeposit() {
-		fail("Not yet implemented");
-	}
-
 }
