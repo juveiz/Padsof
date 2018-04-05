@@ -179,8 +179,13 @@ public abstract class Offer implements Serializable {
 	 * @return The reserve if it's reserved or null if it's not
 	 */
 	public Reserve getReserve() {
-		if(reserve.getDateFin().compareTo(ModifiableDate.getModifiableDate())< 0) {
+		if (reserve == null) {
+			this.setState(1);
+			return null;
+		}
+		if (reserve.getDateFin().compareTo(ModifiableDate.getModifiableDate()) < 0) {
 			reserve = null;
+			this.setState(1);
 			return null;
 		}
 		return reserve;
@@ -275,7 +280,7 @@ public abstract class Offer implements Serializable {
 	 * @return True if the offer was successfully modified, false if it was not
 	 */
 	public boolean modifyOffer(House h, LocalDate s, double d) {
-		if (modifyDate.plusDays(5).compareTo(LocalDate.now()) <= 0) {
+		if (modifyDate.plusDays(5).compareTo(ModifiableDate.getModifiableDate()) <= 0) {
 			this.setState(-1);
 			return false;
 		}
@@ -575,6 +580,9 @@ public abstract class Offer implements Serializable {
 	 */
 	public abstract boolean equals(Offer o);
 
+	/**
+	 * toString from offer
+	 */
 	public String toString() {
 		String res = "Offer: \n";
 		String state;
@@ -604,5 +612,14 @@ public abstract class Offer implements Serializable {
 	 */
 	public String getChanges() {
 		return changes;
+	}
+
+	/**
+	 * Get the not paid
+	 * 
+	 * @return notPaid
+	 */
+	public double getNotPaid() {
+		return notPaid;
 	}
 }

@@ -14,6 +14,8 @@ public class MainTest1 {
 		Offer offer = null;
 		Admin admin = null;
 
+		ModifiableDate.setToday();
+
 		System.out.println("First we charge the users for the txt");
 		try {
 			FileInputStream f = null;
@@ -259,8 +261,8 @@ public class MainTest1 {
 			System.out.println(e);
 			return;
 		}
-		System.out.println(
-				"We add a living offer: \n" + "Initial date: " + LocalDate.now().plusMonths(2) + "\nPrice: 500\nMonths: 3\n" + house);
+		System.out.println("We add a living offer: \n" + "Initial date: " + LocalDate.now().plusMonths(2)
+				+ "\nPrice: 500\nMonths: 3\n" + house);
 		try {
 			app.addOfferLiving(LocalDate.now(), 500, house, 3);
 		} catch (HostException e) {
@@ -372,21 +374,24 @@ public class MainTest1 {
 		System.out.println("We are going to check the modify offer\n");
 		System.out.println("First we try to modify an offer that don't need changes\n");
 		try {
-			System.out.println("Modifying offer 1: " + app.getHostOffers(user).get(0).modifyOffer(house,LocalDate.now(), 100, 2));
+			System.out.println(
+					"Modifying offer 1: " + app.getHostOffers(user).get(0).modifyOffer(house, LocalDate.now(), 100, 2));
 		} catch (HostException e1) {
 			e1.printStackTrace();
 			return;
 		}
 		System.out.println("Second we try to modify the second offer as a living offer (is a vacational offer)\n");
 		try {
-			System.out.println("Modifyin offer 2 as a livnig: " + app.getHostOffers(user).get(1).modifyOffer(house,LocalDate.now(), 100, 2));
+			System.out.println("Modifyin offer 2 as a livnig: "
+					+ app.getHostOffers(user).get(1).modifyOffer(house, LocalDate.now(), 100, 2));
 		} catch (HostException e1) {
 			e1.printStackTrace();
 			return;
 		}
 		System.out.println("Finally, we try to modify the second offer correctly\n");
 		try {
-			System.out.println("Modifying offer 2 as vacational: " + app.getHostOffers(user).get(1).modifyOffer(house, LocalDate.now(), 300, LocalDate.now().plusWeeks(2)));
+			System.out.println("Modifying offer 2 as vacational: " + app.getHostOffers(user).get(1).modifyOffer(house,
+					LocalDate.now(), 300, LocalDate.now().plusWeeks(2)));
 		} catch (HostException e1) {
 			e1.printStackTrace();
 			return;
@@ -421,8 +426,7 @@ public class MainTest1 {
 			e1.printStackTrace();
 			return;
 		}
-		System.out.println(
-				"We add a living offer: \n");
+		System.out.println("We add a living offer: \n");
 		try {
 			app.addOfferLiving(LocalDate.now(), 500, house, 3);
 		} catch (HostException e) {
@@ -450,16 +454,17 @@ public class MainTest1 {
 			e.printStackTrace();
 			return;
 		}
-		for (int i = 0; i <= app.getAdminOffers().size();i++) {
-				app.getAdminOffers().get(i).approveOffer(admin);
+		for (int i = 0; i <= app.getAdminOffers().size(); i++) {
+			app.getAdminOffers().get(i).approveOffer(admin);
 		}
-		app.getAdminOffers().get(0).approveOffer(admin);/* xd*/
-		
+		app.getAdminOffers().get(0).approveOffer(admin);/* xd */
+
 		app.logut();
 		/**
 		 * Unregistered user
 		 */
-		System.out.println("We check all the search types as a non registered user and try to search by the registered user\n");
+		System.out.println(
+				"We check all the search types as a non registered user and try to search by the registered user\n");
 		System.out.println("Search by type Living\n");
 		for (Offer o : app.searchOfferType("Living")) {
 			System.out.println(o + "\n");
@@ -473,12 +478,12 @@ public class MainTest1 {
 			System.out.println(o + "\n");
 		}
 		System.out.println("Search by date\n");
-		for(Offer o: app.searchOfferDate(LocalDate.now().minusDays(10),LocalDate.now().plusDays(10))) {
+		for (Offer o : app.searchOfferDate(LocalDate.now().minusDays(10), LocalDate.now().plusDays(10))) {
 			System.out.println(o + "\n");
 		}
 		System.out.println("Search by rate");
 		try {
-			for(Offer o: app.searchOfferRate(2)) {
+			for (Offer o : app.searchOfferRate(2)) {
 				System.out.println(o + "\n");
 			}
 			return;
@@ -487,7 +492,7 @@ public class MainTest1 {
 		}
 		System.out.println("\nSearch reserved offers");
 		try {
-			for(Offer o: app.searchOfferReserved()) {
+			for (Offer o : app.searchOfferReserved()) {
 				System.out.println(o + "\n");
 			}
 			return;
@@ -496,7 +501,7 @@ public class MainTest1 {
 		}
 		System.out.println("\nSearch bought offers");
 		try {
-			for(Offer o: app.searchOfferBought()) {
+			for (Offer o : app.searchOfferBought()) {
 				System.out.println(o + "\n");
 			}
 			return;

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.*;
 
 import exception.*;
+import user.Admin;
 import user.RegisteredUser;
 
 public class RegisteredUserTest {
@@ -29,7 +30,7 @@ public class RegisteredUserTest {
 	@Test
 	public void testGetId() {
 		RegisteredUser u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,false);
-		assertEquals(1,u.getId());
+		assertEquals("1",u.getId());
 	}
 
 	@Test
@@ -119,7 +120,7 @@ public class RegisteredUserTest {
 	public void testUnbanUser() {
 		RegisteredUser u = new RegisteredUser("Paco", "Sanchez","1","Wololo","1234a1234",true,false);
 		u.banUser();
-		u.unbanUser("4321b4321");
+		u.unbanUser("4321b4321",new Admin("wolo","wololo","wolololooo","megawololo"));
 		assertEquals(0,u.getState());
 		assertEquals("4321b4321",u.getCreditCard());
 		
