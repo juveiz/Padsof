@@ -237,11 +237,25 @@ public abstract class Offer implements Serializable{
 		this.setState(0);
 		return true;
 	}
-	
+	/**
+	 * Modify offer for living offers
+	 * @param h House of the offer
+	 * @param s Initial date of the offer
+	 * @param d Price of the offer
+	 * @param months Months of the offer
+	 * @return false
+	 */
 	public boolean modifyOffer(House h, LocalDate s, double d,double months) {
 		return false;
 	}
-	
+	/**
+	 * Modify for vacational offers
+	 * @param h House of the offer
+	 * @param s Initial date of the offer
+	 * @param d Price of the offer
+	 * @param endingDate Final date of the offer
+	 * @return false
+	 */
 	public boolean modifyOffer(House h, LocalDate s, double d,LocalDate endingDate) {
 		return false;
 	}
@@ -269,10 +283,6 @@ public abstract class Offer implements Serializable{
 		return true;
 	}
 	
-	/*
-	 * HAY QUE HACER LO DE PAGAR AL HOST
-	 */
-	
 	/**
 	 * Buys this offer
 	 * @param g Guest that buys the offer
@@ -299,40 +309,34 @@ public abstract class Offer implements Serializable{
 			}catch(InvalidCardNumberException e) {
 				g.banUser();
 				return -1;
-				//usuario baneado
 			}catch(FailedInternetConnectionException e) {
 				return -2;
-				//caca de internete
 			}catch(OrderRejectedException e) {
 				return -3;
-				//esto no se que es
 			}
 			creditCard = host.getCreditCard();
 			try {
 				if(trace) {
-					TeleChargeAndPaySystem.charge(creditCard,subject,(price + deposit),trace);
+					TeleChargeAndPaySystem.charge(creditCard,subject,(price),trace);
 				}else {
-					TeleChargeAndPaySystem.charge(creditCard,subject,(price + deposit));
+					TeleChargeAndPaySystem.charge(creditCard,subject,(price));
 					
 				}
 			}catch(InvalidCardNumberException e) {
 				host.setState(-2);
-				notPaid = price + deposit;
-				//usuario baneado
+				notPaid = price;
 			}catch(FailedInternetConnectionException e) {
 				host.setState(-2);
-				notPaid = price + deposit;
-				//caca de internete
+				notPaid = price;
 			}catch(OrderRejectedException e) {
 				host.setState(-2);
-				notPaid = price + deposit;
-				//esto no se que es
+				notPaid = price;
 			}
 			this.setState(4);
 			return 0;
 		}else {
 			creditCard = g.getCreditCard();
-			if (reserve.getGuest().getId() == g.getId() ) {//hacer en guest
+			if (reserve.getGuest().getId() == g.getId() ) {
 				try {
 					if(trace) {
 						TeleChargeAndPaySystem.charge(creditCard,subject,-(price + deposit),trace);
@@ -343,67 +347,61 @@ public abstract class Offer implements Serializable{
 				}catch(InvalidCardNumberException e) {
 					g.banUser();
 					return -1;
-					//usuario baneado
 				}catch(FailedInternetConnectionException e) {
 					return -2;
-					//caca de internete
 				}catch(OrderRejectedException e) {
 					return -3;
-					//esto no se que es
 				}
 				creditCard = host.getCreditCard();
 				try {
 					if(trace) {
-						TeleChargeAndPaySystem.charge(creditCard,subject,(price + deposit),trace);
+						TeleChargeAndPaySystem.charge(creditCard,subject,(price),trace);
 					}else {
-						TeleChargeAndPaySystem.charge(creditCard,subject,(price + deposit));
+						TeleChargeAndPaySystem.charge(creditCard,subject,(price));
 						
 					}
 				}catch(InvalidCardNumberException e) {
 					host.setState(-2);
-					notPaid = price + deposit;
-					//usuario baneado
+					notPaid = price;
 				}catch(FailedInternetConnectionException e) {
 					host.setState(-2);
-					notPaid = price + deposit;
-					//caca de internete
+					notPaid = price;
 				}catch(OrderRejectedException e) {
 					host.setState(-2);
-					notPaid = price + deposit;
-					//esto no se que es
+					notPaid = price;
 				}
 				this.setState(4);
 				return 0;
 			}else {
 				return -4;
-				//Usuario distinto de reserrva
 			}
 		}
 		
 	}
-	
+	/**
+	 * Pay the host when the first pay wasn't completed
+	 * @param admin Admin
+	 * @return true or false
+	 */
 	public boolean payHost(Admin admin) {
 		if(notPaid == 0) {
 			return true;
 		}
 		String creditCard = host.getCreditCard();
 		try {
-				TeleChargeAndPaySystem.charge(creditCard,"Not paid",price + deposit);	
+				TeleChargeAndPaySystem.charge(creditCard,"Not paid",price);	
 		}catch(InvalidCardNumberException e) {
 			host.setState(-2);
-			notPaid = price + deposit;
+			notPaid = price;
 			return false;
-			//usuario baneado
 		}catch(FailedInternetConnectionException e) {
 			host.setState(-2);
-			notPaid = price + deposit;
+			notPaid = price;
 			return false;
-			//caca de internete
 		}catch(OrderRejectedException e) {
 			host.setState(-2);
-			notPaid = price + deposit;
+			notPaid = price;
 			return false;
-			//esto no se que es
 		}
 		notPaid = 0;
 		return true;
@@ -477,7 +475,11 @@ public abstract class Offer implements Serializable{
 	public void setDeposit(double deposit) {
 		this.deposit = deposit;
 	}
-	
+	/**
+	 * Compares to offers
+	 * @param o Offer to be compared
+	 * @return true or false
+	 */
 	public abstract boolean equals(Offer o);
 	public String toString() {
 		String res = "Offer: \n";
@@ -499,7 +501,10 @@ public abstract class Offer implements Serializable{
 		}
 		return res + "State: " + state + "\nStarting Date: " + startingDate + "\nPrice: " + price + "\nDeposit: " + deposit+"\n" + house;
 	}
-
+	/**
+	 * Get the necesary changes
+	 * @return changes
+	 */
 	public String getChanges() {
 		return changes;
 	}
