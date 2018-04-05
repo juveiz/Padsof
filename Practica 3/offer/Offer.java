@@ -53,7 +53,7 @@ public abstract class Offer implements Serializable {
 		this.price = price;
 		this.host = host;
 		this.house = house;
-		modifyDate = LocalDate.now();
+		modifyDate = ModifiableDate.getModifiableDate();
 		state = 0;
 		comments = new ArrayList<>();
 		deposit = 0;
@@ -179,6 +179,10 @@ public abstract class Offer implements Serializable {
 	 * @return The reserve if it's reserved or null if it's not
 	 */
 	public Reserve getReserve() {
+		if(reserve.getDateFin().compareTo(ModifiableDate.getModifiableDate())< 0) {
+			reserve = null;
+			return null;
+		}
 		return reserve;
 	}
 
@@ -220,7 +224,7 @@ public abstract class Offer implements Serializable {
 	 */
 	public void approveOffer(Admin a) {
 		this.setState(1);
-		modifyDate = LocalDate.now();
+		modifyDate = ModifiableDate.getModifiableDate();
 		a.getOffers().remove(this);
 	}
 
@@ -244,7 +248,7 @@ public abstract class Offer implements Serializable {
 	 */
 	public void askForChanges(String changes, Admin admin) {
 		this.setState(2);
-		modifyDate = LocalDate.now();
+		modifyDate = ModifiableDate.getModifiableDate();
 		this.changes = changes;
 	}
 
@@ -281,7 +285,7 @@ public abstract class Offer implements Serializable {
 		house = h;
 		startingDate = s;
 		price = d;
-		modifyDate = LocalDate.now();
+		modifyDate = ModifiableDate.getModifiableDate();
 		this.setState(0);
 		return true;
 	}
@@ -337,7 +341,7 @@ public abstract class Offer implements Serializable {
 		if (state != 1) {
 			return false;
 		}
-		reserve = new Reserve(LocalDate.now().plusDays(5), g, this);// ver como se hace
+		reserve = new Reserve(ModifiableDate.getModifiableDate().plusDays(5), g, this);
 		this.setState(3);
 		for (Profile p : g.getProfile()) {
 			if (g.isGuest()) {
@@ -366,7 +370,7 @@ public abstract class Offer implements Serializable {
 			GuestException e = new GuestException();
 			throw e;
 		}
-		if (reserve == null) {
+		if (this.getReserve() == null) {
 			creditCard = g.getCreditCard();
 			try {
 				if (trace) {

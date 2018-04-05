@@ -187,7 +187,8 @@ public class MainTest2 {
 			System.out.println("Something went wrong");
 			return;
 		}
-		System.out.print("\nNew credit card: " + user.getCreditCard());
+		System.out.println("\nNew credit card: " + user.getCreditCard());
+		System.out.println("\nWe get an Failed internet connection\n");
 		
 	}
 }
