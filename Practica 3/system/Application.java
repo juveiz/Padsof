@@ -9,7 +9,8 @@ import offer.*;
 import user.*;
 
 /**
- * Aplication class. It implements the general features for the application 
+ * Aplication class. It implements the general features for the application
+ * 
  * @author Miguel Angel Sanchez y Juan Velasco
  *
  */
@@ -20,11 +21,16 @@ public class Application implements Serializable {
 	private List<House> houses;
 	private List<RegisteredUser> users;
 	private List<Offer> offers;
+
 	/**
 	 * Creates a new application
-	 * @param name Name of the admin
-	 * @param surname Surename of the admin
-	 * @param password Password of the admin
+	 * 
+	 * @param name
+	 *            Name of the admin
+	 * @param surname
+	 *            Surename of the admin
+	 * @param password
+	 *            Password of the admin
 	 */
 	private Application(String name, String surname, String password) {
 		admin = new Admin(name, surname, password, "ImTheMdfkAdmin");
@@ -32,11 +38,16 @@ public class Application implements Serializable {
 		users = new ArrayList<>();
 		offers = new ArrayList<>();
 	}
+
 	/**
-	 * Get the application from the file. If it doesn't exist, it creates a new one  
-	 * @param name Name of the admin
-	 * @param surname Surename of the admin
-	 * @param password Password of the admin
+	 * Get the application from the file. If it doesn't exist, it creates a new one
+	 * 
+	 * @param name
+	 *            Name of the admin
+	 * @param surname
+	 *            Surename of the admin
+	 * @param password
+	 *            Password of the admin
 	 * @return Application
 	 */
 	public static Application getApplication(String name, String surname, String password) {
@@ -52,15 +63,21 @@ public class Application implements Serializable {
 			return new Application(name, surname, password);
 		}
 	}
+
 	/**
 	 * User login. If a host has a wrong credit card, it shows a message telling it
-	 * @param id Id of the user
-	 * @param pswrd Password of  the user
+	 * 
+	 * @param id
+	 *            Id of the user
+	 * @param pswrd
+	 *            Password of the user
 	 * @return User if it exist or null if it don't
-	 * @throws LoggedException Another user is logged
-	 * @throws BannedUserException The user is banned
+	 * @throws LoggedException
+	 *             Another user is logged
+	 * @throws BannedUserException
+	 *             The user is banned
 	 */
-	public RegisteredUser loginUser(String id, String pswrd) throws LoggedException,BannedUserException {
+	public RegisteredUser loginUser(String id, String pswrd) throws LoggedException, BannedUserException {
 		if (admin.getState() == 1) {
 			LoggedException e = new LoggedException();
 			throw e;
@@ -74,10 +91,10 @@ public class Application implements Serializable {
 		for (RegisteredUser u : users) {
 			if (u.getId().equals(id)) {
 				if (u.getPassword().equals(pswrd)) {
-					if(u.getState() == -1) {
+					if (u.getState() == -1) {
 						throw new BannedUserException(u);
 					}
-					if(u.getState() == -2) {
+					if (u.getState() == -2) {
 						System.out.println("Contact the admin to make the pays\n");
 					}
 					u.setState(1);
@@ -89,8 +106,10 @@ public class Application implements Serializable {
 		}
 		return null;
 	}
+
 	/**
-	 * Logout user 
+	 * Logout user
+	 * 
 	 * @return true if it logout or false if it not
 	 */
 	private boolean logoutUser() {
@@ -102,12 +121,17 @@ public class Application implements Serializable {
 		}
 		return false;
 	}
+
 	/**
 	 * Admin login
-	 * @param id Id of the admin
-	 * @param pswrd Password of the admin
+	 * 
+	 * @param id
+	 *            Id of the admin
+	 * @param pswrd
+	 *            Password of the admin
 	 * @return Admin if it exist or null if it doesn't
-	 * @throws LoggedException Another user is logged
+	 * @throws LoggedException
+	 *             Another user is logged
 	 */
 	public Admin loginAdmin(String id, String pswrd) throws LoggedException {
 		if (admin.getState() == 1) {
@@ -130,8 +154,10 @@ public class Application implements Serializable {
 		}
 		return null;
 	}
+
 	/**
 	 * Admin logout
+	 * 
 	 * @return true if it logged out or false if it not
 	 */
 	private boolean logoutAdmin() {
@@ -141,8 +167,10 @@ public class Application implements Serializable {
 		}
 		return false;
 	}
+
 	/**
 	 * General logout. It logout and make a backup
+	 * 
 	 * @return true if everything went okay false it it not
 	 */
 	public boolean logut() {
@@ -154,8 +182,10 @@ public class Application implements Serializable {
 		backup();
 		return true;
 	}
+
 	/**
 	 * Get the logged User (not admin)
+	 * 
 	 * @return User or null
 	 */
 	private RegisteredUser getLoggedUser() {
@@ -166,16 +196,26 @@ public class Application implements Serializable {
 		}
 		return null;
 	}
+
 	/**
-	 * Creates a new user 
-	 * @param name Name of the user
-	 * @param surename Surename of the user
-	 * @param id Id of the user
-	 * @param password Password of the user
-	 * @param creditCard Credit card of the user
-	 * @param guest The user is a guest
-	 * @param host The user is a host
-	 * @return true if everything went ok false if the id exist or both guest and host are fasle
+	 * Creates a new user
+	 * 
+	 * @param name
+	 *            Name of the user
+	 * @param surename
+	 *            Surename of the user
+	 * @param id
+	 *            Id of the user
+	 * @param password
+	 *            Password of the user
+	 * @param creditCard
+	 *            Credit card of the user
+	 * @param guest
+	 *            The user is a guest
+	 * @param host
+	 *            The user is a host
+	 * @return true if everything went ok false if the id exist or both guest and
+	 *         host are fasle
 	 */
 	public boolean addUser(String name, String surename, String id, String password, String creditCard, boolean guest,
 			boolean host) {
@@ -190,12 +230,18 @@ public class Application implements Serializable {
 		users.add(new RegisteredUser(name, surename, id, password, creditCard, guest, host));
 		return true;
 	}
+
 	/**
 	 * Add a new house
-	 * @param city City of the house
-	 * @param zip Zip code of the house
-	 * @param description Description of the house
-	 * @throws HostException The user logged is not host
+	 * 
+	 * @param city
+	 *            City of the house
+	 * @param zip
+	 *            Zip code of the house
+	 * @param description
+	 *            Description of the house
+	 * @throws HostException
+	 *             The user logged is not host
 	 */
 	public void addHouse(String city, int zip, String description) throws HostException {
 		RegisteredUser u = this.getLoggedUser();
@@ -208,17 +254,20 @@ public class Application implements Serializable {
 			throw e;
 		}
 		House h = new House(city, zip, description);
-		for(House oldHouse: this.houses) {
-			if(oldHouse.equals(h)) {
+		for (House oldHouse : this.houses) {
+			if (oldHouse.equals(h)) {
 				return;
 			}
 		}
 		houses.add(h);
 		u.getHost().addHouse(h);
 	}
+
 	/**
 	 * Get the houses from an user
-	 * @param user User
+	 * 
+	 * @param user
+	 *            User
 	 * @return Houses of the user
 	 * @throws HostException
 	 */
@@ -237,13 +286,20 @@ public class Application implements Serializable {
 		}
 		return null;
 	}
+
 	/**
 	 * Creates a new living offer
-	 * @param startingDate Starting date
-	 * @param price Price of the offer
-	 * @param house House of the offer
-	 * @param months Months of the offer
-	 * @throws HostException The logged user is not a host
+	 * 
+	 * @param startingDate
+	 *            Starting date
+	 * @param price
+	 *            Price of the offer
+	 * @param house
+	 *            House of the offer
+	 * @param months
+	 *            Months of the offer
+	 * @throws HostException
+	 *             The logged user is not a host
 	 */
 	public void addOfferLiving(LocalDate startingDate, double price, House house, double months) throws HostException {
 		RegisteredUser u = this.getLoggedUser();
@@ -259,8 +315,8 @@ public class Application implements Serializable {
 			return;
 		}
 		Offer o = new Living(startingDate, price, u, house, months);
-		for(Offer oldOffer: this.offers) {
-			if(oldOffer.equals(o)) {
+		for (Offer oldOffer : this.offers) {
+			if (oldOffer.equals(o)) {
 				return;
 			}
 		}
@@ -268,16 +324,23 @@ public class Application implements Serializable {
 		this.admin.addOffer(o);
 		u.getHost().addOffer(o);
 	}
+
 	/**
 	 * Creates a new vacational offer
-	 * @param startingDate Starting date
-	 * @param price Price of the offer
-	 * @param house House of the offer
-	 * @param endingDate Final date of the offer
-	 * @throws HostException The logged user is not a host
+	 * 
+	 * @param startingDate
+	 *            Starting date
+	 * @param price
+	 *            Price of the offer
+	 * @param house
+	 *            House of the offer
+	 * @param endingDate
+	 *            Final date of the offer
+	 * @throws HostException
+	 *             The logged user is not a host
 	 */
-	public void addOfferVacational(LocalDate startingDate, double price, House house,
-			LocalDate endingDate) throws HostException {
+	public void addOfferVacational(LocalDate startingDate, double price, House house, LocalDate endingDate)
+			throws HostException {
 		RegisteredUser u = this.getLoggedUser();
 		if (u == null) {
 			HostException e = new HostException();
@@ -288,8 +351,8 @@ public class Application implements Serializable {
 			throw e;
 		}
 		Offer o = new Vacational(startingDate, price, u, house, endingDate);
-		for(Offer oldOffer: this.offers) {
-			if(oldOffer.equals(o)) {
+		for (Offer oldOffer : this.offers) {
+			if (oldOffer.equals(o)) {
 				return;
 			}
 		}
@@ -297,13 +360,17 @@ public class Application implements Serializable {
 		this.admin.addOffer(o);
 		u.getHost().addOffer(o);
 	}
+
 	/**
 	 * Get the offers of a host user
-	 * @param user Host
+	 * 
+	 * @param user
+	 *            Host
 	 * @return List of offers of null it it isn't logged
-	 * @throws HostException The user is not a host
+	 * @throws HostException
+	 *             The user is not a host
 	 */
-	public List<Offer> getHostOffers(RegisteredUser user) throws HostException{
+	public List<Offer> getHostOffers(RegisteredUser user) throws HostException {
 		if (user.getState() != 1) {
 			return null;
 		}
@@ -318,13 +385,17 @@ public class Application implements Serializable {
 		}
 		return null;
 	}
+
 	/**
 	 * Get the offers from a guest user
-	 * @param user Guest
+	 * 
+	 * @param user
+	 *            Guest
 	 * @return Offers or null if it isn't registered
-	 * @throws GuestException the user is not a guest
+	 * @throws GuestException
+	 *             the user is not a guest
 	 */
-	public List<Offer> getGuestOffers(RegisteredUser user) throws GuestException{
+	public List<Offer> getGuestOffers(RegisteredUser user) throws GuestException {
 		if (user.getState() != 1) {
 			return null;
 		}
@@ -339,19 +410,24 @@ public class Application implements Serializable {
 		}
 		return null;
 	}
+
 	/**
 	 * Get the admin offers
+	 * 
 	 * @return Offers or null it the admin isn't logged
 	 */
-	public List<Offer> getAdminOffers(){
-		if(admin.getState() != 1) {
+	public List<Offer> getAdminOffers() {
+		if (admin.getState() != 1) {
 			return null;
 		}
 		return admin.getOffers();
 	}
+
 	/**
 	 * Search by type
-	 * @param type Type of the offer
+	 * 
+	 * @param type
+	 *            Type of the offer
 	 * @return offers
 	 */
 	public List<Offer> searchOfferType(String type) {
@@ -376,9 +452,12 @@ public class Application implements Serializable {
 		}
 		return l;
 	}
+
 	/**
 	 * Search offer by zip
-	 * @param z Zip code
+	 * 
+	 * @param z
+	 *            Zip code
 	 * @return Offers
 	 */
 	public List<Offer> searchOfferZip(int z) {
@@ -392,10 +471,14 @@ public class Application implements Serializable {
 		}
 		return l;
 	}
+
 	/**
 	 * Search by initial date
-	 * @param d1 First date
-	 * @param d2 Second date
+	 * 
+	 * @param d1
+	 *            First date
+	 * @param d2
+	 *            Second date
 	 * @return Offers
 	 */
 	public List<Offer> searchOfferDate(LocalDate d1, LocalDate d2) {
@@ -409,11 +492,15 @@ public class Application implements Serializable {
 		}
 		return l;
 	}
+
 	/**
 	 * Search offer by rate
-	 * @param min Minimal rate
+	 * 
+	 * @param min
+	 *            Minimal rate
 	 * @return Offers
-	 * @throws NonRegisteredException The user is not registered
+	 * @throws NonRegisteredException
+	 *             The user is not registered
 	 */
 	public List<Offer> searchOfferRate(int min) throws NonRegisteredException {
 		for (RegisteredUser u : users) {
@@ -432,10 +519,13 @@ public class Application implements Serializable {
 		NonRegisteredException e = new NonRegisteredException();
 		throw e;
 	}
+
 	/**
 	 * Search reserved offers
+	 * 
 	 * @return Offers
-	 * @throws NonRegisteredException The user is not a registered user
+	 * @throws NonRegisteredException
+	 *             The user is not a registered user
 	 */
 	public List<Offer> searchOfferReserved() throws NonRegisteredException {
 		for (RegisteredUser u : users) {
@@ -452,10 +542,13 @@ public class Application implements Serializable {
 		NonRegisteredException e = new NonRegisteredException();
 		throw e;
 	}
+
 	/**
 	 * Search bought offers
+	 * 
 	 * @return Offers
-	 * @throws NonRegisteredException The user is not regiestered
+	 * @throws NonRegisteredException
+	 *             The user is not regiestered
 	 */
 	public List<Offer> searchOfferBought() throws NonRegisteredException {
 		for (RegisteredUser u : users) {
@@ -472,6 +565,7 @@ public class Application implements Serializable {
 		NonRegisteredException e = new NonRegisteredException();
 		throw e;
 	}
+
 	/**
 	 * File backup
 	 */
@@ -483,7 +577,7 @@ public class Application implements Serializable {
 			}
 		}
 		admin.getOffers().removeAll(noffers);
-		
+
 		for (RegisteredUser r : users) {
 			for (Profile p : r.getProfile()) {
 				noffers = new ArrayList<>();
@@ -515,6 +609,7 @@ public class Application implements Serializable {
 		}
 
 	}
+
 	/**
 	 * toString of the app
 	 */

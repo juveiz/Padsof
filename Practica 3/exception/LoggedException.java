@@ -1,14 +1,22 @@
 package exception;
 
+/**
+ * LoggedException. It is thrown when another user is logged
+ * 
+ * @author juvei
+ *
+ */
 public class LoggedException extends Exception {
-	private static final long serialVersionUID = 1L ;
+	private static final long serialVersionUID = 1L;
+
 	/**
-	 * Creates a new Host exception
+	 * Creates a new logged exception
 	 */
 	public LoggedException() {
 	}
+
 	/**
-	 * toString for the Host exception
+	 * toString for the Logged exception
 	 */
 	public String toString() {
 		return "A user is already logged.";
