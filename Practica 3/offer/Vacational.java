@@ -47,6 +47,7 @@ public class Vacational extends Offer implements Serializable{
 	 * @param endingDate Final date of the offer
 	 * @return true if it has been modify correctly or false if not
 	 */
+	@Override
 	public boolean modifyOffer(House h, LocalDate s, double d,LocalDate endingDate) {
 		if(super.modifyOffer(h, s, d)) {
 			this.endingDate = endingDate;

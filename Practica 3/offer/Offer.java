@@ -21,6 +21,7 @@ public abstract class Offer implements Serializable{
 	private List<Comment> comments;
 	private Reserve reserve;
 	private String changes;
+	private double notPaid;
 	
 	/**
 	 * Creates an offer
@@ -226,6 +227,9 @@ public abstract class Offer implements Serializable{
 			this.setState(-1);
 			return false;
 		}
+		if(state != 2) {
+			return false;
+		}
 		house = h;
 		startingDate = s;
 		price = d;
@@ -234,6 +238,13 @@ public abstract class Offer implements Serializable{
 		return true;
 	}
 	
+	public boolean modifyOffer(House h, LocalDate s, double d,double months) {
+		return false;
+	}
+	
+	public boolean modifyOffer(House h, LocalDate s, double d,LocalDate endingDate) {
+		return false;
+	}
 	/**
 	 * Reserves the offer
 	 * @param g Guest that reserves the offer
@@ -280,9 +291,9 @@ public abstract class Offer implements Serializable{
 			creditCard = g.getCreditCard();
 			try {
 				if(trace) {
-					TeleChargeAndPaySystem.charge(creditCard,subject,price + deposit,trace);
+					TeleChargeAndPaySystem.charge(creditCard,subject,-(price + deposit),trace);
 				}else {
-					TeleChargeAndPaySystem.charge(creditCard,subject,price + deposit);
+					TeleChargeAndPaySystem.charge(creditCard,subject,-(price + deposit));
 					
 				}
 			}catch(InvalidCardNumberException e) {
@@ -296,6 +307,27 @@ public abstract class Offer implements Serializable{
 				return -3;
 				//esto no se que es
 			}
+			creditCard = host.getCreditCard();
+			try {
+				if(trace) {
+					TeleChargeAndPaySystem.charge(creditCard,subject,(price + deposit),trace);
+				}else {
+					TeleChargeAndPaySystem.charge(creditCard,subject,(price + deposit));
+					
+				}
+			}catch(InvalidCardNumberException e) {
+				host.setState(-2);
+				notPaid = price + deposit;
+				//usuario baneado
+			}catch(FailedInternetConnectionException e) {
+				host.setState(-2);
+				notPaid = price + deposit;
+				//caca de internete
+			}catch(OrderRejectedException e) {
+				host.setState(-2);
+				notPaid = price + deposit;
+				//esto no se que es
+			}
 			this.setState(4);
 			return 0;
 		}else {
@@ -303,9 +335,9 @@ public abstract class Offer implements Serializable{
 			if (reserve.getGuest().getId() == g.getId() ) {//hacer en guest
 				try {
 					if(trace) {
-						TeleChargeAndPaySystem.charge(creditCard,subject,price + deposit,trace);
+						TeleChargeAndPaySystem.charge(creditCard,subject,-(price + deposit),trace);
 					}else {
-						TeleChargeAndPaySystem.charge(creditCard,subject,price + deposit);
+						TeleChargeAndPaySystem.charge(creditCard,subject,-(price + deposit));
 						
 					}
 				}catch(InvalidCardNumberException e) {
@@ -319,6 +351,27 @@ public abstract class Offer implements Serializable{
 					return -3;
 					//esto no se que es
 				}
+				creditCard = host.getCreditCard();
+				try {
+					if(trace) {
+						TeleChargeAndPaySystem.charge(creditCard,subject,(price + deposit),trace);
+					}else {
+						TeleChargeAndPaySystem.charge(creditCard,subject,(price + deposit));
+						
+					}
+				}catch(InvalidCardNumberException e) {
+					host.setState(-2);
+					notPaid = price + deposit;
+					//usuario baneado
+				}catch(FailedInternetConnectionException e) {
+					host.setState(-2);
+					notPaid = price + deposit;
+					//caca de internete
+				}catch(OrderRejectedException e) {
+					host.setState(-2);
+					notPaid = price + deposit;
+					//esto no se que es
+				}
 				this.setState(4);
 				return 0;
 			}else {
@@ -329,6 +382,32 @@ public abstract class Offer implements Serializable{
 		
 	}
 	
+	public boolean payHost(Admin admin) {
+		if(notPaid == 0) {
+			return true;
+		}
+		String creditCard = host.getCreditCard();
+		try {
+				TeleChargeAndPaySystem.charge(creditCard,"Not paid",price + deposit);	
+		}catch(InvalidCardNumberException e) {
+			host.setState(-2);
+			notPaid = price + deposit;
+			return false;
+			//usuario baneado
+		}catch(FailedInternetConnectionException e) {
+			host.setState(-2);
+			notPaid = price + deposit;
+			return false;
+			//caca de internete
+		}catch(OrderRejectedException e) {
+			host.setState(-2);
+			notPaid = price + deposit;
+			return false;
+			//esto no se que es
+		}
+		notPaid = 0;
+		return true;
+	}
 	/**
 	 * Comments the offer
 	 * @param g Guest that comments the offer
@@ -357,6 +436,12 @@ public abstract class Offer implements Serializable{
 			throw gu;
 		}
 		Comment comment;
+		if(r > 5) {
+			r = 5;
+		}
+		if (r < 0) {
+			r = 0;
+		}
 		comment = new Numerical(r,g);
 		comments.add(comment);
 	}

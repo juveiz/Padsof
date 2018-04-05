@@ -48,6 +48,7 @@ public class Living extends Offer implements Serializable{
 	 * @param months New number of months of the offer
 	 * @return true if it has been modify correctly or false if it is not
 	 */
+	@Override
 	public boolean modifyOffer(House h, LocalDate s, double d,double months) {
 		if(super.modifyOffer(h, s, d)) {
 			this.months = months;

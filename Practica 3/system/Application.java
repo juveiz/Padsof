@@ -54,6 +54,9 @@ public class Application implements Serializable {
 					if(u.getState() == -1) {
 						throw new BannedUserException();
 					}
+					if(u.getState() == -2) {
+						System.out.println("Contact the admin to make the pays\n");
+					}
 					u.setState(1);
 					return u;
 				} else {
