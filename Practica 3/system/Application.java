@@ -585,8 +585,8 @@ public class Application implements Serializable {
 					if (o.getState() == -1) {
 						noffers.add(o);
 					}
-					p.getOffers().removeAll(noffers);
 				}
+				p.getOffers().removeAll(noffers);
 			}
 		}
 
