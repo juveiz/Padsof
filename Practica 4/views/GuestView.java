@@ -6,7 +6,7 @@ import user.*;
 
 import java.awt.*;
 
-public class guestView {
+public class GuestView {
 	private JFrame main;
 	private JPanel buttons;
 	private JButton search;
@@ -14,7 +14,7 @@ public class guestView {
 	private JButton logout;
 	private JLabel welcome;
 	
-	public guestView(RegisteredUser user) {
+	public GuestView(RegisteredUser user) {
 		main = new JFrame("Guest");
 		buttons = new JPanel();
 		search = new JButton("Search");

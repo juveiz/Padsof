@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class loginView {
+public class LoginView {
 	private JFrame view2;
 	private JPanel view;
 	private JPanel buttons;
@@ -19,7 +19,7 @@ public class loginView {
 	private JTextField user;
 	private JPasswordField password;
 
-	public loginView() {
+	public LoginView() {
 		view2 = new JFrame("Login");
 		view = new JPanel();
 		buttons = new JPanel();

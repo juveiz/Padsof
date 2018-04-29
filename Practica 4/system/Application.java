@@ -58,10 +58,69 @@ public class Application implements Serializable {
 			is.close();
 			return app;
 		} catch (IOException e) {
-			return new Application(name, surname, password);
+			app = new Application(name, surname, password);
+			try {
+				FileInputStream f = null;
+				String line;
+				f = new FileInputStream("ClientsExample.txt");
+				BufferedReader buffer = new BufferedReader(new InputStreamReader(f));
+				buffer.readLine();
+				while ((line = buffer.readLine()) != null) {
+					boolean guest = false,host = false;
+					String[] newUser = line.split(";");
+					if (newUser[0].equals("O")) {
+						guest = false;
+						host = true;
+					} else if (newUser[0].equals("D")) {
+						guest = true;
+						host = false;
+					} else if (newUser[0].equals("OD")) {
+						guest = true;
+						host = true;
+					} else {
+						buffer.close();
+					}
+					System.out
+							.println(app.addUser(newUser[3], newUser[2], newUser[1], newUser[4], newUser[5], guest, host));
+				}
+				buffer.close();
+				return app;
+			} catch (IOException e1) {
+				System.out.println("The given file hasn't been opened");
+			}
 		} catch (ClassNotFoundException e) {
-			return new Application(name, surname, password);
+			app = new Application(name, surname, password);
+			try {
+				FileInputStream f = null;
+				String line;
+				f = new FileInputStream("ClientsExample.txt");
+				BufferedReader buffer = new BufferedReader(new InputStreamReader(f));
+				buffer.readLine();
+				while ((line = buffer.readLine()) != null) {
+					boolean guest = false,host = false;
+					String[] newUser = line.split(";");
+					if (newUser[0].equals("O")) {
+						guest = false;
+						host = true;
+					} else if (newUser[0].equals("D")) {
+						guest = true;
+						host = false;
+					} else if (newUser[0].equals("OD")) {
+						guest = true;
+						host = true;
+					} else {
+						buffer.close();
+					}
+					System.out
+							.println(app.addUser(newUser[3], newUser[2], newUser[1], newUser[4], newUser[5], guest, host));
+				}
+				buffer.close();
+				return app;
+			} catch (IOException e1) {
+				System.out.println("The given file hasn't been opened");
+			}
 		}
+		return app;
 	}
 
 	/**
