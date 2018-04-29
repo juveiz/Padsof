@@ -2,6 +2,7 @@ package views;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class loginView {
 	private JFrame view2;
@@ -42,8 +43,8 @@ public class loginView {
 
 		user = new JTextField(10);
 		password = new JPasswordField(10);
-		user.setText("JuanitoVelasquito");
-		password.setText("holasoytontito");
+		user.setText("54444111D");
+		password.setText("olvidame");
 		usuario = new JLabel("User: ");
 		contrasenia = new JLabel("Password: ");
 		userp.add(usuario);
@@ -65,8 +66,24 @@ public class loginView {
 		view2.pack();
 		view2.setSize(1000,500);
 		
-		view2.setVisible(true);
-		
-
+		view2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public void setVisible(boolean dec) {
+		view2.setVisible(dec);
+	}
+	
+	public String getUser() {
+		return user.getText();
+	}
+	
+	@SuppressWarnings("deprecation")
+	public String getPassword() {
+		return password.getText();
+	}
+	
+	public void setControlador(ActionListener c) {
+		login.addActionListener(c);
+		nologin.addActionListener(c);
 	}
 }

@@ -27,7 +27,8 @@ public class guestView {
 		BorderLayout border = new BorderLayout();
 		cont.setLayout(border);
 		
-		border.setVgap(10);
+		border.setVgap(100);
+		border.setHgap(100);
 		
 		GridLayout grid = new GridLayout(3,1,0,10);
 		buttons.setLayout(grid);
@@ -36,17 +37,21 @@ public class guestView {
 		buttons.add(offers);
 		buttons.add(logout);
 		
-		
-		
+		welcome.setFont(new Font("TimeRoman",50,50));
 		welcome.setHorizontalAlignment(JTextField.CENTER);
 		cont.add(welcome,BorderLayout.NORTH);
 		cont.add(buttons,BorderLayout.CENTER);
+		cont.add(new JPanel(),BorderLayout.SOUTH);
+		cont.add(new JPanel(),BorderLayout.EAST);
 		cont.add(new JPanel(),BorderLayout.WEST);
 		
 		main.pack();
 		main.setSize(1000, 500);
 		
-		main.setVisible(true);
 		main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public void setVisible(boolean dec) {
+		main.setVisible(dec);
 	}
 }
