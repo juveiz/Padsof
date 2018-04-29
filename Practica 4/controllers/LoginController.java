@@ -31,13 +31,16 @@ public class LoginController implements ActionListener{
 				if ( register == null) {
 					JOptionPane.showMessageDialog(null, "The user is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
 				}else {
-					if (register.isGuest() /*&& !(register.isHost())*/) {
+					if (register.isGuest() && !(register.isHost())) {
 						GuestView newView = new GuestView(register);
 						login.setVisible(false);
 						newView.setVisible(true);
 						//Falta asignar el controller nuevo
-					}else if(register.isHost() && !(register.isGuest())) {
-						//falta vista host
+					}else if(register.isHost() /*&& !(register.isGuest())*/) {
+						HostView newView = new HostView(register);
+						login.setVisible(false);
+						newView.setVisible(true);
+						//Falta asignar el controller nuevo
 					}else {
 						//falta vista ambos
 					}
