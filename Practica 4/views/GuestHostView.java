@@ -1,23 +1,27 @@
 package views;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
 
 import javax.swing.*;
 
-// Vamos a añadir las ofertas desde las casas que asi ees mas sencillo
 import user.RegisteredUser;
 
-public class HostView {
+public class GuestHostView {
 	private JFrame main;
 	private JPanel buttons;
+	private JButton search;
 	private JButton houses;
 	private JButton offers;
 	private JButton logout;
 	private JLabel welcome;
 	
-	public HostView(RegisteredUser user) {
-		main = new JFrame("Host");
+	public GuestHostView(RegisteredUser user) {
+		main = new JFrame("Guest and Host");
 		buttons = new JPanel();
+		search = new JButton("Search");
 		houses = new JButton("Houses");
 		offers = new JButton("Offers");
 		logout = new JButton("Logout");
@@ -31,12 +35,14 @@ public class HostView {
 		border.setVgap(100);
 		border.setHgap(100);
 		
-		GridLayout grid = new GridLayout(3,1,0,10);
+		GridLayout grid = new GridLayout(4,1,0,10);
 		buttons.setLayout(grid);
 	
+		buttons.add(search);
 		buttons.add(houses);
 		buttons.add(offers);
 		buttons.add(logout);
+		
 		
 		welcome.setFont(new Font("TimeRoman",50,50));
 		welcome.setHorizontalAlignment(JTextField.CENTER);

@@ -36,13 +36,16 @@ public class LoginController implements ActionListener{
 						login.setVisible(false);
 						newView.setVisible(true);
 						//Falta asignar el controller nuevo
-					}else if(register.isHost() /*&& !(register.isGuest())*/) {
+					}else if(register.isHost() && !(register.isGuest())) {
 						HostView newView = new HostView(register);
 						login.setVisible(false);
 						newView.setVisible(true);
 						//Falta asignar el controller nuevo
 					}else {
-						//falta vista ambos
+						GuestHostView newView = new GuestHostView(register);
+						login.setVisible(false);
+						newView.setVisible(true);
+						//Falta asignar el controller nuevo
 					}
 				}
 			} catch (LoggedException e1) {
@@ -52,7 +55,8 @@ public class LoginController implements ActionListener{
 			}
 			break;
 		case "No Login":
-			
+			//busqueda de ofertas
+			break;
 		}
 		
 	}
