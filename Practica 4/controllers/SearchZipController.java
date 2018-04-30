@@ -22,7 +22,8 @@ public class SearchZipController implements ActionListener {
 		case "Search by type":
 			zipview.setVisible(false);
 			SearchTypeView typeview = new SearchTypeView();
-			typeview.setVisible(true);		
+			typeview.setVisible(true);
+			break;
 		}
 	}
 	

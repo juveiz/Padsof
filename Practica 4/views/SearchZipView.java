@@ -101,11 +101,11 @@ public class SearchZipView {
 	
 	public void setControlador(ActionListener c) {
 		search.addActionListener(c);
-		two.addActionListener(c);
+		/*two.addActionListener(c);
 		three.addActionListener(c);
 		four.addActionListener(c);
 		five.addActionListener(c);
-		six.addActionListener(c);
+		six.addActionListener(c);*/
 	}
 	
 	
