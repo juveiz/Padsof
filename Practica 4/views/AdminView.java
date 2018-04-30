@@ -1,31 +1,29 @@
 package views;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.Font;
-import java.awt.GridLayout;
-
 import javax.swing.*;
 
-import user.RegisteredUser;
+import user.Admin;
+import java.awt.*;
 
-public class GuestHostView {
+
+public class AdminView {
+	
 	private JFrame main;
 	private JPanel buttons;
-	private JButton search;
-	private JButton houses;
+	private JButton creditCard;
 	private JButton offers;
+	private JButton users;
 	private JButton logout;
 	private JLabel welcome;
 	
-	public GuestHostView(RegisteredUser user) {
-		main = new JFrame("Guest and Host");
+	public AdminView(Admin admin) {
+		main = new JFrame("Admin");
 		buttons = new JPanel();
-		search = new JButton("Search offers");
-		houses = new JButton("Your Houses");
-		offers = new JButton("Your Offers");
+		creditCard = new JButton("Change Credit Card");
+		offers = new JButton("Approve Offers");
+		users = new JButton("Unban User");
 		logout = new JButton("Logout");
-		welcome = new JLabel("Welcome " + user.getName());
+		welcome = new JLabel("Welcome " + admin.getName());
 		
 		
 		Container cont = main.getContentPane();
@@ -38,11 +36,10 @@ public class GuestHostView {
 		GridLayout grid = new GridLayout(4,1,0,10);
 		buttons.setLayout(grid);
 	
-		buttons.add(search);
-		buttons.add(houses);
+		buttons.add(creditCard);
 		buttons.add(offers);
+		buttons.add(users);
 		buttons.add(logout);
-		
 		
 		welcome.setFont(new Font("TimeRoman",50,50));
 		welcome.setHorizontalAlignment(JTextField.CENTER);
@@ -61,4 +58,5 @@ public class GuestHostView {
 	public void setVisible(boolean dec) {
 		main.setVisible(dec);
 	}
+
 }

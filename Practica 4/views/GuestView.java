@@ -17,8 +17,8 @@ public class GuestView {
 	public GuestView(RegisteredUser user) {
 		main = new JFrame("Guest");
 		buttons = new JPanel();
-		search = new JButton("Search");
-		offers = new JButton("Offers");
+		search = new JButton("Search offers");
+		offers = new JButton("Your Offers");
 		logout = new JButton("Logout");
 		welcome = new JLabel("Welcome " + user.getName());
 		

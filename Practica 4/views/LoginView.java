@@ -12,6 +12,7 @@ public class LoginView {
 	private JPanel userp;
 	private JPanel passwordp;
 	private JButton login;
+	private JButton adminLogin;
 	private JButton nologin;
 	private JLabel usuario;
 	private JLabel contrasenia;
@@ -37,8 +38,10 @@ public class LoginView {
 		passwordp.setLayout(new FlowLayout());
 
 		login = new JButton("Login");
+		adminLogin = new JButton("Admin Login");
 		nologin = new JButton("No Login");
 		buttons.add(login);
+		buttons.add(adminLogin);
 		buttons.add(nologin);
 
 		user = new JTextField(10);
@@ -84,6 +87,7 @@ public class LoginView {
 	
 	public void setControlador(ActionListener c) {
 		login.addActionListener(c);
+		adminLogin.addActionListener(c);
 		nologin.addActionListener(c);
 	}
 }

@@ -6,6 +6,7 @@ import javax.swing.*;
 import exception.BannedUserException;
 import exception.LoggedException;
 import system.Application;
+import user.Admin;
 import user.RegisteredUser;
 import views.*;
 
@@ -15,7 +16,7 @@ public class LoginController implements ActionListener{
 	
 	public LoginController(LoginView login) {
 		this.login = login;
-		app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		app = Application.getInstance();
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -52,6 +53,23 @@ public class LoginController implements ActionListener{
 				JOptionPane.showMessageDialog(null, "Someone is already logged", "Error", JOptionPane.ERROR_MESSAGE);
 			} catch (BannedUserException e1) {
 				JOptionPane.showMessageDialog(null, "You are banned. Please, contact the administrator", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			break;
+		case "Admin Login":
+			String admin = login.getUser();
+			String adminPassword = login.getPassword();
+			try {
+				Admin adm = app.loginAdmin(admin, adminPassword);
+				if (adm == null) {
+					JOptionPane.showMessageDialog(null, "The admin is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
+				}else {
+					AdminView newView = new AdminView(adm);
+					login.setVisible(false);
+					newView.setVisible(true);
+					//falta asignar el controlador
+				}
+			} catch (LoggedException e1) {
+				JOptionPane.showMessageDialog(null, "Someone is already logged", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			break;
 		case "No Login":

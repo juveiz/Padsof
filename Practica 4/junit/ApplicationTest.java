@@ -19,13 +19,13 @@ public class ApplicationTest {
 
 	@Test
 	public void testGetApplication() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		assertNotNull(app);
 	}
 
 	@Test
 	public void testLoginUser() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
 		try {
@@ -38,7 +38,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testLoginAdmin() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		Admin admin = null;
 		try {
 			admin = app.loginAdmin("ImTheMdfkAdmin", "OpenBalls");
@@ -50,7 +50,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testAddUser() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
 		try {
@@ -63,7 +63,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testAddHouse() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
 		try {
@@ -78,7 +78,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testGetHostHouses() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
 		try {
@@ -93,7 +93,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testAddOfferLiving() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		House house = new House("Madrid", 28903, "Avenida de la Felicidad nº 23.\n Very wide\nPool");
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
@@ -110,7 +110,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testAddOfferVacational() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		House house = new House("Madrid", 28903, "Avenida de la Felicidad nº 23.\n Very wide\nPool");
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
@@ -127,7 +127,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testGetHostOffers() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		House house = new House("Madrid", 28903, "Avenida de la Felicidad nº 23.\n Very wide\nPool");
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
@@ -144,7 +144,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testGetGuestOffers() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		House house = new House("Madrid", 28903, "Avenida de la Felicidad nº 23.\n Very wide\nPool");
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
@@ -161,7 +161,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testGetAdminOffers() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		House house = new House("Madrid", 28903, "Avenida de la Felicidad nº 23.\n Very wide\nPool");
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
@@ -179,7 +179,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testSearchOfferType() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		House house = new House("Madrid", 28903, "Avenida de la Felicidad nº 23.\n Very wide\nPool");
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
@@ -200,7 +200,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testSearchOfferZip() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		House house = new House("Madrid", 28903, "Avenida de la Felicidad nº 23.\n Very wide\nPool");
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
@@ -217,7 +217,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testSearchOfferDate() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		House house = new House("Madrid", 28903, "Avenida de la Felicidad nº 23.\n Very wide\nPool");
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
@@ -234,7 +234,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testSearchOfferRate() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		House house = new House("Madrid", 28903, "Avenida de la Felicidad nº 23.\n Very wide\nPool");
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
@@ -251,7 +251,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testSearchOfferReserved() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		House house = new House("Madrid", 28903, "Avenida de la Felicidad nº 23.\n Very wide\nPool");
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
@@ -268,7 +268,7 @@ public class ApplicationTest {
 
 	@Test
 	public void testSearchOfferBought() {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();;
 		RegisteredUser user = null;
 		House house = new House("Madrid", 28903, "Avenida de la Felicidad nº 23.\n Very wide\nPool");
 		app.addUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
