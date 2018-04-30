@@ -1,10 +1,10 @@
 package views;
 
-import user.RegisteredUser;
+import user.Admin;
 
 public class Pruebas {
 	public static void main(String args[]) {
-		GuestHostView view = new GuestHostView(new RegisteredUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true));
+		AdminView view = new AdminView(new Admin("Paco", "Sanchez", "1", "Wololo"));
 		view.setVisible(true);
 	}
 }

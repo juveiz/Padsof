@@ -17,6 +17,7 @@ import user.*;
 public class Application implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private static Application app = null;
 	private final Admin admin;
 	private List<House> houses;
 	private List<RegisteredUser> users;
@@ -50,8 +51,7 @@ public class Application implements Serializable {
 	 *            Password of the admin
 	 * @return Application
 	 */
-	public static Application getApplication(String name, String surname, String password) {
-		Application app = null;
+	private static Application getApplication(String name, String surname, String password) {
 		try {
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SystemBackup.objectData"));
 			app = (Application) is.readObject();
@@ -122,7 +122,17 @@ public class Application implements Serializable {
 		}
 		return app;
 	}
-
+	
+	/**
+	 * Get the instance of the application
+	 * @return app
+	 */
+	public static Application getInstance() {
+		if (app == null) {
+			app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		}
+		return app;
+	}
 	/**
 	 * User login. If a host has a wrong credit card, it shows a message telling it
 	 * 

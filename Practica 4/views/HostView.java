@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -18,8 +19,8 @@ public class HostView {
 	public HostView(RegisteredUser user) {
 		main = new JFrame("Host");
 		buttons = new JPanel();
-		houses = new JButton("Houses");
-		offers = new JButton("Offers");
+		houses = new JButton("Your Houses");
+		offers = new JButton("Your Offers");
 		logout = new JButton("Logout");
 		welcome = new JLabel("Welcome " + user.getName());
 		
@@ -54,5 +55,11 @@ public class HostView {
 	
 	public void setVisible(boolean dec) {
 		main.setVisible(dec);
+	}
+	
+	public void setControlador(ActionListener c) {
+		houses.addActionListener(c);
+		offers.addActionListener(c);
+		logout.addActionListener(c);
 	}
 }

@@ -8,7 +8,7 @@ import user.*;
 
 public class MainTest2 {
 	public static void main(String[] args) {
-		Application app = Application.getApplication("Eva", "Touris", "OpenBalls");
+		Application app = Application.getInstance();
 		RegisteredUser user = null;
 		House house = null;
 		Offer offer = null;
