@@ -75,7 +75,11 @@ public class LoginController implements ActionListener{
 			}
 			break;
 		case "No Login":
-			//busqueda de ofertas
+			SearchZip2View newView = new SearchZip2View();
+			SearchZip2Controller newController = new SearchZip2Controller(newView);
+			login.setVisible(false);
+			newView.setVisible(true);
+			newView.setControlador(newController);
 			break;
 		}
 		

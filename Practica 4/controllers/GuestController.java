@@ -19,8 +19,12 @@ public class GuestController implements ActionListener{
 		JButton button = (JButton)e.getSource();
 		
 		switch(button.getActionCommand()) {
-		case "Search Offers":
-			//completar
+		case "Search offers":
+			SearchZipView newView = new SearchZipView();
+			SearchZipController newController = new SearchZipController(newView);
+			guest.setVisible(false);
+			newView.setVisible(true);
+			newView.setControlador(newController);
 			break;
 		case "Your Offers":
 			//completar
@@ -29,11 +33,11 @@ public class GuestController implements ActionListener{
 			if (app.logut() == false) {
 				JOptionPane.showMessageDialog(null, "The logout went wrong", "Error", JOptionPane.ERROR_MESSAGE);
 			}else{
-				LoginView newView = new LoginView();
-				LoginController newControler = new LoginController(newView);
+				LoginView newView1 = new LoginView();
+				LoginController newControler1 = new LoginController(newView1);
 				guest.setVisible(false);
-				newView.setVisible(true);
-				newView.setControlador(newControler);
+				newView1.setVisible(true);
+				newView1.setControlador(newControler1);
 				break;
 			}
 		}
