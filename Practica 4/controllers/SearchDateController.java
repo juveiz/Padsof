@@ -5,11 +5,11 @@ import javax.swing.*;
 import system.Application;
 import views.*;
 
-public class SearchZipController implements ActionListener {
+public class SearchDateController implements ActionListener {
 	private Application app;
-	private SearchZipView view;
+	private SearchDateView view;
 	
-	public SearchZipController(SearchZipView view) {
+	public SearchDateController(SearchDateView view) {
 		this.view = view;
 		app = Application.getInstance();
 	}

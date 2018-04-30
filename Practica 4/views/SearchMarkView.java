@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class SearchTypeView {
+public class SearchMarkView {
 	private JFrame view;
 	private JPanel view2;
 	private JPanel pair1;
@@ -19,13 +19,13 @@ public class SearchTypeView {
 	private JButton five;
 	private JButton six;
 	private JButton search;
-	private JComboBox<String> combo;
+	private JTextField introduce;
 	private JLabel text;
 	private JLabel firma;
 	private JButton back;
 	private JPanel exit;
 	
-	public SearchTypeView() {
+	public SearchMarkView() {
 		/*We declare the panels*/
 		view = new JFrame("Search");
 		view2 = new JPanel();
@@ -66,11 +66,10 @@ public class SearchTypeView {
 		
 		/*Down below panel*/
 		search = new JButton("Search");
-		String[] types = {"Living", "Vacational"};
-		JComboBox<String> combo = new JComboBox<String>(types);
-		text = new JLabel("Select the type");
+		introduce = new JTextField(10);
+		text = new JLabel("Introduce mark");
 		down.add(text);
-		down.add(combo);
+		down.add(introduce);
 		down.add(search);
 		
 		/*View2 panel*/
@@ -95,8 +94,8 @@ public class SearchTypeView {
 		view.setVisible(dec);
 	}
 	
-	public String getTyoe() {
-		return combo.getActionCommand();
+	public String getZip() {
+		return introduce.getText();
 	}
 	
 	public void setControlador(ActionListener c) {
@@ -113,3 +112,4 @@ public class SearchTypeView {
 	
 	
 }
+

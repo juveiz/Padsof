@@ -10,18 +10,20 @@ public class SearchZipView {
 	private JPanel pair1;
 	private JPanel pair2;
 	private JPanel pair3;
-	private JPanel radiobuttons;
+	private JPanel buttons;
 	private JPanel down;
-	private JRadioButton one;
-	private JRadioButton two;
-	private JRadioButton three;
-	private JRadioButton four;
-	private JRadioButton five;
-	private JRadioButton six;
+	private JButton one;
+	private JButton two;
+	private JButton three;
+	private JButton four;
+	private JButton five;
+	private JButton six;
 	private JButton search;
 	private JTextField introduce;
 	private JLabel text;
 	private JLabel firma;
+	private JButton back;
+	private JPanel exit;
 	
 	public SearchZipView() {
 		/*We declare the panels*/
@@ -30,8 +32,9 @@ public class SearchZipView {
 		pair1 = new JPanel();
 		pair2 = new JPanel();
 		pair3 = new JPanel();
-		radiobuttons = new JPanel();
+		buttons = new JPanel();
 		down = new JPanel();
+		exit = new JPanel();
 		
 		/*We choose the layouts*/
 		Container cont = view.getContentPane();
@@ -40,51 +43,47 @@ public class SearchZipView {
 		pair1.setLayout(new FlowLayout());
 		pair2.setLayout(new FlowLayout());
 		pair3.setLayout(new FlowLayout());
-		radiobuttons.setLayout(new BoxLayout(radiobuttons, BoxLayout.PAGE_AXIS));
+		buttons.setLayout(new BoxLayout(buttons, BoxLayout.PAGE_AXIS));
 		down.setLayout(new FlowLayout());
+		exit.setLayout(new FlowLayout());
 		
 		/*RadioButtons panel*/
-		JRadioButton one = new JRadioButton("Search by zip");
-		JRadioButton two = new JRadioButton("Search by date");
-		JRadioButton three = new JRadioButton("Search by type");
-		JRadioButton four = new JRadioButton("Search by mark");
-		JRadioButton five = new JRadioButton("Search reserved");
-		JRadioButton six = new JRadioButton("Search bought");
-		ButtonGroup group = new ButtonGroup();
-		group.add(one);
-		group.add(two);
-		group.add(three);
-		group.add(four);
-		group.add(five);
-		group.add(six);
+		one = new JButton("Search by zip");
+		two = new JButton("Search by date");
+		three = new JButton("Search by type");
+		four = new JButton("Search by mark");
+		five = new JButton("Search reserved");
+		six = new JButton("Search bought");
 		pair1.add(one);
 		pair1.add(four);
 		pair2.add(two);
 		pair2.add(five);
 		pair3.add(three);
 		pair3.add(six);		
-		radiobuttons.add(pair1);
-		radiobuttons.add(pair2);
-		radiobuttons.add(pair3);
-		one.setSelected(true);
+		buttons.add(pair1);
+		buttons.add(pair2);
+		buttons.add(pair3);
 		
 		/*Down below panel*/
 		search = new JButton("Search");
 		introduce = new JTextField(10);
-		text = new JLabel("Introduze zip code");
+		text = new JLabel("Introduce zip code");
 		down.add(text);
 		down.add(introduce);
 		down.add(search);
 		
 		/*View2 panel*/
-		view2.add(radiobuttons,BorderLayout.NORTH);
+		view2.add(buttons,BorderLayout.NORTH);
 		view2.add(down,BorderLayout.CENTER);
 		
 		/*Global panel*/
+		back = new JButton("Back");
+		exit.add(back);
 		firma = new JLabel("RentingJ&MA");
 		firma.setFont(new Font("TimeRoman",50,50));
 		cont.add(firma, BorderLayout.NORTH);
 		cont.add(view2,BorderLayout.CENTER);
+		cont.add(exit, BorderLayout.SOUTH);
 		view.pack();
 		view.setSize(1000,500);
 		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,11 +100,13 @@ public class SearchZipView {
 	
 	public void setControlador(ActionListener c) {
 		search.addActionListener(c);
-		/*two.addActionListener(c);
+		one.addActionListener(c);
+		two.addActionListener(c);
 		three.addActionListener(c);
 		four.addActionListener(c);
 		five.addActionListener(c);
-		six.addActionListener(c);*/
+		six.addActionListener(c);
+		back.addActionListener(c);
 	}
 	
 	
