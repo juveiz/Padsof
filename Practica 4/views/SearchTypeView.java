@@ -66,7 +66,7 @@ public class SearchTypeView {
 		radiobuttons.add(pair1);
 		radiobuttons.add(pair2);
 		radiobuttons.add(pair3);
-		two.setSelected(true);
+		three.setSelected(true);
 		
 		/*Down below panel*/
 		search = new JButton("Search");

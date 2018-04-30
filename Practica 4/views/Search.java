@@ -1,10 +1,12 @@
 package views;
 
-import controllers.LoginController;
+import controllers.SearchZipController;
 
 public class Search {
 	public static void main(String args[]) {
-		SearchTypeView view = new SearchTypeView();
+		SearchZipView view = new SearchZipView();
+		SearchZipController controller = new SearchZipController(view);  
+		view.setControlador(controller);
 		view.setVisible(true);
 	}
 }
