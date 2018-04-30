@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import user.Admin;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 
 public class AdminView {
@@ -57,6 +58,13 @@ public class AdminView {
 	
 	public void setVisible(boolean dec) {
 		main.setVisible(dec);
+	}
+	
+	public void setControlador(ActionListener c) {
+		creditCard.addActionListener(c);
+		offers.addActionListener(c);
+		users.addActionListener(c);
+		logout.addActionListener(c);
 	}
 
 }

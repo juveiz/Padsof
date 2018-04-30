@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -54,5 +55,11 @@ public class HostView {
 	
 	public void setVisible(boolean dec) {
 		main.setVisible(dec);
+	}
+	
+	public void setControlador(ActionListener c) {
+		houses.addActionListener(c);
+		offers.addActionListener(c);
+		logout.addActionListener(c);
 	}
 }

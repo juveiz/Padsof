@@ -5,6 +5,7 @@ import javax.swing.*;
 import user.*;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class GuestView {
 	private JFrame main;
@@ -53,5 +54,11 @@ public class GuestView {
 	
 	public void setVisible(boolean dec) {
 		main.setVisible(dec);
+	}
+	
+	public void setControlador(ActionListener c) {
+		search.addActionListener(c);
+		offers.addActionListener(c);
+		logout.addActionListener(c);
 	}
 }

@@ -26,7 +26,6 @@ public class LoginController implements ActionListener{
 		case "Login":
 			String user = login.getUser();
 			String password = login.getPassword();
-			System.out.println(user + "\n" + password);
 			try {
 				RegisteredUser register = app.loginUser(user, password);
 				if ( register == null) {
@@ -34,19 +33,22 @@ public class LoginController implements ActionListener{
 				}else {
 					if (register.isGuest() && !(register.isHost())) {
 						GuestView newView = new GuestView(register);
+						GuestController newController = new GuestController(newView);
 						login.setVisible(false);
 						newView.setVisible(true);
-						//Falta asignar el controller nuevo
+						newView.setControlador(newController);
 					}else if(register.isHost() && !(register.isGuest())) {
 						HostView newView = new HostView(register);
+						HostController newController = new HostController(newView);
 						login.setVisible(false);
 						newView.setVisible(true);
-						//Falta asignar el controller nuevo
+						newView.setControlador(newController);
 					}else {
 						GuestHostView newView = new GuestHostView(register);
+						GuestHostController newController = new GuestHostController(newView);
 						login.setVisible(false);
 						newView.setVisible(true);
-						//Falta asignar el controller nuevo
+						newView.setControlador(newController);
 					}
 				}
 			} catch (LoggedException e1) {

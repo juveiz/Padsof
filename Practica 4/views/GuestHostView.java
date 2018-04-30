@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -14,6 +15,7 @@ public class GuestHostView {
 	private JPanel buttons;
 	private JButton search;
 	private JButton houses;
+	private JButton houseOffers;
 	private JButton offers;
 	private JButton logout;
 	private JLabel welcome;
@@ -23,6 +25,7 @@ public class GuestHostView {
 		buttons = new JPanel();
 		search = new JButton("Search offers");
 		houses = new JButton("Your Houses");
+		houseOffers = new JButton("Your Houses Offers");
 		offers = new JButton("Your Offers");
 		logout = new JButton("Logout");
 		welcome = new JLabel("Welcome " + user.getName());
@@ -35,11 +38,12 @@ public class GuestHostView {
 		border.setVgap(100);
 		border.setHgap(100);
 		
-		GridLayout grid = new GridLayout(4,1,0,10);
+		GridLayout grid = new GridLayout(5,1,0,10);
 		buttons.setLayout(grid);
 	
 		buttons.add(search);
 		buttons.add(houses);
+		buttons.add(houseOffers);
 		buttons.add(offers);
 		buttons.add(logout);
 		
@@ -60,5 +64,13 @@ public class GuestHostView {
 	
 	public void setVisible(boolean dec) {
 		main.setVisible(dec);
+	}
+	
+	public void setControlador(ActionListener c) {
+		search.addActionListener(c);
+		houses.addActionListener(c);
+		houseOffers.addActionListener(c);
+		offers.addActionListener(c);
+		logout.addActionListener(c);
 	}
 }

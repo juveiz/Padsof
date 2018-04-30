@@ -52,7 +52,6 @@ public class Application implements Serializable {
 	 * @return Application
 	 */
 	private static Application getApplication(String name, String surname, String password) {
-		Application app = null;
 		try {
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("SystemBackup.objectData"));
 			app = (Application) is.readObject();
@@ -124,6 +123,10 @@ public class Application implements Serializable {
 		return app;
 	}
 	
+	/**
+	 * Get the instance of the application
+	 * @return app
+	 */
 	public static Application getInstance() {
 		if (app == null) {
 			app = Application.getApplication("Eva", "Touris", "OpenBalls");
