@@ -257,7 +257,7 @@ public class Application implements Serializable {
 	 * 
 	 * @return User or null
 	 */
-	private RegisteredUser getLoggedUser() {
+	public RegisteredUser getLoggedUser() {
 		for (RegisteredUser u : users) {
 			if (u.getState() == 1) {
 				return u;

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import exception.HostException;
 import system.Application;
 import views.*;
 
@@ -32,7 +33,16 @@ public class GuestHostController implements ActionListener {
 			newView.setControlador(newController);
 			break;
 		case "Your Houses":
-			//completar
+			HousesView newView1;
+			try {
+				newView1 = new HousesView(app.getLoggedUser().getHost().getHouses(),0);
+				HousesController newController1 = new HousesController(newView1,0);
+				guestHost.setVisible(false);
+				newView1.setVisible(true);
+				newView1.setControlador(newController1);
+			} catch (HostException e1) {
+				JOptionPane.showMessageDialog(null, "This won't happen", "Error", JOptionPane.ERROR_MESSAGE);
+			}	
 			break;
 		case "Your Houses Offers":
 			//completar
@@ -44,11 +54,11 @@ public class GuestHostController implements ActionListener {
 			if (app.logut() == false) {
 				JOptionPane.showMessageDialog(null, "The logout went wrong", "Error", JOptionPane.ERROR_MESSAGE);
 			}else{
-				LoginView newView1 = new LoginView();
-				LoginController newControler1 = new LoginController(newView1);
+				LoginView newView11 = new LoginView();
+				LoginController newControler1 = new LoginController(newView11);
 				guestHost.setVisible(false);
-				newView1.setVisible(true);
-				newView1.setControlador(newControler1);
+				newView11.setVisible(true);
+				newView11.setControlador(newControler1);
 				break;
 			}
 		}
