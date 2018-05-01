@@ -16,5 +16,6 @@ public class Pruebas {
 		HousesController controler = new HousesController(view,0);
 		view.setVisible(true);
 		view.setControlador(controler);
+		
 	}
 }

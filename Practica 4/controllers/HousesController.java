@@ -76,8 +76,11 @@ public class HousesController implements ActionListener{
 			}
 			break;
 		case "Add House":
-			//falta controlador
-			System.out.println("Meter casa");
+			AddHouseView nView = new AddHouseView();
+			AddHouseController nController = new AddHouseController(nView);
+			nView.setControlador(nController);
+			view.setVisible(false);
+			nView.setVisible(true);
 			break;
 		case "Back":
 			RegisteredUser user = app.getLoggedUser();
