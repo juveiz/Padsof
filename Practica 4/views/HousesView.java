@@ -19,6 +19,7 @@ public class HousesView {
 	private JFrame main;
 	private List<JPanel> housePanel;
 	private List<JButton> houseButtons;
+	private List<JComboBox<String>> houseTypes;
 	private JPanel north;
 	private JPanel view2;
 	private JLabel title;
@@ -37,7 +38,7 @@ public class HousesView {
 		view2 = new JPanel();
 		north = new JPanel(new BorderLayout());
 		title = new JLabel("Houses");
-		header = new JLabel("                  City                               Zip                                Description");
+		header = new JLabel("                  City                         Zip                          Description               Make an offer");
 		buttons = new JPanel(new FlowLayout());
 		next = new JButton(">>>");
 		previous = new JButton("<<<");
@@ -45,6 +46,7 @@ public class HousesView {
 		addHouse = new JButton("Add House");
 		housePanel = new ArrayList<>();
 		houseButtons = new ArrayList<>();
+		houseTypes = new ArrayList<>();
 		this.houses = houses;
 		this.firstHouse = firstHouse;
 		
@@ -59,20 +61,26 @@ public class HousesView {
 			JPanel datos,buttonsp;
 			JLabel city,zip,description;
 			JButton makeOffer;
+			JComboBox<String> type;
 			
 			datos = new JPanel(new GridLayout(0,3));
-			buttonsp = new JPanel(new GridLayout(0,1));
+			buttonsp = new JPanel(new GridLayout(0,2));
 			city = new JLabel(houses.get(i + this.firstHouse).getCity());
 			zip = new JLabel(houses.get(i + this.firstHouse).getZip() + "");
 			description = new JLabel(houses.get(i + this.firstHouse).getDescription());
 			makeOffer = new JButton("Make Offer " + i);
+			
+			String[] types = {"Vacational", "Living"};
+			type = new JComboBox<String>(types);
 			
 			datos.add(city);
 			datos.add(zip);
 			datos.add(description);
 			
 			buttonsp.add(makeOffer);
+			buttonsp.add(type);
 			houseButtons.add(makeOffer);
+			houseTypes.add(type);
 			
 			panel.add(datos,BorderLayout.CENTER);
 			panel.add(buttonsp,BorderLayout.EAST);
@@ -137,6 +145,9 @@ public class HousesView {
 	}
 	
 	public void setControlador(ActionListener c) {
+		for(JComboBox<String> button: houseTypes) {
+			button.addActionListener(c);
+		}
 		for(JButton button: houseButtons) {
 			button.addActionListener(c);
 		}
