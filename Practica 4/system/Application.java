@@ -265,7 +265,31 @@ public class Application implements Serializable {
 		}
 		return null;
 	}
-
+	/**
+	 * Get the logged admin
+	 * 
+	 * @return Admin or null
+	 */
+	public Admin getAdmin() {
+		if (admin.getState() == 1) {
+			return admin;
+		}
+		return null;
+	}
+	/**
+	 * Get a registered user from the app
+	 * @param id Id
+	 * @param pass Password
+	 * @return user or null if it doesn't exist
+	 */
+	public RegisteredUser getUser(String id,String pass) {
+		for(RegisteredUser user :users) {
+			if (user.getId().equals(id) && user.getPassword().equals(pass)) {
+				return user;
+			}
+		}
+		return null;
+	}
 	/**
 	 * Creates a new user
 	 * 

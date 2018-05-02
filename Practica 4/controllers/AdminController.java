@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import system.Application;
 import views.AdminView;
+import views.ChangeCardView;
 import views.LoginView;
 
 public class AdminController implements ActionListener {
@@ -24,7 +25,11 @@ public class AdminController implements ActionListener {
 		
 		switch(button.getActionCommand()) {
 		case "Change Credit Card":
-			//hacer cosas
+			ChangeCardView nView = new ChangeCardView();
+			ChangeCardController nController = new ChangeCardController(nView);
+			nView.setControlador(nController);
+			view.setVisible(false);
+			nView.setVisible(true);
 			break;
 		case "Approve Offers":
 			// hacer mas cosas

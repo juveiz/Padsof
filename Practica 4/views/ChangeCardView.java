@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -16,7 +17,7 @@ public class ChangeCardView {
 	private JPanel userPanel;
 	private JTextField user;
 	private JPanel passPanel;
-	private JTextField pass;
+	private JPasswordField pass;
 	private JPanel cardPanel;
 	private JTextField card;
 	private JPanel buttons;
@@ -31,7 +32,7 @@ public class ChangeCardView {
 		passPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		cardPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		user = new JTextField(15);
-		pass = new JTextField(15);
+		pass = new JPasswordField (15);
 		card = new JTextField(15);
 		buttons = new JPanel(new FlowLayout());
 		accept = new JButton("Accept");
@@ -75,5 +76,23 @@ public class ChangeCardView {
 	
 	public void setVisible(boolean dec) {
 		main.setVisible(dec);
+	}
+	
+	public void setControlador(ActionListener c) {
+		accept.addActionListener(c);
+		cancel.addActionListener(c);
+	}
+	
+	public String getUser() {
+		return user.getText();
+	}
+	
+	@SuppressWarnings("deprecation")
+	public String getPassword() {
+		return pass.getText();
+	}
+	
+	public String getCreditCard() {
+		return card.getText();
 	}
 }
