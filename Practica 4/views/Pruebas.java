@@ -1,16 +1,30 @@
 package views;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import controllers.HousesController;
+import exception.HostException;
 import offer.*;
 import system.Application;
+import user.Admin;
+import user.RegisteredUser;
 
 public class Pruebas {
 	public static void main(String args[]) {
-		Application app = Application.getInstance();
-		System.out.println(app.getUser("51999111X", "pezEspada").getCreditCard());
-		
+		Admin admin = new Admin("Pedro", "Balodis", "youaregoingtofail", "2");
+		RegisteredUser user = new RegisteredUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
+		House house = new House("Madrid", 28903, "Avenida de la Felicidad nº 23.\n Very wide\nPool");
+		List<Offer> offers = new ArrayList<>();
+		for (int i = 1; i <= 10; i++) {
+			try {
+				offers.add(new Living(LocalDate.of(2022, 3, i), 2020202, user, house, 30));
+			} catch (HostException e) {
+				e.printStackTrace();
+			}
+		}
+		AdminOfferView view = new AdminOfferView(offers, 0);
+		view.setVisible(true);
 	}
 }

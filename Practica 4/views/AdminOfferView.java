@@ -36,7 +36,7 @@ public class AdminOfferView {
 		seeOffers = new ArrayList<>();
 		north = new JPanel(new BorderLayout());
 		adminOffer = new JLabel("Approve offers");
-		header = new JLabel("House Type Initial Date");
+		header = new JLabel("     House                                           Type                                Initial Date");
 		center = new JPanel(new GridLayout(10,1,0,10));
 		buttons = new JPanel(new FlowLayout());
 		next = new JButton(">>>");
@@ -59,9 +59,9 @@ public class AdminOfferView {
 			
 			house = new JLabel(offers.get(i + this.firstOffer).getHouse() + "");
 			if(offers.get(i + this.firstOffer).isLiving()) {
-				type = new JLabel("Living");
+				type = new JLabel("             Living");
 			}else{
-				type = new JLabel("Vacational");
+				type = new JLabel("             Vacational");
 			}
 			
 			iniDate = new JLabel("" + offers.get(i + this.firstOffer).getStartingDate());
@@ -70,15 +70,67 @@ public class AdminOfferView {
 			datos.add(type);
 			datos.add(iniDate);
 			
-			details = new JButton("See details");
+			details = new JButton("See details " + i);
 			
 			buttonsp.add(details);
+			seeOffers.add(details);
 			
 			panel.add(datos,BorderLayout.CENTER);
 			panel.add(buttonsp,BorderLayout.EAST);
 			
 			offerPanel.add(panel);
-			
 		}
+		
+		buttons.add(previous);
+		buttons.add(next);
+		buttons.add(back);
+		
+		Container cont = main.getContentPane();
+		BorderLayout border = new BorderLayout();
+		border.setVgap(20);
+		border.setHgap(20);
+		cont.setLayout(border);
+		
+		for(JPanel panel: offerPanel) {
+			center.add(panel);
+		}
+		cont.add(center,BorderLayout.CENTER);
+		
+		cont.add(buttons, BorderLayout.SOUTH);
+		
+		adminOffer.setFont(new Font("TimeRoman",30,30));
+		header.setFont(new Font("TimeRoman",20,20));
+		north.add(adminOffer,BorderLayout.NORTH);
+		north.add(header,BorderLayout.SOUTH);
+		
+		cont.add(north,BorderLayout.NORTH);
+		
+		cont.add(buttons, BorderLayout.SOUTH);
+		
+		cont.add(new JPanel(),BorderLayout.EAST);
+		cont.add(new JPanel(),BorderLayout.WEST);
+		
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = (int) ((dimension.getWidth() - main.getWidth()) / 4);
+	    int y = (int) ((dimension.getHeight() - main.getHeight()) / 4);
+	    main.setLocation(x, y);
+	    
+		main.pack();
+		main.setSize(1000,500);
+		
+		main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public void setVisible(boolean dec) {
+		main.setVisible(dec);
+	}
+	
+	public void setControlador(ActionListener c) {
+		for(JButton button: seeOffers) {
+			button.addActionListener(c);
+		}
+		next.addActionListener(c);
+		back.addActionListener(c);
+		previous.addActionListener(c);
 	}
 }
