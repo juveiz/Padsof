@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import controllers.AdminOfferController;
 import controllers.HousesController;
 import exception.HostException;
 import offer.*;
@@ -17,7 +18,7 @@ public class Pruebas {
 		RegisteredUser user = new RegisteredUser("Paco", "Sanchez", "1", "Wololo", "1234a1234", true, true);
 		House house = new House("Madrid", 28903, "Avenida de la Felicidad nº 23.\n Very wide\nPool");
 		List<Offer> offers = new ArrayList<>();
-		for (int i = 1; i <= 10; i++) {
+		for (int i = 1; i <= 18; i++) {
 			try {
 				offers.add(new Living(LocalDate.of(2022, 3, i), 2020202, user, house, 30));
 			} catch (HostException e) {
@@ -25,6 +26,8 @@ public class Pruebas {
 			}
 		}
 		AdminOfferView view = new AdminOfferView(offers, 0);
+		AdminOfferController c = new AdminOfferController(view,0);
+		view.setControlador(c);
 		view.setVisible(true);
 	}
 }

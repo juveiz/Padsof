@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import system.Application;
+import views.AdminOfferView;
 import views.AdminView;
 import views.ChangeCardView;
 import views.LoginView;
@@ -32,7 +33,11 @@ public class AdminController implements ActionListener {
 			nView.setVisible(true);
 			break;
 		case "Approve Offers":
-			// hacer mas cosas
+			AdminOfferView nV = new AdminOfferView(app.getAdminOffers(),0);
+			AdminOfferController nC = new AdminOfferController(nV,0);
+			nV.setControlador(nC);
+			view.setVisible(false);
+			nV.setVisible(true);
 			break;
 		case "Logout":
 			if (app.logut() == false) {

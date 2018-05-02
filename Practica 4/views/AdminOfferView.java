@@ -133,4 +133,8 @@ public class AdminOfferView {
 		back.addActionListener(c);
 		previous.addActionListener(c);
 	}
+
+	public List<Offer> getOffers() {
+		return offers;
+	}
 }
