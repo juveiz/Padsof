@@ -66,9 +66,10 @@ public class LoginController implements ActionListener{
 					JOptionPane.showMessageDialog(null, "The admin is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
 				}else {
 					AdminView newView = new AdminView(adm);
+					AdminController newController = new AdminController(newView);
+					newView.setControlador(newController);
 					login.setVisible(false);
 					newView.setVisible(true);
-					//falta asignar el controlador
 				}
 			} catch (LoggedException e1) {
 				JOptionPane.showMessageDialog(null, "Someone is already logged", "Error", JOptionPane.ERROR_MESSAGE);

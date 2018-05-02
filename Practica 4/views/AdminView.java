@@ -13,7 +13,6 @@ public class AdminView {
 	private JPanel buttons;
 	private JButton creditCard;
 	private JButton offers;
-	private JButton users;
 	private JButton logout;
 	private JLabel welcome;
 	
@@ -22,7 +21,6 @@ public class AdminView {
 		buttons = new JPanel();
 		creditCard = new JButton("Change Credit Card");
 		offers = new JButton("Approve Offers");
-		users = new JButton("Unban User");
 		logout = new JButton("Logout");
 		welcome = new JLabel("Welcome " + admin.getName());
 		
@@ -39,7 +37,6 @@ public class AdminView {
 	
 		buttons.add(creditCard);
 		buttons.add(offers);
-		buttons.add(users);
 		buttons.add(logout);
 		
 		welcome.setFont(new Font("TimeRoman",50,50));
@@ -69,7 +66,6 @@ public class AdminView {
 	public void setControlador(ActionListener c) {
 		creditCard.addActionListener(c);
 		offers.addActionListener(c);
-		users.addActionListener(c);
 		logout.addActionListener(c);
 	}
 
