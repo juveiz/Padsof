@@ -25,9 +25,7 @@ public class Pruebas {
 				e.printStackTrace();
 			}
 		}
-		AdminOfferView view = new AdminOfferView(offers, 0);
-		AdminOfferController c = new AdminOfferController(view,0);
-		view.setControlador(c);
-		view.setVisible(true);
+		OfferAdminView v = new OfferAdminView(offers.get(0));
+		v.setVisible(true);
 	}
 }

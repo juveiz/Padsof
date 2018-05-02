@@ -10,7 +10,6 @@ import system.Application;
 import user.Admin;
 import views.AdminOfferView;
 import views.AdminView;
-import views.AdminOfferView;
 
 public class AdminOfferController implements ActionListener{
 	private Application app;
