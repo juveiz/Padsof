@@ -9,6 +9,8 @@ public class AddHouseView {
 	
 	private JFrame main;
 	private JLabel addHouse;
+	private JPanel view2;
+	private JPanel view3;
 	private JPanel add;
 	private JPanel cityPanel;
 	private JTextField cityField;
@@ -19,11 +21,12 @@ public class AddHouseView {
 	private JPanel buttons;
 	private JButton accept;
 	private JButton cancel;
+	private JLabel firma;
 	
 	public AddHouseView() {
 		main = new JFrame("Add House");
 		addHouse = new JLabel("Add House");
-		add = new JPanel(new GridLayout(3,1,0,10));
+		add = new JPanel(new GridLayout(3,1,0,5));
 		cityPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		cityField = new JTextField(10);
 		zipPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -33,6 +36,8 @@ public class AddHouseView {
 		buttons = new JPanel(new FlowLayout());
 		accept = new JButton("Accept");
 		cancel = new JButton("Cancel");
+		view2 = new JPanel();
+		view3 = new JPanel();
 		
 		cityPanel.add(new JLabel("City:                "));
 		cityPanel.add(cityField);
@@ -47,7 +52,7 @@ public class AddHouseView {
 		add.add(zipPanel);
 		add.add(descriptionPanel);
 		
-		addHouse.setFont(new Font("TimeRoman",50,50));
+		addHouse.setFont(new Font("TimeRoman",30,30));
 		
 		buttons.add(accept);
 		buttons.add(cancel);
@@ -56,16 +61,37 @@ public class AddHouseView {
 		
 		BorderLayout border = new BorderLayout();
 		cont.setLayout(border);
+		BorderLayout border2 = new BorderLayout();
+		view2.setLayout(border2);
+		BorderLayout border3 = new BorderLayout();
+		view3.setLayout(border3);
 		
 		border.setVgap(50);
 		border.setHgap(100);
+		border2.setVgap(50);
+		border2.setHgap(100);
+		border3.setVgap(50);
+		border3.setHgap(100);
 		
-		cont.add(addHouse, BorderLayout.NORTH);
-		cont.add(add, BorderLayout.CENTER);
-		cont.add(buttons,BorderLayout.SOUTH);
-		cont.add(new JPanel(),BorderLayout.WEST);
-		cont.add(new JPanel(),BorderLayout.EAST);
+		view3.add(addHouse, BorderLayout.NORTH);
+		view3.add(add, BorderLayout.CENTER);		
 		
+		view2.add(view3, BorderLayout.CENTER);
+		view2.add(buttons,BorderLayout.SOUTH);
+		view2.add(new JPanel(),BorderLayout.WEST);
+		view2.add(new JPanel(),BorderLayout.EAST);
+		
+		firma = new JLabel("RentingJ&MA");
+		firma.setFont(new Font("Brush Script MT",50,50));
+		cont.add(firma,BorderLayout.NORTH);
+		cont.add(view2,BorderLayout.CENTER);
+		
+		/*This will center the JFrame*/
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = (int) ((dimension.getWidth() - main.getWidth()) / 4);
+	    int y = (int) ((dimension.getHeight() - main.getHeight()) / 4);
+	    main.setLocation(x, y);
+	    
 		main.pack();
 		main.setSize(1000,500);
 		

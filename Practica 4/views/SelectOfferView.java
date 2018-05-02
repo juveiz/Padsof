@@ -2,8 +2,10 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
@@ -36,7 +38,7 @@ public class SelectOfferView {
 		buttons.add(living);
 		buttons.add(vacational);
 		
-		addOffer.setFont(new Font("TimeRoman",50,50));
+		addOffer.setFont(new Font("Brush Script MT",50,50));
 		
 		Container cont = main.getContentPane();
 		BorderLayout border = new BorderLayout();
@@ -51,6 +53,12 @@ public class SelectOfferView {
 		cont.add(new JPanel(),BorderLayout.EAST);
 		cont.add(new JPanel(),BorderLayout.WEST);
 		
+		/*This will center the JFrame*/
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = (int) ((dimension.getWidth() - main.getWidth()) / 4);
+	    int y = (int) ((dimension.getHeight() - main.getHeight()) / 4);
+	    main.setLocation(x, y);
+	    
 		main.pack();
 		main.setSize(1000, 500);
 		

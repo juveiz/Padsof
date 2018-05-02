@@ -3,6 +3,7 @@ package controllers;
 import java.awt.event.*;
 import javax.swing.*;
 import system.Application;
+import user.RegisteredUser;
 import views.*;
 
 public class SearchZipController implements ActionListener {
@@ -55,6 +56,26 @@ public class SearchZipController implements ActionListener {
 			break;	
 		case "Search":
 			/*Implement search*/
+			break;
+		case "Back":
+			RegisteredUser user = app.getLoggedUser();
+			if (user == null) {
+				JOptionPane.showMessageDialog(null, "This won't happen", "Error", JOptionPane.ERROR_MESSAGE);
+			}else {
+				if(user.isGuest() == false) {
+					HostView newView11 = new HostView(user);
+					HostController newController11 = new HostController(newView11);
+					newView11.setControlador(newController11);
+					this.view.setVisible(false);
+					newView11.setVisible(true);
+				}else {
+					GuestHostView newView11 = new GuestHostView(user);
+					GuestHostController newController11 = new GuestHostController(newView11);
+					newView11.setControlador(newController11);
+					this.view.setVisible(false);
+					newView11.setVisible(true);
+				}
+			}
 			break;
 		}
 	}	

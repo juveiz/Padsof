@@ -46,6 +46,12 @@ public class GuestView {
 		cont.add(new JPanel(),BorderLayout.EAST);
 		cont.add(new JPanel(),BorderLayout.WEST);
 		
+		/*This will center the JFrame*/
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = (int) ((dimension.getWidth() - main.getWidth()) / 4);
+	    int y = (int) ((dimension.getHeight() - main.getHeight()) / 4);
+	    main.setLocation(x, y);
+	    
 		main.pack();
 		main.setSize(1000, 500);
 		

@@ -92,7 +92,7 @@ public class HousesController implements ActionListener{
 			newView9.setVisible(true);
 			newView9.setControlador(newController9);
 		break;
-		case "Next":
+		case ">>>":
 			if (this.firstHouse + 10 >= view.getHouses().size()) {
 				JOptionPane.showMessageDialog(null, "There are no more houses", "Error", JOptionPane.ERROR_MESSAGE);
 			}else {
@@ -103,7 +103,7 @@ public class HousesController implements ActionListener{
 				newView11.setVisible(true);
 			}
 			break;
-		case "Previous":
+		case "<<<":
 			if (this.firstHouse - 10 < 0) {
 				JOptionPane.showMessageDialog(null, "There are no more houses", "Error", JOptionPane.ERROR_MESSAGE);
 			}else {

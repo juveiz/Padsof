@@ -77,11 +77,17 @@ public class SearchTypeView {
 		view2.add(buttons,BorderLayout.NORTH);
 		view2.add(down,BorderLayout.CENTER);
 		
+		/*This will center the JFrame*/
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = (int) ((dimension.getWidth() - view.getWidth()) / 4);
+	    int y = (int) ((dimension.getHeight() - view.getHeight()) / 4);
+	    view.setLocation(x, y);
+	    
 		/*Global panel*/
 		back = new JButton("Back");
 		exit.add(back);
 		firma = new JLabel("RentingJ&MA");
-		firma.setFont(new Font("TimeRoman",50,50));
+		firma.setFont(new Font("Brush Script MT",50,50));
 		cont.add(firma, BorderLayout.NORTH);
 		cont.add(view2,BorderLayout.CENTER);
 		cont.add(exit, BorderLayout.SOUTH);

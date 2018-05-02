@@ -3,9 +3,11 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.*;
@@ -18,6 +20,7 @@ public class HousesView {
 	private List<JPanel> housePanel;
 	private List<JButton> houseButtons;
 	private JPanel north;
+	private JPanel view2;
 	private JLabel title;
 	private JLabel header;
 	private JPanel center;
@@ -26,16 +29,18 @@ public class HousesView {
 	private JButton previous;
 	private JButton back;
 	private JButton addHouse;
+	private JLabel firma;
 
 	public HousesView(List<House> houses,int firstHouse) {
 		main = new JFrame("Houses");
 		center = new JPanel();
+		view2 = new JPanel();
 		north = new JPanel(new BorderLayout());
 		title = new JLabel("Houses");
-		header = new JLabel("               City                         Zip                            Description");
+		header = new JLabel("                  City                               Zip                                Description");
 		buttons = new JPanel(new FlowLayout());
-		next = new JButton("Next");
-		previous = new JButton("Previous");
+		next = new JButton(">>>");
+		previous = new JButton("<<<");
 		back = new JButton("Back");
 		addHouse = new JButton("Add House");
 		housePanel = new ArrayList<>();
@@ -48,6 +53,7 @@ public class HousesView {
 		if(houses.size() - firstHouse < 10) {
 			maxHouses = houses.size() - firstHouse;
 		}
+		
 		for (int i = 0; i < maxHouses;i++) {
 			JPanel panel = new JPanel(new BorderLayout());
 			JPanel datos,buttonsp;
@@ -73,13 +79,18 @@ public class HousesView {
 			
 			housePanel.add(panel);
 		}
+		
 		Container cont = main.getContentPane();
 		
 		BorderLayout border = new BorderLayout();
 		cont.setLayout(border);
+		BorderLayout border2 = new BorderLayout();
+		view2.setLayout(border2);
 		
-		border.setVgap(50);
-		border.setHgap(100);
+		border.setVgap(20);
+		border.setHgap(20);
+		border2.setVgap(10);
+		border2.setHgap(100);
 		
 		GridLayout grid = new GridLayout(10,1,0,10);
 		center.setLayout(grid);
@@ -87,23 +98,34 @@ public class HousesView {
 			center.add(panel);
 		}
 		
-		cont.add(center,BorderLayout.CENTER);
+		view2.add(center,BorderLayout.CENTER);
 		
 		buttons.add(addHouse);
-		buttons.add(next);
 		buttons.add(previous);
+		buttons.add(next);
 		buttons.add(back);
 		
-		title.setFont(new Font("TimeRoman",50,50));
-		header.setFont(new Font("TimeRoman",25,25));
+		title.setFont(new Font("TimeRoman",30,30));
+		header.setFont(new Font("TimeRoman",20,20));
 		north.add(title,BorderLayout.NORTH);
 		north.add(header,BorderLayout.SOUTH);
 		
-		cont.add(buttons, BorderLayout.SOUTH);
-		cont.add(new JPanel(),BorderLayout.EAST);
-		cont.add(new JPanel(),BorderLayout.WEST);
-		cont.add(north,BorderLayout.NORTH);
+		view2.add(buttons, BorderLayout.SOUTH);
+		view2.add(new JPanel(),BorderLayout.EAST);
+		view2.add(new JPanel(),BorderLayout.WEST);
+		view2.add(north,BorderLayout.NORTH);
 		
+		firma = new JLabel("RentingJ&MA");
+		firma.setFont(new Font("Brush Script MT",50,50));
+		cont.add(view2,BorderLayout.CENTER);
+		cont.add(firma,BorderLayout.NORTH);
+		
+		/*This will center the JFrame*/
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = (int) ((dimension.getWidth() - main.getWidth()) / 4);
+	    int y = (int) ((dimension.getHeight() - main.getHeight()) / 4);
+	    main.setLocation(x, y);
+	    
 		main.pack();
 		main.setSize(1000,500);
 		
