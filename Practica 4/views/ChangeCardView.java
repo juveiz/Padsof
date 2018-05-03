@@ -14,72 +14,83 @@ import javax.swing.*;
 public class ChangeCardView {
 	
 	private JFrame main;
-	private JLabel changeCard;
+	private JLabel addHouse;
+	private JPanel view2;
+	private JPanel view3;
 	private JPanel add;
-	private JPanel userPanel;
-	private JTextField user;
-	private JPanel passPanel;
-	private JPasswordField pass;
-	private JPanel cardPanel;
-	private JTextField card;
+	private JPanel cityPanel;
+	private JTextField cityField;
+	private JPanel zipPanel;
+	private JTextField zipField;
+	private JPanel descriptionPanel;
+	private JTextField descriptionField;
 	private JPanel buttons;
 	private JButton accept;
 	private JButton cancel;
-	private JPanel view;
 	private JLabel firma;
 	
 	public ChangeCardView() {
-		main = new JFrame("Change Credit Card");
-		changeCard = new JLabel("Change Credit Card");
+		main = new JFrame("Change card");
+		addHouse = new JLabel("Change credit card");
 		add = new JPanel(new GridLayout(3,1,0,5));
-		userPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		passPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		cardPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		view = new JPanel();
-		user = new JTextField(15);
-		pass = new JPasswordField (15);
-		card = new JTextField(15);
+		cityPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		cityField = new JTextField(10);
+		zipPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		zipField = new JPasswordField(10);
+		descriptionPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		descriptionField = new JTextField(10);
 		buttons = new JPanel(new FlowLayout());
 		accept = new JButton("Accept");
 		cancel = new JButton("Cancel");
+		view2 = new JPanel();
+		view3 = new JPanel();
 		
-		changeCard.setFont(new Font("TimeRoman",30,30));
+		cityPanel.add(new JLabel("User:                              "));
+		cityPanel.add(cityField);
 		
-		userPanel.add(new JLabel("User:                      "));
-		userPanel.add(user);
+		zipPanel.add(new JLabel("Password:                   "));
+		zipPanel.add(zipField);
 		
-		passPanel.add(new JLabel("Password:            "));
-		passPanel.add(pass);
+		descriptionPanel.add(new JLabel("New credit card:         "));
+		descriptionPanel.add(descriptionField);
 		
-		cardPanel.add(new JLabel("New Credit Card: "));
-		cardPanel.add(card);
+		add.add(cityPanel);
+		add.add(zipPanel);
+		add.add(descriptionPanel);
 		
-		add.add(userPanel);
-		add.add(passPanel);
-		add.add(cardPanel);
+		addHouse.setFont(new Font("TimeRoman",30,30));
 		
 		buttons.add(accept);
 		buttons.add(cancel);
 		
 		Container cont = main.getContentPane();
+		
 		BorderLayout border = new BorderLayout();
+		cont.setLayout(border);
+		BorderLayout border2 = new BorderLayout();
+		view2.setLayout(border2);
+		BorderLayout border3 = new BorderLayout();
+		view3.setLayout(border3);
+		
 		border.setVgap(50);
 		border.setHgap(100);
-		cont.setLayout(border);
+		border2.setVgap(50);
+		border2.setHgap(100);
+		border3.setVgap(50);
+		border3.setHgap(100);
 		
-		view.setLayout(new BorderLayout());
+		view3.add(addHouse, BorderLayout.NORTH);
+		view3.add(add, BorderLayout.CENTER);		
 		
-		view.add(changeCard, BorderLayout.NORTH);
-		view.add(add, BorderLayout.CENTER);
-		view.add(buttons,BorderLayout.SOUTH);
-		view.add(new JPanel(),BorderLayout.EAST);
-		view.add(new JPanel(),BorderLayout.WEST);
+		view2.add(view3, BorderLayout.CENTER);
+		view2.add(buttons,BorderLayout.SOUTH);
+		view2.add(new JPanel(),BorderLayout.WEST);
+		view2.add(new JPanel(),BorderLayout.EAST);
 		
 		firma = new JLabel("RentingJ&MA");
 		firma.setFont(new Font("Brush Script MT",50,50));
-		
-		cont.add(view,BorderLayout.CENTER);
 		cont.add(firma,BorderLayout.NORTH);
+		cont.add(view2,BorderLayout.CENTER);
 		
 		/*This will center the JFrame*/
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -103,15 +114,15 @@ public class ChangeCardView {
 	}
 	
 	public String getUser() {
-		return user.getText();
+		return cityField.getText();
 	}
 	
 	@SuppressWarnings("deprecation")
 	public String getPassword() {
-		return pass.getText();
+		return zipField.getText();
 	}
 	
 	public String getCreditCard() {
-		return card.getText();
+		return descriptionField.getText();
 	}
 }
