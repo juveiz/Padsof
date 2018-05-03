@@ -62,9 +62,9 @@ public class SearchZipController implements ActionListener {
 			if (user == null) {
 				JOptionPane.showMessageDialog(null, "This won't happen", "Error", JOptionPane.ERROR_MESSAGE);
 			}else {
-				if(user.isGuest() == false) {
-					HostView newView11 = new HostView(user);
-					HostController newController11 = new HostController(newView11);
+				if(user.isHost() == false) {
+					GuestView newView11 = new GuestView(user);
+					GuestController newController11 = new GuestController(newView11);
 					newView11.setControlador(newController11);
 					this.view.setVisible(false);
 					newView11.setVisible(true);

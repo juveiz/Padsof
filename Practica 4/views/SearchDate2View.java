@@ -16,15 +16,14 @@ public class SearchDate2View {
 	private JButton one;
 	private JButton two;
 	private JButton three;
-	private JButton four;
-	private JButton five;
-	private JButton six;
 	private JButton search;
 	private JButton back;
 	private JComboBox<String> combo;
 	private JLabel text1;
 	private JLabel text2;
 	private JLabel firma;
+	private JLabel welcome;
+	private JPanel view4;
 	
 	public SearchDate2View() {
 		/*We declare the panels*/
@@ -36,10 +35,12 @@ public class SearchDate2View {
 		begin = new JPanel();
 		end = new JPanel();
 		exit = new JPanel();
+		welcome = new JLabel("Choose a kind of search");
+		welcome.setFont(new Font("TimeRoman",30,30));
+		view4 = new JPanel();
 		
 		/*We choose the layouts*/
 		Container cont = view.getContentPane();
-		cont.setLayout(new BorderLayout());
 		view2.setLayout(new BorderLayout());
 		view3.setLayout(new BorderLayout());
 		buttons.setLayout(new FlowLayout());
@@ -47,6 +48,16 @@ public class SearchDate2View {
 		begin.setLayout(new FlowLayout());
 		end.setLayout(new FlowLayout());
 		exit.setLayout(new FlowLayout());
+		
+		BorderLayout border = new BorderLayout();
+		cont.setLayout(border);		
+		border.setVgap(20);
+		border.setHgap(100);
+		
+		BorderLayout border2 = new BorderLayout();
+		view4.setLayout(border2);		
+		border2.setVgap(20);
+		border2.setHgap(100);
 		
 		/*RadioButtons panel*/
 		one = new JButton("Search by zip");
@@ -92,14 +103,22 @@ public class SearchDate2View {
 	    int y = (int) ((dimension.getHeight() - view.getHeight()) / 4);
 	    view.setLocation(x, y);
 	    
+	    view4.add(view2,BorderLayout.CENTER);
+	    view4.add(welcome,BorderLayout.NORTH);
+	    view4.add(new JPanel(),BorderLayout.EAST);
+	    view4.add(new JPanel(),BorderLayout.WEST);
+	    view4.add(new JPanel(),BorderLayout.SOUTH);
+	    
 		/*Global panel*/
 		back = new JButton("Login");
 		exit.add(back);
 		firma = new JLabel("RentingJ&MA");
 		firma.setFont(new Font("Brush Script MT",50,50));
 		cont.add(firma, BorderLayout.NORTH);
-		cont.add(view2,BorderLayout.CENTER);
+		cont.add(view4,BorderLayout.CENTER);
 		cont.add(exit, BorderLayout.SOUTH);
+		cont.add(new JPanel(),BorderLayout.EAST);
+	    cont.add(new JPanel(),BorderLayout.WEST);
 		view.pack();
 		view.setSize(1000,500);
 		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

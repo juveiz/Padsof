@@ -1,7 +1,6 @@
 package views;
 
 import controllers.SearchZip2Controller;
-import controllers.SearchZipController;
 
 public class Search {
 	public static void main(String args[]) {

@@ -23,16 +23,20 @@ public class GuestView {
 		search = new JButton("Search offers");
 		offers = new JButton("Your Offers");
 		logout = new JButton("Logout");
-		welcome = new JLabel("Welcome " + user.getName());
+		welcome = new JLabel("Welcome " + user.getName() + ". Choose an option.");
 		view = new JPanel();
 		
 		
 		Container cont = main.getContentPane();
 		BorderLayout border = new BorderLayout();
 		cont.setLayout(border);
+		BorderLayout border2 = new BorderLayout();
+		view.setLayout(border2);
 		
 		border.setVgap(100);
 		border.setHgap(100);
+		border2.setVgap(20);
+		border2.setHgap(0);
 		
 		GridLayout grid = new GridLayout(3,1,0,10);
 		buttons.setLayout(grid);
@@ -40,11 +44,9 @@ public class GuestView {
 		buttons.add(search);
 		buttons.add(offers);
 		buttons.add(logout);
-		
-		view.setLayout(new BorderLayout());
-		
-		welcome.setFont(new Font("TimeRoman",50,50));
-		welcome.setHorizontalAlignment(JTextField.CENTER);
+				
+		welcome.setFont(new Font("TimeRoman",30,30));
+		welcome.setHorizontalAlignment(JTextField.LEFT);
 		view.add(welcome,BorderLayout.NORTH);
 		view.add(buttons,BorderLayout.CENTER);
 		view.add(new JPanel(),BorderLayout.SOUTH);
@@ -56,6 +58,9 @@ public class GuestView {
 		
 		cont.add(view,BorderLayout.CENTER);
 		cont.add(firma,BorderLayout.NORTH);
+		cont.add(new JPanel(),BorderLayout.SOUTH);
+		cont.add(new JPanel(),BorderLayout.WEST);
+		cont.add(new JPanel(),BorderLayout.EAST);
 		
 		/*This will center the JFrame*/
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
