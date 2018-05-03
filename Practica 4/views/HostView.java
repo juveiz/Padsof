@@ -34,9 +34,9 @@ public class HostView {
 		BorderLayout border2 = new BorderLayout();
 		view.setLayout(border2);
 		
-		border.setVgap(100);
+		border.setVgap(50);
 		border.setHgap(100);
-		border2.setVgap(20);
+		border2.setVgap(50);
 		border2.setHgap(0);
 		
 		GridLayout grid = new GridLayout(3,1,0,10);
