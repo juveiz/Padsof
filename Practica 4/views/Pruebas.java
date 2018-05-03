@@ -26,6 +26,7 @@ public class Pruebas {
 			}
 		}
 		OfferAdminView v = new OfferAdminView(offers.get(0));
+
 		v.setVisible(true);
 	}
 }

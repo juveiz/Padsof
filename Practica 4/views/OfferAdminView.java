@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -92,6 +93,13 @@ public class OfferAdminView {
 	
 	public void setVisible(boolean dec) {
 		main.setVisible(dec);
+	}
+	
+	public void setControlador(ActionListener c) {
+		accept.addActionListener(c);
+		cancel.addActionListener(c);
+		afc.addActionListener(c);
+		back.addActionListener(c);
 	}
 	
 	public Offer getOffer() {

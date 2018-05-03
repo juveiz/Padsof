@@ -10,6 +10,7 @@ import system.Application;
 import user.Admin;
 import views.AdminOfferView;
 import views.AdminView;
+import views.OfferAdminView;
 
 public class AdminOfferController implements ActionListener{
 	private Application app;
@@ -21,11 +22,49 @@ public class AdminOfferController implements ActionListener{
 		this.firstOffer = firstOffer;
 		app = Application.getInstance();
 	}
+	
+	private void aux(int i) {
+		OfferAdminView nV = new OfferAdminView(view.getOffers().get(i + this.firstOffer));
+		OfferAdminController nC = new OfferAdminController(nV,view.getOffers().get(i + this.firstOffer));
+		nV.setControlador(nC);
+		view.setVisible(false);
+		nV.setVisible(true);
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton button = (JButton)e.getSource();
 		
 		switch(button.getActionCommand()) {
+		case "See details 0":
+			this.aux(0);
+			break;
+		case "See details 1":
+			this.aux(1);
+			break;
+		case "See details 2":
+			this.aux(2);
+			break;
+		case "See details 3":
+			this.aux(3);
+			break;
+		case "See details 4":
+			this.aux(4);
+			break;
+		case "See details 5":
+			this.aux(5);
+			break;
+		case "See details 6":
+			this.aux(6);
+			break;
+		case "See details 7":
+			this.aux(7);
+			break;
+		case "See details 8":
+			this.aux(8);
+			break;
+		case "See details 9":
+			this.aux(9);
+			break;
 		case ">>>":
 			if (this.firstOffer + 10 >= view.getOffers().size()) {
 				JOptionPane.showMessageDialog(null, "There are no more offers", "Error", JOptionPane.ERROR_MESSAGE);

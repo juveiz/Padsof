@@ -665,7 +665,7 @@ public class Application implements Serializable {
 	private void backup() {
 		List<Offer> noffers = new ArrayList<>();
 		for (Offer o : admin.getOffers()) {
-			if (o.getState() == -1) {
+			if (o.getState() == -1 || o.getState() == 2) {
 				noffers.add(o);
 			}
 		}
