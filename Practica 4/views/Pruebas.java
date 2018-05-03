@@ -25,7 +25,7 @@ public class Pruebas {
 				e.printStackTrace();
 			}
 		}
-		ListOfferView v = new ListOfferView(offers,0,"Paquito el chocolatero");
+		AddVacationalView v = new AddVacationalView();
 
 		v.setVisible(true);
 	}

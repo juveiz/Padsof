@@ -4,7 +4,6 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import exception.GuestException;
-import exception.HostException;
 import system.Application;
 import views.*;
 

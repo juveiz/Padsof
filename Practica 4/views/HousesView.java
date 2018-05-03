@@ -145,9 +145,9 @@ public class HousesView {
 	}
 	
 	public void setControlador(ActionListener c) {
-		for(JComboBox<String> button: houseTypes) {
+		/*for(JComboBox<String> button: houseTypes) {
 			button.addActionListener(c);
-		}
+		}*/
 		for(JButton button: houseButtons) {
 			button.addActionListener(c);
 		}
