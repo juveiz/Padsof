@@ -23,9 +23,11 @@ public class AdminOfferView {
 	private JLabel header;
 	private JPanel center;
 	private JPanel buttons;
+	private JPanel view;
 	private JButton next;
 	private JButton previous;
 	private JButton back;
+	private JLabel firma;
 	
 	public AdminOfferView(List<Offer> offers,int firstOffer) {
 		this.offers = offers;
@@ -35,6 +37,7 @@ public class AdminOfferView {
 		offerPanel = new ArrayList<>();
 		seeOffers = new ArrayList<>();
 		north = new JPanel(new BorderLayout());
+		view = new JPanel(new BorderLayout());
 		adminOffer = new JLabel("Approve offers");
 		header = new JLabel("     House                                           Type                                Initial Date");
 		center = new JPanel(new GridLayout(10,1,0,10));
@@ -94,21 +97,23 @@ public class AdminOfferView {
 		for(JPanel panel: offerPanel) {
 			center.add(panel);
 		}
-		cont.add(center,BorderLayout.CENTER);
-		
-		cont.add(buttons, BorderLayout.SOUTH);
 		
 		adminOffer.setFont(new Font("TimeRoman",30,30));
 		header.setFont(new Font("TimeRoman",20,20));
 		north.add(adminOffer,BorderLayout.NORTH);
 		north.add(header,BorderLayout.SOUTH);
 		
-		cont.add(north,BorderLayout.NORTH);
+		view.add(center,BorderLayout.CENTER);
+		view.add(north,BorderLayout.NORTH);		
+		view.add(buttons, BorderLayout.SOUTH);		
+		view.add(new JPanel(),BorderLayout.EAST);
+		view.add(new JPanel(),BorderLayout.WEST);
 		
-		cont.add(buttons, BorderLayout.SOUTH);
+		firma = new JLabel("RentingJ&MA");
+		firma.setFont(new Font("Brush Script MT",50,50));
 		
-		cont.add(new JPanel(),BorderLayout.EAST);
-		cont.add(new JPanel(),BorderLayout.WEST);
+		cont.add(view,BorderLayout.CENTER);
+		cont.add(firma,BorderLayout.NORTH);
 		
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 	    int x = (int) ((dimension.getWidth() - main.getWidth()) / 4);

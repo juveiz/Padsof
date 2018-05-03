@@ -14,6 +14,8 @@ public class GuestView {
 	private JButton offers;
 	private JButton logout;
 	private JLabel welcome;
+	private JLabel firma;
+	private JPanel view;
 	
 	public GuestView(RegisteredUser user) {
 		main = new JFrame("Guest");
@@ -22,6 +24,7 @@ public class GuestView {
 		offers = new JButton("Your Offers");
 		logout = new JButton("Logout");
 		welcome = new JLabel("Welcome " + user.getName());
+		view = new JPanel();
 		
 		
 		Container cont = main.getContentPane();
@@ -33,18 +36,26 @@ public class GuestView {
 		
 		GridLayout grid = new GridLayout(3,1,0,10);
 		buttons.setLayout(grid);
-	
+			
 		buttons.add(search);
 		buttons.add(offers);
 		buttons.add(logout);
 		
+		view.setLayout(new BorderLayout());
+		
 		welcome.setFont(new Font("TimeRoman",50,50));
 		welcome.setHorizontalAlignment(JTextField.CENTER);
-		cont.add(welcome,BorderLayout.NORTH);
-		cont.add(buttons,BorderLayout.CENTER);
-		cont.add(new JPanel(),BorderLayout.SOUTH);
-		cont.add(new JPanel(),BorderLayout.EAST);
-		cont.add(new JPanel(),BorderLayout.WEST);
+		view.add(welcome,BorderLayout.NORTH);
+		view.add(buttons,BorderLayout.CENTER);
+		view.add(new JPanel(),BorderLayout.SOUTH);
+		view.add(new JPanel(),BorderLayout.EAST);
+		view.add(new JPanel(),BorderLayout.WEST);
+		
+		firma = new JLabel("RentingJ&MA");
+		firma.setFont(new Font("Brush Script MT",50,50));
+		
+		cont.add(view,BorderLayout.CENTER);
+		cont.add(firma,BorderLayout.NORTH);
 		
 		/*This will center the JFrame*/
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();

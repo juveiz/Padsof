@@ -15,6 +15,8 @@ public class AdminView {
 	private JButton offers;
 	private JButton logout;
 	private JLabel welcome;
+	private JPanel view;
+	private JLabel firma;
 	
 	public AdminView(Admin admin) {
 		main = new JFrame("Admin");
@@ -23,6 +25,7 @@ public class AdminView {
 		offers = new JButton("Approve Offers");
 		logout = new JButton("Logout");
 		welcome = new JLabel("Welcome " + admin.getName());
+		view = new JPanel();
 		
 		
 		Container cont = main.getContentPane();
@@ -34,18 +37,26 @@ public class AdminView {
 		
 		GridLayout grid = new GridLayout(4,1,0,10);
 		buttons.setLayout(grid);
-	
 		buttons.add(creditCard);
 		buttons.add(offers);
 		buttons.add(logout);
 		
 		welcome.setFont(new Font("TimeRoman",50,50));
 		welcome.setHorizontalAlignment(JTextField.CENTER);
-		cont.add(welcome,BorderLayout.NORTH);
-		cont.add(buttons,BorderLayout.CENTER);
-		cont.add(new JPanel(),BorderLayout.SOUTH);
-		cont.add(new JPanel(),BorderLayout.EAST);
-		cont.add(new JPanel(),BorderLayout.WEST);
+		
+		view.setLayout(new BorderLayout());
+		
+		view.add(welcome,BorderLayout.NORTH);
+		view.add(buttons,BorderLayout.CENTER);
+		view.add(new JPanel(),BorderLayout.SOUTH);
+		view.add(new JPanel(),BorderLayout.EAST);
+		view.add(new JPanel(),BorderLayout.WEST);
+		
+		firma = new JLabel("RentingJ&MA");
+		firma.setFont(new Font("Brush Script MT",50,50));
+		
+		cont.add(view,BorderLayout.CENTER);
+		cont.add(firma,BorderLayout.NORTH);
 		
 		/*This will center the JFrame*/
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();

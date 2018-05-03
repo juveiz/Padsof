@@ -2,9 +2,11 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
@@ -23,6 +25,8 @@ public class ChangeCardView {
 	private JPanel buttons;
 	private JButton accept;
 	private JButton cancel;
+	private JPanel view;
+	private JLabel firma;
 	
 	public ChangeCardView() {
 		main = new JFrame("Change Credit Card");
@@ -31,6 +35,7 @@ public class ChangeCardView {
 		userPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		passPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		cardPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		view = new JPanel();
 		user = new JTextField(15);
 		pass = new JPasswordField (15);
 		card = new JTextField(15);
@@ -62,12 +67,26 @@ public class ChangeCardView {
 		border.setHgap(100);
 		cont.setLayout(border);
 		
-		cont.add(changeCard, BorderLayout.NORTH);
-		cont.add(add, BorderLayout.CENTER);
-		cont.add(buttons,BorderLayout.SOUTH);
-		cont.add(new JPanel(),BorderLayout.EAST);
-		cont.add(new JPanel(),BorderLayout.WEST);
+		view.setLayout(new BorderLayout());
 		
+		view.add(changeCard, BorderLayout.NORTH);
+		view.add(add, BorderLayout.CENTER);
+		view.add(buttons,BorderLayout.SOUTH);
+		view.add(new JPanel(),BorderLayout.EAST);
+		view.add(new JPanel(),BorderLayout.WEST);
+		
+		firma = new JLabel("RentingJ&MA");
+		firma.setFont(new Font("Brush Script MT",50,50));
+		
+		cont.add(view,BorderLayout.CENTER);
+		cont.add(firma,BorderLayout.NORTH);
+		
+		/*This will center the JFrame*/
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = (int) ((dimension.getWidth() - main.getWidth()) / 4);
+	    int y = (int) ((dimension.getHeight() - main.getHeight()) / 4);
+	    main.setLocation(x, y);
+	    
 		main.pack();
 		main.setSize(1000,500);
 		

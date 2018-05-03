@@ -41,11 +41,11 @@ public class SearchType2Controller implements ActionListener {
 			newView1.setControlador(newController1);
 			break;
 		case "Login":
-			LoginView view = new LoginView();
-			LoginController controller = new LoginController(view);
+			LoginView newView4 = new LoginView();
+			LoginController controller = new LoginController(newView4);
 			view.setVisible(false);
-			view.setControlador(controller);
-			view.setVisible(true);
+			newView4.setControlador(controller);
+			newView4.setVisible(true);
 			break;
 		case "Search":
 			/*Implement search*/
