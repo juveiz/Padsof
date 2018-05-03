@@ -35,7 +35,16 @@ public class HostController implements ActionListener {
 			}
 			break;
 		case "Your Offers":
-			//completar
+			try {
+				ListOfferView nV = new ListOfferView(app.getHostOffers(app.getLoggedUser()),0,"Your Offers");
+				HostOfferController nC = new HostOfferController(nV,0);
+				nV.setControlador(nC);
+				host.setVisible(false);
+				nV.setVisible(true);
+			} catch (HostException e1) {
+				JOptionPane.showMessageDialog(null, "This won't happen", "Error", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
 			break;
 		case "Logout":
 			if (app.logut() == false) {

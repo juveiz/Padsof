@@ -45,7 +45,16 @@ public class GuestHostController implements ActionListener {
 			}	
 			break;
 		case "Your Houses Offers":
-			//completar
+			try {
+				ListOfferView nV = new ListOfferView(app.getHostOffers(app.getLoggedUser()),0,"Your Offers");
+				HostOfferController nC = new HostOfferController(nV,0);
+				nV.setControlador(nC);
+				guestHost.setVisible(false);
+				nV.setVisible(true);
+			} catch (HostException e1) {
+				JOptionPane.showMessageDialog(null, "This won't happen", "Error", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
 			break;
 		case "Your Offers":
 			//completar

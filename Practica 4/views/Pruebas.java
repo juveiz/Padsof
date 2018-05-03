@@ -25,7 +25,7 @@ public class Pruebas {
 				e.printStackTrace();
 			}
 		}
-		OfferAdminView v = new OfferAdminView(offers.get(0));
+		ListOfferView v = new ListOfferView(offers,0,"Paquito el chocolatero");
 
 		v.setVisible(true);
 	}

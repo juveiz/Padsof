@@ -8,54 +8,60 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
-import java.util.*;
-import javax.swing.*;
-import offer.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class AdminOfferView {
+import javax.swing.*;
+
+import offer.Offer;
+
+public class ListOfferView {
 	private int firstOffer;
 	private List<Offer> offers;
 	private JFrame main;
 	private List<JPanel> offerPanel;
-	private List<JButton> seeOffers;
+	private List<JButton> offerButtons;
 	private JPanel north;
-	private JLabel adminOffer;
+	private JLabel title;
 	private JLabel header;
 	private JPanel center;
+	private JPanel view2;
 	private JPanel buttons;
-	private JPanel view;
 	private JButton next;
 	private JButton previous;
 	private JButton back;
 	private JLabel firma;
 	
-	public AdminOfferView(List<Offer> offers,int firstOffer) {
+	public ListOfferView(List<Offer> offers,int firstOffer,String label) {
 		this.offers = offers;
 		this.firstOffer = firstOffer;
 		
-		main = new JFrame("Approve Offers");
-		offerPanel = new ArrayList<>();
-		seeOffers = new ArrayList<>();
+		main = new JFrame("Offers");
+		center = new JPanel();
+		view2 = new JPanel();
 		north = new JPanel(new BorderLayout());
-		view = new JPanel(new BorderLayout());
-		adminOffer = new JLabel("Approve offers");
+		title = new JLabel(label);
 		header = new JLabel(" House                              Type                    State                         Initial Date");
-		center = new JPanel(new GridLayout(10,1,0,10));
 		buttons = new JPanel(new FlowLayout());
 		next = new JButton(">>>");
 		previous = new JButton("<<<");
 		back = new JButton("Back");
+		firma = new JLabel("RentingJ&MA");
+		firma.setFont(new Font("Brush Script MT",50,50));
+		
+		offerPanel = new ArrayList<>();
+		offerButtons = new ArrayList<>();
 		
 		int maxOffers = 10;
 		if(offers.size() - firstOffer < 10) {
 			maxOffers = offers.size() - firstOffer;
 		}
 		
-		for (int i = 0; i < maxOffers;i++) {
+		for(int i = 0; i < maxOffers; i++) {
 			JPanel panel = new JPanel(new BorderLayout());
 			JPanel datos,buttonsp;
 			JLabel house,type,state,iniDate;
-			JButton details;
+			JButton seeDetails;
 			String stt = "";
 			
 			datos = new JPanel(new GridLayout(0,4));
@@ -82,7 +88,6 @@ public class AdminOfferView {
 				stt = "Bought";
 			}
 			state = new JLabel(stt);
-			
 			iniDate = new JLabel("" + offers.get(i + this.firstOffer).getStartingDate());
 			
 			datos.add(house);
@@ -90,15 +95,16 @@ public class AdminOfferView {
 			datos.add(state);
 			datos.add(iniDate);
 			
-			details = new JButton("See details " + i);
+			seeDetails = new JButton("See details " + i);
 			
-			buttonsp.add(details);
-			seeOffers.add(details);
+			buttonsp.add(seeDetails);
+			offerButtons.add(seeDetails);
 			
 			panel.add(datos,BorderLayout.CENTER);
 			panel.add(buttonsp,BorderLayout.EAST);
 			
 			offerPanel.add(panel);
+			
 		}
 		
 		buttons.add(previous);
@@ -110,27 +116,32 @@ public class AdminOfferView {
 		border.setVgap(20);
 		border.setHgap(20);
 		cont.setLayout(border);
+		BorderLayout border2 = new BorderLayout();
+		view2.setLayout(border2);
 		
+		GridLayout grid = new GridLayout(10,1,0,10);
+		center.setLayout(grid);
 		for(JPanel panel: offerPanel) {
 			center.add(panel);
 		}
 		
-		adminOffer.setFont(new Font("TimeRoman",30,30));
+		view2.add(center,BorderLayout.CENTER);
+		title.setFont(new Font("TimeRoman",30,30));
 		header.setFont(new Font("TimeRoman",20,20));
-		north.add(adminOffer,BorderLayout.NORTH);
+		north.add(title,BorderLayout.NORTH);
 		north.add(header,BorderLayout.SOUTH);
 		
-		view.add(center,BorderLayout.CENTER);
-		view.add(north,BorderLayout.NORTH);		
-		view.add(buttons, BorderLayout.SOUTH);		
-		view.add(new JPanel(),BorderLayout.EAST);
-		view.add(new JPanel(),BorderLayout.WEST);
+		view2.add(buttons, BorderLayout.SOUTH);
+		view2.add(new JPanel(),BorderLayout.EAST);
+		view2.add(new JPanel(),BorderLayout.WEST);
+		view2.add(north,BorderLayout.NORTH);
 		
 		firma = new JLabel("RentingJ&MA");
 		firma.setFont(new Font("Brush Script MT",50,50));
-		
-		cont.add(view,BorderLayout.CENTER);
+		cont.add(view2,BorderLayout.CENTER);
 		cont.add(firma,BorderLayout.NORTH);
+		cont.add(new JPanel(),BorderLayout.EAST);
+		cont.add(new JPanel(),BorderLayout.WEST);
 		
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 	    int x = (int) ((dimension.getWidth() - main.getWidth()) / 4);
@@ -148,15 +159,20 @@ public class AdminOfferView {
 	}
 	
 	public void setControlador(ActionListener c) {
-		for(JButton button: seeOffers) {
+		for(JButton button: offerButtons) {
 			button.addActionListener(c);
 		}
 		next.addActionListener(c);
 		back.addActionListener(c);
 		previous.addActionListener(c);
 	}
-
+	
 	public List<Offer> getOffers() {
 		return offers;
 	}
+	
+	public String getLabel() {
+		return title.getText();
+	}
+
 }
