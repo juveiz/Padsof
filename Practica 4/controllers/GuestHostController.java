@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import exception.GuestException;
 import exception.HostException;
 import system.Application;
 import views.*;
@@ -57,7 +58,16 @@ public class GuestHostController implements ActionListener {
 			}
 			break;
 		case "Your Offers":
-			//completar
+			try {
+				ListOfferView nV = new ListOfferView(app.getGuestOffers(app.getLoggedUser()),0,"Your Offers");
+				GuestOfferController nC = new GuestOfferController(nV,0);
+				nV.setControlador(nC);
+				guestHost.setVisible(false);
+				nV.setVisible(true);
+			} catch (GuestException e1) {
+				JOptionPane.showMessageDialog(null, "This won't happen", "Error", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
 			break;
 		case "Logout":
 			if (app.logut() == false) {
