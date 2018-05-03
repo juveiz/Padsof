@@ -61,8 +61,8 @@ public class LoginView {
 
 		user = new JTextField(10);
 		password = new JPasswordField(10);
-		user.setText("55555111Z");
-		password.setText("NoSeSaBe");
+		user.setText("51999111X");
+		password.setText("pezEspada");
 		usuario = new JLabel("User: ");
 		contrasenia = new JLabel("Password: ");
 		userp.add(usuario);

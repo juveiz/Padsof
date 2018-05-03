@@ -28,6 +28,8 @@ public class SearchDateView {
 	private JLabel firma;
 	private JButton back;
 	private JPanel exit;
+	private JLabel welcome;
+	private JPanel view4;
 	
 	public SearchDateView() {
 		/*We declare the panels*/
@@ -42,10 +44,12 @@ public class SearchDateView {
 		begin = new JPanel();
 		end = new JPanel();
 		exit = new JPanel();
+		welcome = new JLabel("Choose a kind of search");
+		welcome.setFont(new Font("TimeRoman",30,30));
+		view4 = new JPanel();
 		
 		/*We choose the layouts*/
 		Container cont = view.getContentPane();
-		cont.setLayout(new BorderLayout());
 		view2.setLayout(new BorderLayout());
 		view3.setLayout(new BorderLayout());
 		pair1.setLayout(new FlowLayout());
@@ -56,6 +60,16 @@ public class SearchDateView {
 		begin.setLayout(new FlowLayout());
 		end.setLayout(new FlowLayout());
 		exit.setLayout(new FlowLayout());
+		
+		BorderLayout border = new BorderLayout();
+		cont.setLayout(border);		
+		border.setVgap(20);
+		border.setHgap(100);
+		
+		BorderLayout border2 = new BorderLayout();
+		view4.setLayout(border2);		
+		border2.setVgap(20);
+		border2.setHgap(100);
 		
 		/*RadioButtons panel*/
 		one = new JButton("Search by zip");
@@ -110,14 +124,22 @@ public class SearchDateView {
 	    int y = (int) ((dimension.getHeight() - view.getHeight()) / 4);
 	    view.setLocation(x, y);
 	    
+	    view4.add(view2,BorderLayout.CENTER);
+	    view4.add(welcome,BorderLayout.NORTH);
+	    view4.add(new JPanel(),BorderLayout.EAST);
+	    view4.add(new JPanel(),BorderLayout.WEST);
+	    view4.add(new JPanel(),BorderLayout.SOUTH);
+	    
 		/*Global panel*/
 		back = new JButton("Back");
 		exit.add(back);
 		firma = new JLabel("RentingJ&MA");
 		firma.setFont(new Font("Brush Script MT",50,50));
 		cont.add(firma, BorderLayout.NORTH);
-		cont.add(view2,BorderLayout.CENTER);
+		cont.add(view4,BorderLayout.CENTER);
 		cont.add(exit, BorderLayout.SOUTH);
+		cont.add(new JPanel(),BorderLayout.EAST);
+	    cont.add(new JPanel(),BorderLayout.WEST);
 		view.pack();
 		view.setSize(1000,500);
 		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
