@@ -10,14 +10,15 @@ import system.Application;
 import user.Admin;
 import views.AdminOfferView;
 import views.AdminView;
+import views.ListOfferView;
 import views.OfferAdminView;
 
 public class AdminOfferController implements ActionListener{
 	private Application app;
-	private AdminOfferView view;
+	private ListOfferView view;
 	private int firstOffer;
 	
-	public AdminOfferController(AdminOfferView view,int firstOffer) {
+	public AdminOfferController(ListOfferView view,int firstOffer) {
 		this.view = view;
 		this.firstOffer = firstOffer;
 		app = Application.getInstance();
@@ -69,7 +70,7 @@ public class AdminOfferController implements ActionListener{
 			if (this.firstOffer + 10 >= view.getOffers().size()) {
 				JOptionPane.showMessageDialog(null, "There are no more offers", "Error", JOptionPane.ERROR_MESSAGE);
 			}else {
-				AdminOfferView newView11 = new AdminOfferView(this.view.getOffers(),this.firstOffer + 10);
+				ListOfferView newView11 = new ListOfferView(this.view.getOffers(),this.firstOffer + 10,"Approve Offers");
 				AdminOfferController newControler = new AdminOfferController(newView11,this.firstOffer + 10);
 				newView11.setControlador(newControler);
 				this.view.setVisible(false);
@@ -80,7 +81,7 @@ public class AdminOfferController implements ActionListener{
 			if (this.firstOffer - 10 < 0) {
 				JOptionPane.showMessageDialog(null, "There are no more offers", "Error", JOptionPane.ERROR_MESSAGE);
 			}else {
-				AdminOfferView newView11 = new AdminOfferView(this.view.getOffers(),this.firstOffer - 10);
+				ListOfferView newView11 = new ListOfferView(this.view.getOffers(),this.firstOffer - 10,"Approve Offers");
 				AdminOfferController newControler = new AdminOfferController(newView11,this.firstOffer - 10);
 				newView11.setControlador(newControler);
 				this.view.setVisible(false);

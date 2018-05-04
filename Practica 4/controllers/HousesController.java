@@ -21,7 +21,7 @@ public class HousesController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton button = (JButton)e.getSource();
 		
-		switch(button.getActionCommand()) {
+		switch(button.getActionCommand()) {/*
 		case "Make Offer 0":
 			SelectOfferView newView = new SelectOfferView(view.getHouses().get(0 + this.firstHouse));
 			SelectOfferController newController = new SelectOfferController(newView);
@@ -91,7 +91,7 @@ public class HousesController implements ActionListener{
 			view.setVisible(false);
 			newView9.setVisible(true);
 			newView9.setControlador(newController9);
-		break;
+		break;*/
 		case ">>>":
 			if (this.firstHouse + 10 >= view.getHouses().size()) {
 				JOptionPane.showMessageDialog(null, "There are no more houses", "Error", JOptionPane.ERROR_MESSAGE);

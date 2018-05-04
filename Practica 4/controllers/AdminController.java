@@ -10,6 +10,7 @@ import system.Application;
 import views.AdminOfferView;
 import views.AdminView;
 import views.ChangeCardView;
+import views.ListOfferView;
 import views.LoginView;
 
 public class AdminController implements ActionListener {
@@ -33,7 +34,7 @@ public class AdminController implements ActionListener {
 			nView.setVisible(true);
 			break;
 		case "Approve Offers":
-			AdminOfferView nV = new AdminOfferView(app.getAdminOffers(),0);
+			ListOfferView nV = new ListOfferView(app.getAdminOffers(),0,"Approve Offers");
 			AdminOfferController nC = new AdminOfferController(nV,0);
 			nV.setControlador(nC);
 			view.setVisible(false);

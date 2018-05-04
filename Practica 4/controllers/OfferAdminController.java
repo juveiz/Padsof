@@ -12,6 +12,7 @@ import offer.Offer;
 import system.Application;
 import user.Admin;
 import views.AdminOfferView;
+import views.ListOfferView;
 import views.OfferAdminView;
 
 public class OfferAdminController implements ActionListener{
@@ -51,7 +52,7 @@ public class OfferAdminController implements ActionListener{
 			offer.approveOffer(admin);
 			JOptionPane.showMessageDialog(null, "Offer Approved");
 			
-			AdminOfferView nV = new AdminOfferView(admin.getOffers(), 0);
+			ListOfferView nV = new ListOfferView(admin.getOffers(), 0,"Approve Offers");
 			AdminOfferController nC = new AdminOfferController(nV, 0);
 			nV.setControlador(nC);
 			view.setVisible(false);
@@ -78,7 +79,7 @@ public class OfferAdminController implements ActionListener{
 			offer.denyOffer(admin1);
 			JOptionPane.showMessageDialog(null, "Offer Canceled");
 			
-			AdminOfferView nV1 = new AdminOfferView(admin1.getOffers(), 0);
+			ListOfferView nV1 = new ListOfferView(admin1.getOffers(), 0, "Approve Offers");
 			AdminOfferController nC1 = new AdminOfferController(nV1, 0);
 			nV1.setControlador(nC1);
 			view.setVisible(false);
@@ -105,14 +106,14 @@ public class OfferAdminController implements ActionListener{
 			String comment = JOptionPane.showInputDialog(null, "Introduce yout comment");
 			offer.askForChanges(comment, admin11);
 			
-			AdminOfferView nV11 = new AdminOfferView(admin11.getOffers(), 0);
+			ListOfferView nV11 = new ListOfferView(admin11.getOffers(), 0, "Approve Offers");
 			AdminOfferController nC11 = new AdminOfferController(nV11, 0);
 			nV11.setControlador(nC11);
 			view.setVisible(false);
 			nV11.setVisible(true);
 			break;
 		case "Back":
-			AdminOfferView nV111 = new AdminOfferView(app.getAdminOffers(), 0);
+			ListOfferView nV111 = new ListOfferView(app.getAdminOffers(), 0, "Approve Offers");
 			AdminOfferController nC111 = new AdminOfferController(nV111, 0);
 			nV111.setControlador(nC111);
 			view.setVisible(false);
