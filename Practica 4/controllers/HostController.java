@@ -39,6 +39,7 @@ public class HostController implements ActionListener {
 				ListOfferView nV = new ListOfferView(app.getHostOffers(app.getLoggedUser()),0,"Your Offers");
 				HostOfferController nC = new HostOfferController(nV,0);
 				nV.setControlador(nC);
+				JOptionPane.showMessageDialog(null, "Remember: You can only have onr type of offer per house");
 				host.setVisible(false);
 				nV.setVisible(true);
 			} catch (HostException e1) {

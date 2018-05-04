@@ -2,7 +2,7 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.*;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -12,15 +12,16 @@ import javax.swing.JOptionPane;
 import exception.HostException;
 import offer.House;
 import system.Application;
-import views.AddLivingView;
+import views.AddVacationalView;
 import views.HousesView;
 
-public class AddLivingController implements ActionListener {
+public class AddVacationalController implements ActionListener {
+
 	private House house;
 	private Application app;
-	private AddLivingView view;
+	private AddVacationalView view;
 	
-	public AddLivingController(House house,AddLivingView view) {
+	public AddVacationalController(House house,AddVacationalView view) {
 		this.house = house;
 		this.view = view;
 		app = Application.getInstance();
@@ -34,9 +35,9 @@ public class AddLivingController implements ActionListener {
 		case "Accept":
 			double price;
 			LocalDate iniDate;
-			int months;
+			LocalDate endDate;
 			
-			if(view.getIniDate() == "" || view.getMonths() == "" || view.getPrice() == "") {
+			if(view.getIniDate() == "" || view.getEndDate() == "" || view.getPrice() == "") {
 				JOptionPane.showMessageDialog(null, "You didn't enter all the parameters. Please introduce all the parameters", "Error", JOptionPane.ERROR_MESSAGE);
 				break;
 			}
@@ -47,6 +48,7 @@ public class AddLivingController implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Date format: YYYY-MM-DD", "Error", JOptionPane.ERROR_MESSAGE);
 				break;
 			}
+			
 			try{
 				price = Double.parseDouble(view.getPrice());
 			}catch(NumberFormatException n){
@@ -54,10 +56,15 @@ public class AddLivingController implements ActionListener {
 				break;
 			}
 			
-			try{
-				months = Integer.parseInt(view.getMonths());
-			}catch(NumberFormatException n){
-				JOptionPane.showMessageDialog(null, "The months is not a number. Please introduce a number", "Error", JOptionPane.ERROR_MESSAGE);
+			try {
+				endDate = LocalDate.parse(view.getEndDate(), DateTimeFormatter.ISO_LOCAL_DATE);
+			}catch(DateTimeParseException n) {
+				JOptionPane.showMessageDialog(null, "Date format: YYYY-MM-DD", "Error", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
+			
+			if(iniDate.isAfter(endDate)) {
+				JOptionPane.showMessageDialog(null, "The end date is before the initial date", "Error", JOptionPane.ERROR_MESSAGE);
 				break;
 			}
 			
@@ -67,7 +74,7 @@ public class AddLivingController implements ActionListener {
 			}
 			
 			try {
-				app.addOfferLiving(iniDate, price, house, months);
+				app.addOfferVacational(iniDate, price, house, endDate);
 			} catch (HostException e1) {
 				JOptionPane.showMessageDialog(null, "This won't happen", "Error", JOptionPane.ERROR_MESSAGE);
 				break;
@@ -99,7 +106,8 @@ public class AddLivingController implements ActionListener {
 			}
 			break;
 		}
-
 	}
-
 }
+
+
+

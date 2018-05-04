@@ -38,13 +38,13 @@ public class AddVacationalView {
 		view2 = new JPanel();
 		view3 = new JPanel();
 
-		iniDate.add(new JLabel("Initial date:          "));
+		iniDate.add(new JLabel("Initial date (YYYY-MM-DD) :          "));
 		iniDate.add(iniDateField);
 
 		price.add(new JLabel("Price:                   "));
 		price.add(priceField);
 
-		endDate.add(new JLabel("Ending Date:       "));
+		endDate.add(new JLabel("Ending Date (YYYY-MM-DD) :       "));
 		endDate.add(endDateField);
 
 		add.add(iniDate);

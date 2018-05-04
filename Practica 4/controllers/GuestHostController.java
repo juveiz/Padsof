@@ -49,6 +49,7 @@ public class GuestHostController implements ActionListener {
 			try {
 				ListOfferView nV = new ListOfferView(app.getHostOffers(app.getLoggedUser()),0,"Your Offers");
 				HostOfferController nC = new HostOfferController(nV,0);
+				JOptionPane.showMessageDialog(null, "Remember: You can only have onr type of offer per house");
 				nV.setControlador(nC);
 				guestHost.setVisible(false);
 				nV.setVisible(true);

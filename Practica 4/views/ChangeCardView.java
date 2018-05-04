@@ -117,7 +117,6 @@ public class ChangeCardView {
 		return cityField.getText();
 	}
 	
-	@SuppressWarnings("deprecation")
 	public String getPassword() {
 		return zipField.getText();
 	}
