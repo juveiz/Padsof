@@ -34,6 +34,9 @@ public class OfferController implements ActionListener{
 		case "Buy":
 			RegisteredUser user = app.getLoggedUser();
 			String subject = JOptionPane.showInputDialog(null, "Introduce the subject");
+			if (subject == null) {
+				break;
+			}
 			if(view.getOffer().getState() == 4) {
 				JOptionPane.showMessageDialog(null, "The offer is already bought", "Error", JOptionPane.ERROR_MESSAGE);
 				break;

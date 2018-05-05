@@ -11,6 +11,7 @@ import user.RegisteredUser;
 import views.GuestHostView;
 import views.HostView;
 import views.ListOfferView;
+import views.OfferView;
 
 public class HostOfferController implements ActionListener {
 	private Application app;
@@ -24,7 +25,13 @@ public class HostOfferController implements ActionListener {
 	}
 
 	private void aux(int i) {
-		// hacer
+		OfferView nV;
+		OfferController nC;
+		nV = new OfferView(view.getOffers().get(i + this.firstOffer),"Make Changes","Cancel Offer","Comment","See Comments");
+		nC = new OfferController(nV);
+		nV.setControlador(nC);
+		view.setVisible(false);
+		nV.setVisible(true);
 	}
 
 	@Override
