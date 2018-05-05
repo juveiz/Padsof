@@ -25,7 +25,7 @@ public class Pruebas {
 				e.printStackTrace();
 			}
 		}
-		OfferView v = new OfferView(offers.get(0));
+		OfferView v = new OfferView(offers.get(0),"Accept","Cancel","Back");
 
 		v.setVisible(true);
 	}

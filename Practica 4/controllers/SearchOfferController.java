@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import system.Application;
 import user.RegisteredUser;
 import views.ListOfferView;
+import views.OfferView;
 import views.SearchDate2View;
 import views.SearchDateView;
 
@@ -25,7 +26,22 @@ public class SearchOfferController implements ActionListener{
 	}
 	
 	private void aux(int i) {
-		// hacer
+		RegisteredUser user = app.getLoggedUser();
+		OfferView nV;
+		OfferController nC;
+		if (user == null) {
+			nV = new OfferView(view.getOffers().get(i + this.firstOffer));
+			nC = new OfferController(nV);
+			nV.setControlador(nC);
+			view.setVisible(false);
+			nV.setVisible(true);
+		}else{
+			nV = new OfferView(view.getOffers().get(i + this.firstOffer),"Reserve","Buy","Comment","Rate","See Comments");
+			nC = new OfferController(nV);
+			nV.setControlador(nC);
+			view.setVisible(false);
+			nV.setVisible(true);
+		}
 	}
 
 	@Override
