@@ -48,7 +48,19 @@ public class SearchZip2Controller implements ActionListener {
 			newView4.setVisible(true);
 			break;
 		case "Search":
-			/*Implement search*/
+			int zip;
+			try{
+				zip = Integer.parseInt(view.getZip());
+			}catch(NumberFormatException n){
+				JOptionPane.showMessageDialog(null, "The zip is not a number. Please introduce a number", "Error", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
+			
+			ListOfferView nV = new ListOfferView(app.searchOfferZip(zip), 0, "Search by zip");
+			SearchOfferController nC = new SearchOfferController(nV, 0);
+			nV.setControlador(nC);
+			view.setVisible(false);
+			nV.setVisible(true);
 			break;
 		}
 	}	

@@ -1,6 +1,8 @@
 package controllers;
 
 import java.awt.event.*;
+import java.time.LocalDate;
+
 import javax.swing.*;
 import system.Application;
 import views.*;
@@ -48,7 +50,19 @@ public class SearchDate2Controller implements ActionListener {
 			newView4.setVisible(true);
 			break;
 		case "Search":
-			/*Implement search*/
+			LocalDate ini,end;
+			try {
+				ini = view.getIniDate();
+				end = view.getEndDate();
+			}catch(Exception n) {
+				JOptionPane.showMessageDialog(null, "Date format: YYYY-MM-DD", "Error", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
+			ListOfferView nV = new ListOfferView(app.searchOfferDate(ini, end), 0, "Search by date");
+			SearchOfferController nC = new SearchOfferController(nV, 0);
+			nV.setControlador(nC);
+			view.setVisible(false);
+			nV.setVisible(true);
 			break;
 		}
 	}	

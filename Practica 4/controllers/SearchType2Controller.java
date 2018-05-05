@@ -48,7 +48,11 @@ public class SearchType2Controller implements ActionListener {
 			newView4.setVisible(true);
 			break;
 		case "Search":
-			/*Implement search*/
+			ListOfferView nV = new ListOfferView(app.searchOfferType(view.getType()), 0, "Search by type");
+			SearchOfferController nC = new SearchOfferController(nV, 0);
+			nV.setControlador(nC);
+			view.setVisible(false);
+			nV.setVisible(true);
 			break;
 		}
 	}	

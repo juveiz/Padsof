@@ -3,6 +3,7 @@ package views;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 public class SearchDateView {
 	private JFrame view;
@@ -22,7 +23,12 @@ public class SearchDateView {
 	private JButton five;
 	private JButton six;
 	private JButton search;
-	private JComboBox<String> combo;
+	private JComboBox<String> days1;
+	private JComboBox<String> days2;
+	private JComboBox<String> months1;
+	private JComboBox<String> months2;
+	private JComboBox<String> years1;
+	private JComboBox<String> years2;
 	private JLabel text1;
 	private JLabel text2;
 	private JLabel firma;
@@ -90,15 +96,15 @@ public class SearchDateView {
 		
 		/*Down below panel*/
 		search = new JButton("Search");
-		String[] days = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-		String[] months = {"January", "February", "March", "April", "May", "Jun", "July", "August", "September", "October", "November", "December"};
+		String[] days = {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+		String[] months = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
 		String[] years = {"2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"};
-		JComboBox<String> days1 = new JComboBox<String>(days);
-		JComboBox<String> days2 = new JComboBox<String>(days);
-		JComboBox<String> months1 = new JComboBox<String>(months);
-		JComboBox<String> months2 = new JComboBox<String>(months);
-		JComboBox<String> years1 = new JComboBox<String>(years);
-		JComboBox<String> years2 = new JComboBox<String>(years);
+		days1 = new JComboBox<String>(days);
+		days2 = new JComboBox<String>(days);
+		months1 = new JComboBox<String>(months);
+		months2 = new JComboBox<String>(months);
+		years1 = new JComboBox<String>(years);
+		years2 = new JComboBox<String>(years);
 		text1 = new JLabel("Select the beginning date");
 		text2 = new JLabel("Select the ending date");
 		begin.add(text1);
@@ -150,8 +156,20 @@ public class SearchDateView {
 		view.setVisible(dec);
 	}
 	
-	public String getTyoe() {
-		return combo.getActionCommand();
+	public LocalDate getIniDate() throws Exception{
+		LocalDate ini;
+		String date;
+		date = years1.getSelectedItem().toString() + "-" + months1.getSelectedItem().toString() + "-" + days1.getSelectedItem().toString();
+		ini = LocalDate.parse(date);
+		return ini;
+	}
+	
+	public LocalDate getEndDate() throws Exception{
+		LocalDate fin;
+		String date;
+		date = years2.getSelectedItem().toString() + "-" + months2.getSelectedItem().toString() + "-" + days2.getSelectedItem().toString();
+		fin = LocalDate.parse(date);
+		return fin;
 	}
 	
 	public void setControlador(ActionListener c) {

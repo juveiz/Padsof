@@ -600,7 +600,7 @@ public class Application implements Serializable {
 			if (u.getState() == 1) {
 				List<Offer> l = new ArrayList<>();
 				for (Offer o : offers) {
-					if (o.getRate() > min) {
+					if (o.getRate() >= min) {
 						if (o.getState() != -1) {
 							l.add(o);
 						}

@@ -60,7 +60,7 @@ public class SearchType2View {
 		/*Down below panel*/
 		search = new JButton("Search");
 		String[] types = {"Living", "Vacational"};
-		JComboBox<String> combo = new JComboBox<String>(types);
+		combo = new JComboBox<String>(types);
 		text = new JLabel("Select the type");
 		down.add(text);
 		down.add(combo);
@@ -102,8 +102,8 @@ public class SearchType2View {
 		view.setVisible(dec);
 	}
 	
-	public String getTyoe() {
-		return combo.getActionCommand();
+	public String getType() {
+		return combo.getSelectedItem().toString();
 	}
 	
 	public void setControlador(ActionListener c) {

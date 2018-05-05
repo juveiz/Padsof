@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 import offer.Offer;
 import system.Application;
 import user.Admin;
-import views.AdminOfferView;
 import views.ListOfferView;
 import views.OfferAdminView;
 

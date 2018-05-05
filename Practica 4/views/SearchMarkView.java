@@ -122,7 +122,7 @@ public class SearchMarkView {
 		view.setVisible(dec);
 	}
 	
-	public String getZip() {
+	public String getMark() {
 		return introduce.getText();
 	}
 	

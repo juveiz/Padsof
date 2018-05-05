@@ -1,7 +1,11 @@
 package controllers;
 
 import java.awt.event.*;
+import java.time.LocalDate;
+
 import javax.swing.*;
+
+import exception.NonRegisteredException;
 import system.Application;
 import user.RegisteredUser;
 import views.*;
@@ -49,13 +53,45 @@ public class SearchDateController implements ActionListener {
 			newView2.setControlador(newController2);
 			break;
 		case "Search reserved":
-			/*Implement search*/
+			ListOfferView nV2;
+			try {
+				nV2 = new ListOfferView(app.searchOfferReserved(), 0, "Search reserved");
+			} catch (NonRegisteredException e1) {
+				JOptionPane.showMessageDialog(null, "This won't happen", "Error", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
+			SearchOfferController nC2 = new SearchOfferController(nV2, 0);
+			nV2.setControlador(nC2);
+			view.setVisible(false);
+			nV2.setVisible(true);
 			break;
 		case "Search bought":
-			/*Implement search*/
-			break;	
+			ListOfferView nV1;
+			try {
+				nV1 = new ListOfferView(app.searchOfferBought(), 0, "Search bought");
+			} catch (NonRegisteredException e1) {
+				JOptionPane.showMessageDialog(null, "This won't happen", "Error", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
+			SearchOfferController nC1 = new SearchOfferController(nV1, 0);
+			nV1.setControlador(nC1);
+			view.setVisible(false);
+			nV1.setVisible(true);
+			break;
 		case "Search":
-			/*Implement search*/
+			LocalDate ini,end;
+			try {
+				ini = view.getIniDate();
+				end = view.getEndDate();
+			}catch(Exception n) {
+				JOptionPane.showMessageDialog(null, "Date format: YYYY-MM-DD", "Error", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
+			ListOfferView nV = new ListOfferView(app.searchOfferDate(ini, end), 0, "Search by date");
+			SearchOfferController nC = new SearchOfferController(nV, 0);
+			nV.setControlador(nC);
+			view.setVisible(false);
+			nV.setVisible(true);
 			break;
 		case "Back":
 			RegisteredUser user = app.getLoggedUser();
