@@ -25,7 +25,7 @@ public class Pruebas {
 				e.printStackTrace();
 			}
 		}
-		AddVacationalView v = new AddVacationalView();
+		OfferView v = new OfferView(offers.get(0));
 
 		v.setVisible(true);
 	}

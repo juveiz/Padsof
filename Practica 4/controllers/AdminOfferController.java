@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 
 import system.Application;
 import user.Admin;
-import views.AdminOfferView;
 import views.AdminView;
 import views.ListOfferView;
 import views.OfferAdminView;

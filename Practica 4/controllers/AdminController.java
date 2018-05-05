@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import system.Application;
-import views.AdminOfferView;
 import views.AdminView;
 import views.ChangeCardView;
 import views.ListOfferView;
