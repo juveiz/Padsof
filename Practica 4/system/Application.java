@@ -266,15 +266,12 @@ public class Application implements Serializable {
 		return null;
 	}
 	/**
-	 * Get the logged admin
+	 * Get the admin
 	 * 
-	 * @return Admin or null
+	 * @return Admin 
 	 */
 	public Admin getAdmin() {
-		if (admin.getState() == 1) {
-			return admin;
-		}
-		return null;
+		return admin;
 	}
 	/**
 	 * Get a registered user from the app

@@ -96,7 +96,7 @@ public class Living extends Offer implements Serializable {
 		if (o.isLiving() == false) {
 			return false;
 		}
-		if (super.getState() >= 0 && o.getState() >= 0) {
+		if (super.getState() != -1 && super.getState() != 4) {
 			return true;
 		}
 		return false;

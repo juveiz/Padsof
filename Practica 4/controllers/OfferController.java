@@ -13,6 +13,8 @@ import system.Application;
 import user.RegisteredUser;
 import views.GuestHostView;
 import views.ListOfferView;
+import views.ModifyLivingView;
+import views.ModifyVacationalView;
 import views.OfferView;
 import views.SearchDate2View;
 import views.SearchDateView;
@@ -147,8 +149,24 @@ public class OfferController implements ActionListener{
 		case "Make Changes":
 			RegisteredUser user4 = app.getLoggedUser();
 			if(user4.isHost()) {
+				if(this.view.getOffer().getState() != 2) {
+					JOptionPane.showMessageDialog(null, "The offer doesn't need changes", "Error", JOptionPane.ERROR_MESSAGE);
+					break;
+				}
 				JOptionPane.showMessageDialog(null, "The admin says: \n" + view.getOffer().getChanges());
-				//hacer vista
+				if (this.view.getOffer().isLiving()) {
+					ModifyLivingView nV = new ModifyLivingView(this.view.getOffer());
+					ModifyLivingController nC = new ModifyLivingController(nV);
+					nV.setControlador(nC);
+					this.view.setVisible(false);
+					nV.setVisible(true);
+				}else {
+					ModifyVacationalView nV = new ModifyVacationalView(this.view.getOffer());
+					ModifyVacationalController nC = new ModifyVacationalController(nV);
+					nV.setControlador(nC);
+					this.view.setVisible(false);
+					nV.setVisible(true);
+				}
 			}
 			break;
 		case "Back":
