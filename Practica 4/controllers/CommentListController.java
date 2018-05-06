@@ -12,6 +12,8 @@ import comments.Text;
 import exception.GuestException;
 import system.Application;
 import views.CommentListView;
+import views.GuestHostView;
+import views.OfferView;
 
 public class CommentListController implements ActionListener {
 	
@@ -29,7 +31,7 @@ public class CommentListController implements ActionListener {
 	
 	private void aux1(int i) {
 		if(this.comments.get(i + this.firstComment).isText()) {
-			CommentListView nV = new CommentListView(((Text) this.comments.get(i + this.firstComment)).getComments(), 0);
+			CommentListView nV = new CommentListView(((Text) this.comments.get(i + this.firstComment)).getComments(), 0, this.view.getOffer());
 			CommentListController nC = new CommentListController(nV, 0, ((Text) this.comments.get(i + this.firstComment)).getComments());
 			nV.setControlador(nC);
 			this.view.setVisible(false);
@@ -99,7 +101,7 @@ public class CommentListController implements ActionListener {
 			if(this.firstComment + 5 >= view.getComments().size()) {
 				JOptionPane.showMessageDialog(null, "There are no more comments", "Error", JOptionPane.ERROR_MESSAGE);
 			}else {
-				CommentListView nV = new CommentListView(this.view.getComments(), this.firstComment + 5);
+				CommentListView nV = new CommentListView(this.view.getComments(), this.firstComment + 5,this.view.getOffer());
 				CommentListController nC = new CommentListController(nV, this.firstComment + 5, this.view.getComments());
 				nV.setControlador(nC);
 				this.view.setVisible(false);
@@ -110,7 +112,7 @@ public class CommentListController implements ActionListener {
 			if(this.firstComment - 5 < 0) {
 				JOptionPane.showMessageDialog(null, "There are no more comments", "Error", JOptionPane.ERROR_MESSAGE);
 			}else {
-				CommentListView nV = new CommentListView(this.view.getComments(), this.firstComment - 5);
+				CommentListView nV = new CommentListView(this.view.getComments(), this.firstComment - 5,this.view.getOffer());
 				CommentListController nC = new CommentListController(nV, this.firstComment - 5, this.view.getComments());
 				nV.setControlador(nC);
 				this.view.setVisible(false);
@@ -118,6 +120,34 @@ public class CommentListController implements ActionListener {
 			}
 			break;
 		case "Back":
+			if(view.getOffer().getComments().equals(this.view.getComments())) {
+				if(app.getLoggedUser().isGuest() && app.getLoggedUser().isHost() == false) {
+					OfferView nV = new OfferView(view.getOffer(),"Reserve","Buy","Comment","Rate","See Comments");
+					OfferController nC = new OfferController(nV);
+					nV.setControlador(nC);
+					view.setVisible(false);
+					nV.setVisible(true);
+				}else if(app.getLoggedUser().isGuest() == false && app.getLoggedUser().isHost()) {
+					OfferView nV = new OfferView(view.getOffer(),"Make Changes","Cancel Offer","Comment","See Comments");
+					OfferController nC = new OfferController(nV);
+					nV.setControlador(nC);
+					view.setVisible(false);
+					nV.setVisible(true);
+				}else {
+					GuestHostView newView11 = new GuestHostView(app.getLoggedUser());
+					GuestHostController newController11 = new GuestHostController(newView11);
+					newView11.setControlador(newController11);
+					this.view.setVisible(false);
+					newView11.setVisible(true);
+				}
+			}else {
+				CommentListView nV = new CommentListView(view.getOffer().getComments(), 0, view.getOffer());
+				CommentListController nC = new CommentListController(nV,0, view.getOffer().getComments());
+				nV.setControlador(nC);
+				view.setVisible(false);
+				nV.setVisible(true);
+			}
+		break;
 		}
 
 	}

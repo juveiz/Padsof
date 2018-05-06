@@ -19,9 +19,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import comments.*;
+import offer.Offer;
 
 public class CommentListView {
 	private int firstComment;
+	private Offer offer;
 	private List<Comment> comments;
 	private JFrame main;
 	private List<JPanel> offerPanel;
@@ -37,9 +39,10 @@ public class CommentListView {
 	private JButton back;
 	private JLabel firma;
 	
-	public CommentListView(List<Comment> comments,int firstComment) {
+	public CommentListView(List<Comment> comments,int firstComment,Offer offer) {
 		this.comments = comments;
 		this.firstComment = firstComment;
+		this.offer = offer;
 		
 		main = new JFrame("Offers");
 		center = new JPanel();
@@ -160,6 +163,10 @@ public class CommentListView {
 		next.addActionListener(c);
 		back.addActionListener(c);
 		previous.addActionListener(c);
+	}
+	
+	public Offer getOffer() {
+		return offer;
 	}
 	
 	public List<Comment> getComments() {

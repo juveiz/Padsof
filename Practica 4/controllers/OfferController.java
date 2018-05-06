@@ -11,6 +11,7 @@ import exception.HostException;
 import offer.Reserve;
 import system.Application;
 import user.RegisteredUser;
+import views.CommentListView;
 import views.GuestHostView;
 import views.ListOfferView;
 import views.ModifyLivingView;
@@ -122,7 +123,11 @@ public class OfferController implements ActionListener{
 			}
 			break;
 		case "See Comments":
-			// a implementar
+			CommentListView nV10 = new CommentListView(view.getOffer().getComments(), 0, view.getOffer());
+			CommentListController nC10 = new CommentListController(nV10,0, view.getOffer().getComments());
+			nV10.setControlador(nC10);
+			view.setVisible(false);
+			nV10.setVisible(true);
 			break;
 		case "Cancel Reserve":
 			RegisteredUser user2 = app.getLoggedUser();
