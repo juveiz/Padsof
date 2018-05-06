@@ -6,6 +6,7 @@ import java.util.List;
 
 import controllers.AdminOfferController;
 import controllers.HousesController;
+import exception.GuestException;
 import exception.HostException;
 import offer.*;
 import system.Application;
@@ -25,7 +26,21 @@ public class Pruebas {
 				e.printStackTrace();
 			}
 		}
-		ModifyVacationalView v = new ModifyVacationalView(offers.get(0));
+		try {
+
+				offers.get(0).commentOffer(user, "Wolololololoasdniausbduiasvfdugavdfuysgdfcvuihsbdfijbusdifcjbsdifcvbsidfbcisdbfisbdfidf");
+	
+		} catch (GuestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			offers.get(0).rateOffer(user, 2.0);
+		} catch (GuestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CommentListView v = new CommentListView(offers.get(0).getComments(), 0);
 
 		v.setVisible(true);
 	}
