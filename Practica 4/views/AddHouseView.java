@@ -17,7 +17,7 @@ public class AddHouseView {
 	private JPanel zipPanel;
 	private JTextField zipField;
 	private JPanel descriptionPanel;
-	private JTextField descriptionField;
+	private JTextArea descriptionField;
 	private JPanel buttons;
 	private JButton accept;
 	private JButton cancel;
@@ -32,7 +32,7 @@ public class AddHouseView {
 		zipPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		zipField = new JTextField(10);
 		descriptionPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		descriptionField = new JTextField(60);
+		descriptionField = new JTextArea(2,50);
 		buttons = new JPanel(new FlowLayout());
 		accept = new JButton("Accept");
 		cancel = new JButton("Cancel");
@@ -46,7 +46,11 @@ public class AddHouseView {
 		zipPanel.add(zipField);
 		
 		descriptionPanel.add(new JLabel("Description: "));
-		descriptionPanel.add(descriptionField);
+		descriptionField.setEditable(true);
+		descriptionField.setLineWrap(true);
+		descriptionField.setWrapStyleWord(true);
+		JScrollPane pan = new JScrollPane(descriptionField);
+		descriptionPanel.add(pan);
 		
 		add.add(cityPanel);
 		add.add(zipPanel);
