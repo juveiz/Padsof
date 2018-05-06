@@ -37,6 +37,11 @@ public class AddHouseController implements ActionListener {
 				break;
 			}
 			
+			if(city == null || description == null|| view.getZip() == null) {
+				JOptionPane.showMessageDialog(null, "You didn't enter all the parameters. Please introduce all the parameters", "Error", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
+			
 			try{
 				zip = Integer.parseInt(view.getZip());
 			}catch(NumberFormatException n){

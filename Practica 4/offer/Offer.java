@@ -499,10 +499,6 @@ public abstract class Offer implements Serializable {
 	 *             The user is not a guest
 	 */
 	public void commentOffer(RegisteredUser g, String c) throws GuestException {
-		if (g.isGuest() == false) {
-			GuestException gu = new GuestException();
-			throw gu;
-		}
 		Comment comment;
 		comment = new Text(c, g);
 		comments.add(comment);
@@ -519,10 +515,6 @@ public abstract class Offer implements Serializable {
 	 *             the user is not a guest
 	 */
 	public void rateOffer(RegisteredUser g, double r) throws GuestException {
-		if (g.isGuest() == false) {
-			GuestException gu = new GuestException();
-			throw gu;
-		}
 		Comment comment;
 		if (r > 5) {
 			r = 5;

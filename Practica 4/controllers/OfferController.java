@@ -60,8 +60,7 @@ public class OfferController implements ActionListener{
 						JOptionPane.showMessageDialog(null, "The offer is already reserved by another user", "Error", JOptionPane.ERROR_MESSAGE);
 						break;
 					}else {
-						JOptionPane.showMessageDialog(null, "You have buy the offer");
-						//Volver atras
+						JOptionPane.showMessageDialog(null, "You have bought the offer");
 						break;
 					}
 				} catch (GuestException e1) {
@@ -147,6 +146,10 @@ public class OfferController implements ActionListener{
 		case "Cancel Offer":
 			RegisteredUser user3 = app.getLoggedUser();
 			if(user3.isHost()) {
+				if (view.getOffer().getState() != 0 && view.getOffer().getState() != 2) {
+					JOptionPane.showMessageDialog(null, "You can't cancel an accepted offer", "Error", JOptionPane.ERROR_MESSAGE);
+					break;
+				}
 				view.getOffer().denyOffer(null);
 				JOptionPane.showMessageDialog(null, "You have canceled the offer");
 			}
@@ -158,7 +161,7 @@ public class OfferController implements ActionListener{
 					JOptionPane.showMessageDialog(null, "The offer doesn't need changes", "Error", JOptionPane.ERROR_MESSAGE);
 					break;
 				}
-				JOptionPane.showMessageDialog(null, "The admin says: \n" + view.getOffer().getChanges());
+				JOptionPane.showMessageDialog(null, "The admin asked for: \n" + view.getOffer().getChanges());
 				if (this.view.getOffer().isLiving()) {
 					ModifyLivingView nV = new ModifyLivingView(this.view.getOffer());
 					ModifyLivingController nC = new ModifyLivingController(nV);
@@ -193,7 +196,7 @@ public class OfferController implements ActionListener{
 					ListOfferView nV = new ListOfferView(app.getHostOffers(app.getLoggedUser()),0,"Your Offers");
 					HostOfferController nC = new HostOfferController(nV,0);
 					nV.setControlador(nC);
-					JOptionPane.showMessageDialog(null, "Remember: You can only have onr type of offer per house");
+					JOptionPane.showMessageDialog(null, "Remember: You can only have one type of offer per house");
 					view.setVisible(false);
 					nV.setVisible(true);
 				} catch (HostException e1) {

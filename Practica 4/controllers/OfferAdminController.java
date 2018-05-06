@@ -103,6 +103,9 @@ public class OfferAdminController implements ActionListener{
 				break;
 			}
 			String comment = JOptionPane.showInputDialog(null, "Introduce your comment");
+			if (comment == null) {
+				break;
+			}
 			offer.askForChanges(comment, admin11);
 			
 			ListOfferView nV11 = new ListOfferView(admin11.getOffers(), 0, "Approve Offers");

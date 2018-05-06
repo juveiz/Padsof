@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import offer.Offer;
 import system.Application;
 import user.Admin;
+import user.Profile;
 import user.RegisteredUser;
 import views.AdminView;
 import views.ChangeCardView;
@@ -48,6 +50,16 @@ public class ChangeCardController implements ActionListener {
 				}
 				reg.unbanUser(card, admin);
 				JOptionPane.showMessageDialog(null, "Credit Card Changed");
+				if(reg.isHost()) {
+					for(Profile p: reg.getProfile()) {
+						if(p.isHost()) {
+							for(Offer o: p.getOffers()) {
+								o.payHost(admin);
+							}
+						}
+					}
+					JOptionPane.showMessageDialog(null, "If you had unpaid offers, they have been paid");
+				}
 				AdminView newView = new AdminView(admin);
 				AdminController newController = new AdminController(newView);
 				newView.setControlador(newController);

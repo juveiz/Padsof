@@ -27,10 +27,6 @@ public abstract class Comment implements Serializable {
 	 *             The user is not a guest
 	 */
 	public Comment(RegisteredUser guest) throws GuestException {
-		if (guest.isGuest() == false) {
-			GuestException g = new GuestException();
-			throw g;
-		}
 		this.guest = guest;
 	}
 
