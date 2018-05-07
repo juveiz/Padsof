@@ -66,6 +66,8 @@ public class OfferView {
 		desc.setText("CITY: " + offer.getHouse().getCity() + "\n\nZIP CODE: " + offer.getHouse().getZip() + "\n\nDESCRIPTION: " + offer.getHouse().getDescription());
 		desc.setEditable(false);
 		desc.setFont(new Font("TimeRoman",20,20));
+		desc.setLineWrap(true);
+		desc.setWrapStyleWord(true);
 		house.add(desc,BorderLayout.CENTER);
 		house.add(new JPanel(),BorderLayout.EAST);
 		house.add(new JPanel(),BorderLayout.WEST);
