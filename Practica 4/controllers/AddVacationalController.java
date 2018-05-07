@@ -55,7 +55,10 @@ public class AddVacationalController implements ActionListener {
 				JOptionPane.showMessageDialog(null, "The price is not a number. Please introduce a number", "Error", JOptionPane.ERROR_MESSAGE);
 				break;
 			}
-			
+			if (price < 0) {
+				JOptionPane.showMessageDialog(null, "The price must be greater than 0. Please introduce a number", "Error", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
 			try {
 				endDate = LocalDate.parse(view.getEndDate(), DateTimeFormatter.ISO_LOCAL_DATE);
 			}catch(DateTimeParseException n) {

@@ -50,7 +50,10 @@ public class ModifyLivingController implements ActionListener{
 				JOptionPane.showMessageDialog(null, "The price is not a number. Please introduce a number", "Error", JOptionPane.ERROR_MESSAGE);
 				break;
 			}
-			
+			if (price < 0) {
+				JOptionPane.showMessageDialog(null, "The price must be greater than 0. Please introduce a number", "Error", JOptionPane.ERROR_MESSAGE);
+				break;
+			}
 			try{
 				months = Integer.parseInt(view.getMonths());
 			}catch(NumberFormatException n){
