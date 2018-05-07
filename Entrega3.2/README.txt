@@ -12,3 +12,6 @@ Miguel Angel Sanchez and Juan Velasco.
   because a host user isn't banned when his card is wrong
 - Everything an user do will be saved if he logs out. If not, the user
   will lose all the things
+- In the main file you will found the admin user (1234) and the admin password
+  (1234). By default, a GuestHost user is written in the login menu. The other
+  users are in the clients example
