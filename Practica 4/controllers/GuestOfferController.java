@@ -28,7 +28,7 @@ public class GuestOfferController implements ActionListener {
 	private void aux(int i) {
 		OfferView nV;
 		OfferController nC;
-		nV = new OfferView(view.getOffers().get(i + this.firstOffer),"Reserve","Buy","Comment","Rate","See Comments");
+		nV = new OfferView(view.getOffers().get(i + this.firstOffer),"Reserve","Buy","Cancel Reserve","Comment","Rate","See Comments");
 		nC = new OfferController(nV);
 		nV.setControlador(nC);
 		view.setVisible(false);

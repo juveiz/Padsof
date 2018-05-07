@@ -10,6 +10,7 @@ import exception.GuestException;
 import exception.HostException;
 import offer.Reserve;
 import system.Application;
+import user.Profile;
 import user.RegisteredUser;
 import views.CommentListView;
 import views.GuestHostView;
@@ -138,6 +139,12 @@ public class OfferController implements ActionListener{
 					}else {
 						JOptionPane.showMessageDialog(null, "This won't happen", "Error", JOptionPane.ERROR_MESSAGE);
 						break;
+					}
+					view.getOffer().setState(1);
+					for(Profile p: user2.getProfile()) {
+						if(p.isGuest()) {
+							p.getOffers().remove(view.getOffer());
+						}
 					}
 				}
 				JOptionPane.showMessageDialog(null, "You have canceled the reserve");

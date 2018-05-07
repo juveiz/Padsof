@@ -82,7 +82,7 @@ public class SearchMarkController implements ActionListener {
 			try{
 				mark = Integer.parseInt(view.getMark());
 			}catch(NumberFormatException n){
-				JOptionPane.showMessageDialog(null, "The zip is not a number. Please introduce a number", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "The mark is not a number. Please introduce a number", "Error", JOptionPane.ERROR_MESSAGE);
 				break;
 			}
 			ListOfferView nV;
