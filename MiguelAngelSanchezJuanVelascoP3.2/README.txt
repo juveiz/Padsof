@@ -15,3 +15,6 @@ Miguel Angel Sanchez and Juan Velasco.
 - In the main file you will found the admin user (1234) and the admin password
   (1234). By default, a GuestHost user is written in the login menu. The other
   users are in the clients example
+- Finally, when a user is banned, he can continuo with his actual sesion (but
+  he can't buy). When he logout, he can't enter the app. This is a consecuence
+  of our buy method and we decided to stay like that in the views
